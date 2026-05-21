@@ -24,30 +24,26 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Playwright browsers
-        run: python -m playwright install chromium --with-deps
-
       - name: Run parser
         run: python parser.py
 
       - name: Generate HTML page
         run: |
           python - <<'EOF'
-          import json, datetime
+          import pandas as pd
+          import datetime
 
-          with open("growex_zzr.json", encoding="utf-8") as f:
-              products = json.load(f)
-
+          df = pd.read_excel("growex_zzr.xlsx")
           updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
           rows = ""
-          for p in products:
+          for _, p in df.iterrows():
               rows += f"""
               <tr>
-                <td><a href="{p['url']}" target="_blank">{p['name']}</a></td>
-                <td>{p['unit_price']}</td>
-                <td>{p['total_price']}</td>
-                <td>{p['availability']}</td>
+                <td><a href="{p.get('URL','')}" target="_blank">{p.get('Назва','')}</a></td>
+                <td>{p.get('Ціна','')}</td>
+                <td>{p.get('Ціна_за_літр','')}</td>
+                <td>{p.get('Виробник','')}</td>
               </tr>"""
 
           html = f"""<!DOCTYPE html>
@@ -56,10 +52,51 @@ jobs:
             <meta charset="UTF-8">
             <title>Growex — ЗЗР</title>
             <style>
-              body {{ font-family: Arial, sans-serif; padding: 20px; }}
+              body {{ font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }}
               h1 {{ color: #2c7a2c; }}
-              table {{ border-collapse: collapse; width: 100%; }}
-              th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
+              p {{ color: #666; }}
+              table {{ border-collapse: collapse; width: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }}
+              th, td {{ border: 1px solid #ddd; padding: 10px; text-align: left; }}
               th {{ background: #2c7a2c; color: white; }}
               tr:nth-child(even) {{ background: #f9f9f9; }}
-              input {{ margin: 10p
+              tr:hover {{ background: #e8f5e9; }}
+              input {{ margin: 10px 0; padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }}
+              a {{ color: #2c7a2c; }}
+            </style>
+          </head>
+          <body>
+            <h1>🌿 Growex — Засоби захисту рослин</h1>
+            <p>Оновлено: {updated} | Товарів: {len(df)}</p>
+            <input type="text" id="search" placeholder="🔍 Пошук товару..." onkeyup="filter()">
+            <table id="table">
+              <thead><tr>
+                <th>Назва</th>
+                <th>Ціна</th>
+                <th>Ціна за літр</th>
+                <th>Виробник</th>
+              </tr></thead>
+              <tbody>{rows}</tbody>
+            </table>
+            <script>
+              function filter() {{
+                const q = document.getElementById('search').value.toLowerCase();
+                document.querySelectorAll('#table tbody tr').forEach(r => {{
+                  r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+                }});
+              }}
+            </script>
+          </body>
+          </html>"""
+
+          with open("index.html", "w", encoding="utf-8") as f:
+              f.write(html)
+          print("index.html створено")
+          EOF
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add growex_zzr.xlsx index.html
+          git diff --staged --quiet || git commit -m "Update parser results"
+          git push
