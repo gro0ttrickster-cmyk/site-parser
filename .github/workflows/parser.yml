@@ -22,7 +22,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 pandas openpyxl
+        run: |
+          pip install requests beautifulsoup4 pandas openpyxl
+          pip list
+          python -c "import requests; print('requests OK')"
 
       - name: Run parser
         run: python parser.py
