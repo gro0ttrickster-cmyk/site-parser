@@ -1,0 +1,65 @@
+name: Growex Parser
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: python -m playwright install chromium --with-deps
+
+      - name: Run parser
+        run: python parser.py
+
+      - name: Generate HTML page
+        run: |
+          python - <<'EOF'
+          import json, datetime
+
+          with open("growex_zzr.json", encoding="utf-8") as f:
+              products = json.load(f)
+
+          updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+
+          rows = ""
+          for p in products:
+              rows += f"""
+              <tr>
+                <td><a href="{p['url']}" target="_blank">{p['name']}</a></td>
+                <td>{p['unit_price']}</td>
+                <td>{p['total_price']}</td>
+                <td>{p['availability']}</td>
+              </tr>"""
+
+          html = f"""<!DOCTYPE html>
+          <html lang="uk">
+          <head>
+            <meta charset="UTF-8">
+            <title>Growex — ЗЗР</title>
+            <style>
+              body {{ font-family: Arial, sans-serif; padding: 20px; }}
+              h1 {{ color: #2c7a2c; }}
+              table {{ border-collapse: collapse; width: 100%; }}
+              th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
+              th {{ background: #2c7a2c; color: white; }}
+              tr:nth-child(even) {{ background: #f9f9f9; }}
+              input {{ margin: 10p
