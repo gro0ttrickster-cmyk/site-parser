@@ -1,6 +1,4 @@
-playwright
+requests
 beautifulsoup4
 pandas
-requests
 openpyxl
-lxml
