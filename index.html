@@ -1,0 +1,5375 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Growex — ЗЗР</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    h1 { color: #2c7a2c; }
+    p { color: #666; }
+    table { border-collapse: collapse; width: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #2c7a2c; color: white; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    tr:hover { background: #e8f5e9; }
+    input { margin: 10px 0; padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
+    a { color: #2c7a2c; }
+  </style>
+</head>
+<body>
+  <h1>🌿 Growex — Засоби захисту рослин</h1>
+  <p>Оновлено: 21.05.2026 19:50 | Товарів: 889</p>
+  <input type="text" id="search" placeholder="🔍 Пошук товару..." onkeyup="filter()">
+  <table id="table">
+    <thead><tr>
+      <th>Назва</th>
+      <th>Ціна</th>
+      <th>Ціна за літр</th>
+      <th>Виробник</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td><a href="https://growex.market/product/komplekt-super-soya" target="_blank">Комплект Супер Соя</a></td>
+      <td>7500.0</td>
+      <td>7500 грн./літр</td>
+      <td>Growex</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mospilan-vp" target="_blank">Інсектицид Моспілан, ВП</a></td>
+      <td>1304.0</td>
+      <td>3260 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-r-2-vid" target="_blank">Деструктор Екостерн Триходерма-р (2 вид)</a></td>
+      <td>2250.0</td>
+      <td>225 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-r-1-vid" target="_blank">Деструктор Екостерн Триходерма-р (1 вид)</a></td>
+      <td>2100.0</td>
+      <td>210 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-layt" target="_blank">Деструктор Екостерн Лайт</a></td>
+      <td>2100.0</td>
+      <td>210 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-bakterialniy" target="_blank">Деструктор Екостерн Бактеріальний</a></td>
+      <td>2850.0</td>
+      <td>285 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/organik-balans" target="_blank">Біодеструктор Органік Баланс</a></td>
+      <td>3300.0</td>
+      <td>330 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/komponaza" target="_blank">Біодеструктор Компоназа</a></td>
+      <td>2400.0</td>
+      <td>240 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-klasik" target="_blank">Біодеструктор Екостерн Класік</a></td>
+      <td>1500.0</td>
+      <td>300 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mavrik-1l" target="_blank">Інсектицид Маврік (1л)</a></td>
+      <td>2757.0</td>
+      <td>2757 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mavrik-5l" target="_blank">Інсектицид Маврік (5л)</a></td>
+      <td>11650.0</td>
+      <td>2330 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/teppeki-2" target="_blank">Інсектицид Теппекі</a></td>
+      <td>5186.0</td>
+      <td>10372 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/teppeki" target="_blank">Інсектицид Теппекі</a></td>
+      <td>1653.0</td>
+      <td>11807 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-t-1-vid" target="_blank">Деструктор Екостерн Триходерма-т (1 вид)</a></td>
+      <td>4950.0</td>
+      <td>495 грн./кг</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ad-yuvant-super-r-oil" target="_blank">Ад'ювант Супер Р-оіл</a></td>
+      <td>3890.0</td>
+      <td>778 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tamer" target="_blank">Інсектицид Тамер</a></td>
+      <td>1196.0</td>
+      <td>2990 грн./кг</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dozor" target="_blank">Інсектицид Дозор</a></td>
+      <td>1736.0</td>
+      <td>2893 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/veteran-2" target="_blank">Інсектицид Ветеран</a></td>
+      <td>830.0</td>
+      <td>830 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/veteran" target="_blank">Інсектицид Ветеран</a></td>
+      <td>2240.0</td>
+      <td>448 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/biohelp-2" target="_blank">Антисептик Біохелп</a></td>
+      <td>210.0</td>
+      <td>420 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/biohelp" target="_blank">Антисептик Біохелп</a></td>
+      <td>8400.0</td>
+      <td>420 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-vertimek-neo" target="_blank">Інсектицид Вертімек Нео</a></td>
+      <td>4264.0</td>
+      <td>4264 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-oberon-rapid" target="_blank">Інсектицид Оберон Рапід</a></td>
+      <td>3605.0</td>
+      <td>3605 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akaricid-kalinik" target="_blank">Акарицид Калінік</a></td>
+      <td>6055.0</td>
+      <td>1211 грн./літр</td>
+      <td>Дар Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/delavit" target="_blank">Фунгіцид Делавіт</a></td>
+      <td>6610.0</td>
+      <td>1322 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miravis-praym" target="_blank">Фунгіцид Міравіс Прайм</a></td>
+      <td>26280.0</td>
+      <td>5256 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kumulyus-df" target="_blank">Фунгіцид Кумулюс ДФ</a></td>
+      <td>152.0</td>
+      <td>152 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/benelus" target="_blank">Фунгіцид Бенелус</a></td>
+      <td>1857.0</td>
+      <td>1857 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/merpan-platinum-1-kg" target="_blank">Фунгіцид Мерпан Платинум (1 кг)</a></td>
+      <td>1119.0</td>
+      <td>1119 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bamper-ke-1-l" target="_blank">Фунгіцид Бампер КЕ (1 л)</a></td>
+      <td>1154.0</td>
+      <td>1154 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sakura-ks" target="_blank">Фунгіцид Сакура ,КС</a></td>
+      <td>3955.0</td>
+      <td>791 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mildikat-25-k-s" target="_blank">Фунгіцид Мілдікат 25 к.с</a></td>
+      <td>5570.0</td>
+      <td>557 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talendo-20" target="_blank">Фунгіцид Талендо 20</a></td>
+      <td>3627.0</td>
+      <td>3627 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/flutrivit-maksi" target="_blank">Фунгіцид Флутривіт Максі</a></td>
+      <td>4495.0</td>
+      <td>899 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kosayd-2000" target="_blank">Фунгіцид Косайд 2000</a></td>
+      <td>3580.0</td>
+      <td>716 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zorvek-vinabriya" target="_blank">Фунгіцид Зорвек Вінабрія</a></td>
+      <td>1415.0</td>
+      <td>1415 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/chempion-zp" target="_blank">Фунгіцид Чемпіон ЗП</a></td>
+      <td>7410.0</td>
+      <td>741 грн./кг</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/chemp-ultra-dp-vg" target="_blank">Фунгіцид Чемп Ультра DP, ВГ</a></td>
+      <td>6530.0</td>
+      <td>653 грн./кг</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fregat" target="_blank">Фунгіцид Фрегат</a></td>
+      <td>2935.0</td>
+      <td>587 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/universal" target="_blank">Фунгіцид Універсал</a></td>
+      <td>842.0</td>
+      <td>842 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiofen-ekstra" target="_blank">Фунгіцид Тіофен Екстра</a></td>
+      <td>931.0</td>
+      <td>931 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiofen-25kg" target="_blank">Фунгіцид Тіофен (10кг)</a></td>
+      <td>3450.0</td>
+      <td>345 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiofen-1-kg" target="_blank">Фунгіцид Тіофен (1 кг)</a></td>
+      <td>820.0</td>
+      <td>820 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/strobitek-multi" target="_blank">Фунгіцид Стробітек Мульті</a></td>
+      <td>5075.0</td>
+      <td>1015 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/meteor" target="_blank">Фунгіцид Метеор</a></td>
+      <td>5410.0</td>
+      <td>541 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kollis" target="_blank">Фунгіцид Колліс</a></td>
+      <td>2635.0</td>
+      <td>2635 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/signum" target="_blank">Фунгіцид Сігнум</a></td>
+      <td>3503.0</td>
+      <td>3503 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/malahit" target="_blank">Фунгіцид Малахіт</a></td>
+      <td>10890.0</td>
+      <td>2178 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poligard" target="_blank">Фунгіцид Полігард</a></td>
+      <td>2340.0</td>
+      <td>468 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poligard-maksi" target="_blank">Фунгіцид Полігард Максі</a></td>
+      <td>2670.0</td>
+      <td>534 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-tebuzol" target="_blank">Фунгіцид Альфа Тебузол</a></td>
+      <td>2280.0</td>
+      <td>456 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/luna-ker" target="_blank">Фунгіцид Луна Кер</a></td>
+      <td>1786.0</td>
+      <td>1786 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/luna-senseyshn-500" target="_blank">Фунгіцид Луна Сенсейшн 500</a></td>
+      <td>6868.0</td>
+      <td>6868 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/serenada-aco" target="_blank">Фунгіцид Серенада ACO</a></td>
+      <td>6180.0</td>
+      <td>618 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/skala-400" target="_blank">Фунгіцид Скала 400</a></td>
+      <td>4377.0</td>
+      <td>1459 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/teldor-50" target="_blank">Фунгіцид Тельдор 50</a></td>
+      <td>17395.0</td>
+      <td>3479 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bellis" target="_blank">Фунгіцид Белліс</a></td>
+      <td>3372.0</td>
+      <td>3372 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vivando" target="_blank">Фунгіцид Вівандо</a></td>
+      <td>4484.0</td>
+      <td>4484 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/delan" target="_blank">Фунгіцид Делан</a></td>
+      <td>3391.0</td>
+      <td>3391 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/strobi" target="_blank">Фунгіцид Стробі</a></td>
+      <td>1549.0</td>
+      <td>7742 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/geoks-50-wg" target="_blank">Фунгіцид Геокс 50 WG</a></td>
+      <td>8375.0</td>
+      <td>8375 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dinali" target="_blank">Фунгіцид Діналі</a></td>
+      <td>14375.0</td>
+      <td>2875 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/svitch-62-5" target="_blank">Фунгіцид Світч 62,5</a></td>
+      <td>6675.0</td>
+      <td>6675 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/topaz-100-5l" target="_blank">Фунгіцид Топаз 100 (5л)</a></td>
+      <td>14770.0</td>
+      <td>2954 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tioma" target="_blank">Фунгіцид Тіома</a></td>
+      <td>2305.0</td>
+      <td>461 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bamper-ke-5-l" target="_blank">Фунгіцид Бампер КЕ (5 л)</a></td>
+      <td>3735.0</td>
+      <td>747 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fontes" target="_blank">Фунгіцид Фонтес</a></td>
+      <td>472.0</td>
+      <td>472 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/merpan-platinum-5-kg" target="_blank">Фунгіцид Мерпан Платинум (5 кг)</a></td>
+      <td>3410.0</td>
+      <td>682 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/skorazol" target="_blank">Фунгіцид Скоразол</a></td>
+      <td>1723.0</td>
+      <td>1723 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-ridomil-gold-r" target="_blank">Фунгіцид Ридоміл Голд R</a></td>
+      <td>3325.0</td>
+      <td>665 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-migiva" target="_blank">Фунгіцид Мігіва</a></td>
+      <td>9035.0</td>
+      <td>18070 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-flint" target="_blank">Фунгіцид Флінт</a></td>
+      <td>4865.0</td>
+      <td>9730 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-delavit" target="_blank">Фунгіцид Делавіт</a></td>
+      <td>1581.0</td>
+      <td>1581 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/madera-48-rk" target="_blank">Гербіцид Мадера 48, РК</a></td>
+      <td>7970.0</td>
+      <td>797 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/genezis-rk-5l" target="_blank">Гербіцид Генезис, РК (5л)</a></td>
+      <td>2515.0</td>
+      <td>503 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kaylis" target="_blank">Гербіцид Кайліс</a></td>
+      <td>18460.0</td>
+      <td>923 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prospero" target="_blank">Гербіцид Просперо</a></td>
+      <td>4820.0</td>
+      <td>241 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stiven" target="_blank">Гербіцид Стівен</a></td>
+      <td>4880.0</td>
+      <td>244 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/yevro-lang" target="_blank">Гербіцид Євро-Ланг</a></td>
+      <td>1965.0</td>
+      <td>393 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pozitiv-plyus-20l" target="_blank">Гербіцид Позитив Плюс 20л</a></td>
+      <td>4340.0</td>
+      <td>217 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pozitiv-plyus-10l" target="_blank">Гербіцид Позитив Плюс 10л</a></td>
+      <td>2380.0</td>
+      <td>238 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-ah-900" target="_blank">Гербіцид Грінфорт АХ 900</a></td>
+      <td>5340.0</td>
+      <td>267 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-layt" target="_blank">Гербіцид Грінфорт Лайт</a></td>
+      <td>11620.0</td>
+      <td>581 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kleverdim-grand-ke" target="_blank">Гербіцид Клевердим Гранд КЕ</a></td>
+      <td>13830.0</td>
+      <td>1383 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/genezis-rk-10l" target="_blank">Гербіцид Генезис, РК (10л)</a></td>
+      <td>4620.0</td>
+      <td>462 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-veritan" target="_blank">Гербіцид Верітан</a></td>
+      <td>7480.0</td>
+      <td>748 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/feniks-duo" target="_blank">Фунгіцид Фенікс Дуо</a></td>
+      <td>3955.0</td>
+      <td>791 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bolivar-forte" target="_blank">Фунгіцид Болівар Форте</a></td>
+      <td>4510.0</td>
+      <td>902 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/korvizar-m" target="_blank">Фунгіцид Корвізар М</a></td>
+      <td>5265.0</td>
+      <td>1053 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/krosbi" target="_blank">Фунгіцид Кросбі</a></td>
+      <td>4045.0</td>
+      <td>809 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/telamus" target="_blank">Фунгіцид Теламус</a></td>
+      <td>7730.0</td>
+      <td>1546 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/feniks" target="_blank">Фунгіцид Фенікс</a></td>
+      <td>4680.0</td>
+      <td>468 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ayaks-ks" target="_blank">Фунгіцид Аякс, КС</a></td>
+      <td>6785.0</td>
+      <td>1357 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tebu-top-250" target="_blank">Фунгіцид Тебу Топ 250</a></td>
+      <td>618.0</td>
+      <td>618 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tebukur-250-ev" target="_blank">Фунгіцид Тебукур 250 ЕВ</a></td>
+      <td>2260.0</td>
+      <td>452 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/triafer-t-300-ks" target="_blank">Фунгіцид Тріафер Т 300 КС</a></td>
+      <td>7060.0</td>
+      <td>706 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fulgor-250" target="_blank">Фунгіцид Фулгор 250</a></td>
+      <td>3105.0</td>
+      <td>621 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fulgor-gold-500" target="_blank">Фунгіцид Фулгор Голд 500</a></td>
+      <td>8060.0</td>
+      <td>806 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akula-ke" target="_blank">Фунгіцид Акула, КЕ</a></td>
+      <td>5485.0</td>
+      <td>1097 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dezaral-ekstra-rr-5l" target="_blank">Фунгіцид Дезарал Екстра, РР (5л)</a></td>
+      <td>2560.0</td>
+      <td>512 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dezaral-ks" target="_blank">Фунгіцид Дезарал, КС</a></td>
+      <td>2015.0</td>
+      <td>403 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/impera-gold" target="_blank">Фунгіцид Імпера Голд</a></td>
+      <td>4650.0</td>
+      <td>930 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prenta" target="_blank">Фунгіцид Прента</a></td>
+      <td>4340.0</td>
+      <td>868 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tinazol" target="_blank">Фунгіцид Тіназол</a></td>
+      <td>2975.0</td>
+      <td>595 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fedelis" target="_blank">Фунгіцид Феделіс</a></td>
+      <td>3870.0</td>
+      <td>774 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fluafol" target="_blank">Фунгіцид Флуафол</a></td>
+      <td>3405.0</td>
+      <td>681 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zamir" target="_blank">Фунгіцид Замір</a></td>
+      <td>4340.0</td>
+      <td>868 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/linder" target="_blank">Фунгіцид Ліндер</a></td>
+      <td>6810.0</td>
+      <td>1362 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bamper-super" target="_blank">Фунгіцид Бампер Супер</a></td>
+      <td>4430.0</td>
+      <td>886 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akadiya" target="_blank">Фунгіцид Акадія</a></td>
+      <td>7165.0</td>
+      <td>1433 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/taffin-320" target="_blank">Фунгіцид Таффін 320</a></td>
+      <td>14400.0</td>
+      <td>1440 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sprinter-stayer-500-ke" target="_blank">Фунгіцид Спрінтер (Стайер) 500 КЕ</a></td>
+      <td>14110.0</td>
+      <td>1411 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miravis-neo-300-se" target="_blank">Фунгіцид Міравіс Нео 300 SE</a></td>
+      <td>12020.0</td>
+      <td>2404 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/magnello-350" target="_blank">Фунгіцид Магнелло 350</a></td>
+      <td>32000.0</td>
+      <td>1600 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/elatus-ria-358-ke" target="_blank">Фунгіцид Елатус Ріа, 358 КЕ</a></td>
+      <td>12020.0</td>
+      <td>2404 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tilt-turbo-575" target="_blank">Фунгіцид Тілт Турбо 575</a></td>
+      <td>4920.0</td>
+      <td>984 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alyett" target="_blank">Фунгіцид Альєтт</a></td>
+      <td>1512.0</td>
+      <td>1512 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-sturnus" target="_blank">Гербіцид Стурнус</a></td>
+      <td>5440.0</td>
+      <td>272 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-chenon" target="_blank">Гербіцид Ченон</a></td>
+      <td>4380.0</td>
+      <td>876 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-norvel-ekstra-2" target="_blank">Гербіцид Норвел Екстра</a></td>
+      <td>686.0</td>
+      <td>686 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-norvel-ekstra-3" target="_blank">Гербіцид Норвел Екстра</a></td>
+      <td>2000.0</td>
+      <td>400 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-pozitiv-plyus-1l" target="_blank">Гербіцид Позитив Плюс 1л</a></td>
+      <td>575.0</td>
+      <td>575 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kapital-ks" target="_blank">Фунгіцид Капітал, КС</a></td>
+      <td>5920.0</td>
+      <td>1184 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/teyzer" target="_blank">Фунгіцид Тейзер</a></td>
+      <td>12020.0</td>
+      <td>1202 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/metakarb" target="_blank">Фунгіцид Метакарб</a></td>
+      <td>2615.0</td>
+      <td>523 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-suton" target="_blank">Гербіцид Сутон</a></td>
+      <td>9700.0</td>
+      <td>485 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miravis-duo-sc" target="_blank">Фунгіцид Міравіс Дуо SC</a></td>
+      <td>10525.0</td>
+      <td>2105 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/input-classic" target="_blank">Фунгіцид Інпут Classic</a></td>
+      <td>7850.0</td>
+      <td>1570 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fleksiti" target="_blank">Фунгіцид Флексіті</a></td>
+      <td>3565.0</td>
+      <td>3565 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/reks-plyus" target="_blank">Фунгіцид Рекс Плюс</a></td>
+      <td>9360.0</td>
+      <td>936 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/priaksor" target="_blank">Фунгіцид Пріаксор</a></td>
+      <td>12680.0</td>
+      <td>2536 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kapalo" target="_blank">Фунгіцид Капало</a></td>
+      <td>6050.0</td>
+      <td>1210 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/adeksar-se-plyus" target="_blank">Фунгіцид Адексар СЕ Плюс</a></td>
+      <td>9780.0</td>
+      <td>1956 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/abakus" target="_blank">Фунгіцид Абакус</a></td>
+      <td>8400.0</td>
+      <td>840 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/reks-duo" target="_blank">Фунгіцид Рекс Дуо</a></td>
+      <td>14120.0</td>
+      <td>1412 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/falkon-460" target="_blank">Фунгіцид Фалькон 460</a></td>
+      <td>6755.0</td>
+      <td>1351 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/soligor-425" target="_blank">Фунгіцид Солігор 425</a></td>
+      <td>5770.0</td>
+      <td>1154 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/medison" target="_blank">Фунгіцид Медісон</a></td>
+      <td>7820.0</td>
+      <td>1564 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/haykot-ekstender" target="_blank">Інокулянт ХайКот Екстендер</a></td>
+      <td>6957.0</td>
+      <td>1087 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/haykot-super-soya" target="_blank">ХайКот Супер Соя</a></td>
+      <td>15360.0</td>
+      <td>2400 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/orbit-ev" target="_blank">Фунгіцид Орбіт, ЕВ</a></td>
+      <td>3280.0</td>
+      <td>656 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/simetra-325-sc-kc" target="_blank">Фунгіцид Сіметра 325 SC. KC</a></td>
+      <td>14825.0</td>
+      <td>2965 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/eventus" target="_blank">Гербіцид Евентус</a></td>
+      <td>11180.0</td>
+      <td>1118 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-metribuzin-star" target="_blank">Гербіцид Метрибузин Стар</a></td>
+      <td>24580.0</td>
+      <td>1229 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-baundari-777-5" target="_blank">Гербіцид Баундарі 777,5</a></td>
+      <td>4510.0</td>
+      <td>902 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-nopasaran-fleks" target="_blank">Гербіцид Нопасаран Флекс</a></td>
+      <td>13520.0</td>
+      <td>1352 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sakano-rk" target="_blank">Гербіцид Сакано РК</a></td>
+      <td>10860.0</td>
+      <td>543 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-bz-480" target="_blank">Гербіцид Грінфорт БЗ 480</a></td>
+      <td>7640.0</td>
+      <td>382 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bernar" target="_blank">Гербіцид БЕРНАР</a></td>
+      <td>7680.0</td>
+      <td>384 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/metrizan" target="_blank">Гербіцид Метризан</a></td>
+      <td>1478.0</td>
+      <td>1478 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klodeks-pro" target="_blank">Гербіцид Клодекс ПРО</a></td>
+      <td>2470.0</td>
+      <td>494 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/acifen" target="_blank">Гербіцид Ацифен</a></td>
+      <td>10780.0</td>
+      <td>539 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klinefekt" target="_blank">Гербіцид Клінефект</a></td>
+      <td>7005.0</td>
+      <td>7005 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shtef-alfa-cip-ke" target="_blank">Інсектицид Штеф-альфа-цип, КЕ</a></td>
+      <td>1710.0</td>
+      <td>342 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nissoran-zp" target="_blank">Інсектицид Ніссоран ЗП</a></td>
+      <td>1457.0</td>
+      <td>2914 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akira-ks" target="_blank">Фунгіцид Акіра КС</a></td>
+      <td>3145.0</td>
+      <td>629 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-efatol" target="_blank">Фунгіцид Ефатол</a></td>
+      <td>1555.0</td>
+      <td>622 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/allatan-105-md" target="_blank">Гербіцид Аллатан 105, МД</a></td>
+      <td>6640.0</td>
+      <td>664 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tronomit" target="_blank">Гербіцид Трономіт</a></td>
+      <td>2048.0</td>
+      <td>4095 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/punktir" target="_blank">Гербіцид Пунктир</a></td>
+      <td>2075.0</td>
+      <td>4150 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/migel" target="_blank">Гербіцид Мігель</a></td>
+      <td>1490.0</td>
+      <td>298 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miladar-5l" target="_blank">Гербіцид Міладар (5л)</a></td>
+      <td>1690.0</td>
+      <td>338 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/varyag-trio" target="_blank">Гербіцид Варяг Тріо</a></td>
+      <td>7220.0</td>
+      <td>361 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/hammer-duo" target="_blank">Гербіцид Хаммер Дуо</a></td>
+      <td>1815.0</td>
+      <td>363 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-majis-vg" target="_blank">Гербіцид Альфа-Маїс, ВГ</a></td>
+      <td>665.0</td>
+      <td>6647 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-dikamba" target="_blank">Гербіцид Альфа-Дикамба</a></td>
+      <td>2765.0</td>
+      <td>553 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alvius" target="_blank">Гербіцид Альвіус</a></td>
+      <td>3500.0</td>
+      <td>700 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/eklat-750-v-g" target="_blank">Гербіцид Еклат 750 в.г.</a></td>
+      <td>7970.0</td>
+      <td>7970 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/laudis-30" target="_blank">Гербіцид Лаудіс 30</a></td>
+      <td>10944.0</td>
+      <td>3648 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/merlin-750" target="_blank">Гербіцид Мерлін 750</a></td>
+      <td>5934.0</td>
+      <td>11868 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/merlin-fleks-duo" target="_blank">Гербіцид Мерлін Флекс Дуо</a></td>
+      <td>7570.0</td>
+      <td>1514 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stellar-plyus" target="_blank">Гербіцид Стеллар Плюс</a></td>
+      <td>8870.0</td>
+      <td>1774 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/adengo-465" target="_blank">Гербіцид Аденго 465</a></td>
+      <td>27920.0</td>
+      <td>5584 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-enot" target="_blank">Гербіцид Енот</a></td>
+      <td>2345.0</td>
+      <td>469 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/inferno" target="_blank">Фунгіцид Інферно</a></td>
+      <td>3550.0</td>
+      <td>142 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/violis" target="_blank">Фунгіцид Віоліс</a></td>
+      <td>2885.0</td>
+      <td>577 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/polkar-1-kg" target="_blank">Інсектицид Полкар (1 кг)</a></td>
+      <td>770.0</td>
+      <td>770 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/verimark" target="_blank">Інсектицид Верімарк</a></td>
+      <td>1750.0</td>
+      <td>17500 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/apollo-5l" target="_blank">Акарицид Аполло (5л)</a></td>
+      <td>11030.0</td>
+      <td>2206 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rimon-fast" target="_blank">Інсектицид Рімон Фаст</a></td>
+      <td>7745.0</td>
+      <td>1549 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fatrin" target="_blank">Інсектицид Фатрін</a></td>
+      <td>2205.0</td>
+      <td>441 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/torsida" target="_blank">Інсектицид Торсіда</a></td>
+      <td>4935.0</td>
+      <td>987 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiara" target="_blank">Інсектицид Тіара</a></td>
+      <td>578.0</td>
+      <td>2309 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/spiker" target="_blank">Інсектицид Спікер</a></td>
+      <td>2240.0</td>
+      <td>448 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rezident" target="_blank">Акарицид Резидент</a></td>
+      <td>7590.0</td>
+      <td>1518 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prezident" target="_blank">Інсектицид Президент</a></td>
+      <td>4455.0</td>
+      <td>891 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/intern" target="_blank">Інсектицид Інтерн</a></td>
+      <td>7165.0</td>
+      <td>1433 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antihrushch" target="_blank">Інсектицид Антихрущ</a></td>
+      <td>3750.0</td>
+      <td>750 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bestseller-turbo-200-ks" target="_blank">Інсектицид Бестселлер Турбо 200, КС</a></td>
+      <td>5035.0</td>
+      <td>1007 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/logus" target="_blank">Інсектицид Логус</a></td>
+      <td>8905.0</td>
+      <td>1781 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antigusin-ks" target="_blank">Інсектицид Антигусінь, КС</a></td>
+      <td>1540.0</td>
+      <td>308 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lyuks-maksi-ks" target="_blank">Інсектицид Люкс Максі, КС</a></td>
+      <td>4615.0</td>
+      <td>923 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fas" target="_blank">Інсектицид Фас</a></td>
+      <td>1475.0</td>
+      <td>295 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kolibris" target="_blank">Інсектицид Колібріс</a></td>
+      <td>19145.0</td>
+      <td>3829 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lyuter" target="_blank">Інсектицид Лютер</a></td>
+      <td>1490.0</td>
+      <td>298 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cezar-ke" target="_blank">Інсектицид Цезар КЕ</a></td>
+      <td>1394.0</td>
+      <td>1394 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-ambir" target="_blank">Інсектицид Амбір</a></td>
+      <td>1745.0</td>
+      <td>1745 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-ardanis" target="_blank">Інсектицид Арданіс</a></td>
+      <td>4230.0</td>
+      <td>846 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akaricid-apollo-1l" target="_blank">Акарицид Аполло (1л)</a></td>
+      <td>2651.0</td>
+      <td>2651 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fendona-6-ks" target="_blank">Інсектицид Фендона 6 КС</a></td>
+      <td>1785.0</td>
+      <td>1785 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vayego" target="_blank">Інсектицид Ваєго</a></td>
+      <td>7247.0</td>
+      <td>7247 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sanmayt-zp" target="_blank">Акарицид Санмайт ЗП</a></td>
+      <td>1665.0</td>
+      <td>3329 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/balazo-ke" target="_blank">Інсектицид Балазо КЕ</a></td>
+      <td>1539.0</td>
+      <td>1539 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/aplaud-ks" target="_blank">Інсектицид Аплауд КС</a></td>
+      <td>2313.0</td>
+      <td>2313 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akaramik-ke" target="_blank">Інсектоакарицид Акарамік КЕ</a></td>
+      <td>2024.0</td>
+      <td>2024 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vamp-duo-220-ks" target="_blank">Інсектицид ВАМП ДУО 220 КС</a></td>
+      <td>5450.0</td>
+      <td>1090 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/taurus" target="_blank">Акарицид Таурус</a></td>
+      <td>1087.0</td>
+      <td>1087 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/koragen-20" target="_blank">Інсектицид Кораген 20</a></td>
+      <td>10093.0</td>
+      <td>10093 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/koragen-21" target="_blank">Інсектицид Кораген</a></td>
+      <td>48405.0</td>
+      <td>9681 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talstar" target="_blank">Інсектицид Талстар</a></td>
+      <td>6125.0</td>
+      <td>1225 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fufanon" target="_blank">Інсектоакарицид Фуфанон</a></td>
+      <td>2160.0</td>
+      <td>432 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/geksoran" target="_blank">Акарицид Гексоран</a></td>
+      <td>3890.0</td>
+      <td>3890 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/faraon-5-l" target="_blank">Інсектицид Фараон (5 л)</a></td>
+      <td>1890.0</td>
+      <td>378 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dzheronimo" target="_blank">Інсектицид Джеронімо</a></td>
+      <td>3817.0</td>
+      <td>3817 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-cipermetrin" target="_blank">Інсектицид Грінфорт Циперметрин</a></td>
+      <td>1550.0</td>
+      <td>310 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/maytus" target="_blank">Гербіцид Майтус</a></td>
+      <td>1133.0</td>
+      <td>4530 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tanos-50" target="_blank">Фунгіцид Танос 50</a></td>
+      <td>4516.0</td>
+      <td>2258 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/skor-250" target="_blank">Фунгіцид Скор 25</a></td>
+      <td>5649.0</td>
+      <td>5649 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiovit-dzhet-80" target="_blank">Фунгіцид Тіовіт Джет 80</a></td>
+      <td>3320.0</td>
+      <td>166 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cideli-top-140" target="_blank">Фунгіцид Циделі Топ 140</a></td>
+      <td>13925.0</td>
+      <td>2785 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shirlan-500" target="_blank">Фунгіцид Ширлан 500</a></td>
+      <td>24405.0</td>
+      <td>4881 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/yuniform-446" target="_blank">Фунгіцид Юніформ 446</a></td>
+      <td>4743.0</td>
+      <td>4743 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sinekura-680-zp" target="_blank">Фунгіцид Синекура 680 ЗП</a></td>
+      <td>3120.0</td>
+      <td>624 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-mid" target="_blank">Фунгіцид Альфа-Мідь</a></td>
+      <td>5540.0</td>
+      <td>554 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/desfilar" target="_blank">Гербіцид Десфілар</a></td>
+      <td>806.0</td>
+      <td>806 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dok-pro-1kg" target="_blank">Фунгіцид ДОК Про ( 1кг)</a></td>
+      <td>1528.0</td>
+      <td>1528 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gart-zp" target="_blank">Фунгіцид Гарт, ЗП</a></td>
+      <td>1754.0</td>
+      <td>877 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zahisnik-ks" target="_blank">Фунгіцид Захисник, КС</a></td>
+      <td>2340.0</td>
+      <td>468 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zahist-zp-5-kg" target="_blank">Фунгіцид Захист, ЗП 5 кг</a></td>
+      <td>5050.0</td>
+      <td>1010 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/samshit-ks" target="_blank">Фунгіцид Самшит, КС</a></td>
+      <td>7220.0</td>
+      <td>1444 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cilitel-zp" target="_blank">Фунгіцид Цілитель, ЗП</a></td>
+      <td>844.0</td>
+      <td>844 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zahist-zp-1-kg" target="_blank">Фунгіцид Захист, ЗП 1 кг</a></td>
+      <td>1278.0</td>
+      <td>1278 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sfinks-ekstra" target="_blank">Фунгіцид Сфінкс Екстра</a></td>
+      <td>4730.0</td>
+      <td>946 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/folpan-5-kg" target="_blank">Фунгіцид Фольпан (5 кг)</a></td>
+      <td>3790.0</td>
+      <td>758 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kuproksat-ks" target="_blank">Фунгіцид Купроксат, КС</a></td>
+      <td>4910.0</td>
+      <td>491 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ditan-m-45" target="_blank">Фунгіцид Дітан М-45</a></td>
+      <td>11250.0</td>
+      <td>450 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zorvek-inkantiya" target="_blank">Фунгіцид Зорвек Інкантія</a></td>
+      <td>4125.0</td>
+      <td>4125 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kurzat-r-44" target="_blank">Фунгіцид Курзат Р 44</a></td>
+      <td>1061.0</td>
+      <td>1061 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-rekvans-fleks" target="_blank">Фунгіцид Рекванс Флекс</a></td>
+      <td>14400.0</td>
+      <td>2880 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rayfl-25" target="_blank">Гербіцид Райфл 25</a></td>
+      <td>7780.0</td>
+      <td>15560 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/disulam" target="_blank">Гербіцид Дисулам</a></td>
+      <td>1560.0</td>
+      <td>312 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/titus-ekstra-75-vg" target="_blank">Гербіцид Тітус Екстра 75 ВГ</a></td>
+      <td>3035.0</td>
+      <td>12140 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vozhd-pro-20l" target="_blank">Гербіцид Вождь Про (20л)</a></td>
+      <td>4780.0</td>
+      <td>239 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekspert-pro-gavan" target="_blank">Гербіцид Експерт Про</a></td>
+      <td>8800.0</td>
+      <td>440 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klinkorn-1-l" target="_blank">Гербіцид Клінкорн (1 л)</a></td>
+      <td>798.0</td>
+      <td>798 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klinkorn-10" target="_blank">Гербіцид Клінкорн (10)</a></td>
+      <td>4780.0</td>
+      <td>478 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/orion" target="_blank">Гербіцид Оріон</a></td>
+      <td>1165.0</td>
+      <td>4658 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-nk-40" target="_blank">Гербіцид Грінфорт НК 40</a></td>
+      <td>1365.0</td>
+      <td>273 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-pronit" target="_blank">Гербіцид Грінфорт Проніт</a></td>
+      <td>5160.0</td>
+      <td>258 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bazis-75" target="_blank">Гербіцид Базис 75</a></td>
+      <td>6189.0</td>
+      <td>24753 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/agritoks-rk" target="_blank">Гербіцид Агрітокс РК</a></td>
+      <td>4390.0</td>
+      <td>439 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/agritoks-turbo" target="_blank">Гербіцид Агрітокс Турбо</a></td>
+      <td>6870.0</td>
+      <td>687 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kideka-ks" target="_blank">Гербіцид Кідека, КС</a></td>
+      <td>3810.0</td>
+      <td>762 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kordus-fleks" target="_blank">Гербіцид Кордус флекс</a></td>
+      <td>7556.0</td>
+      <td>3148 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shtefisto-ks" target="_blank">Гербіцид Штефісто, КС</a></td>
+      <td>4795.0</td>
+      <td>959 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/torino" target="_blank">Гербіцид ТОРИНО</a></td>
+      <td>681.0</td>
+      <td>6808 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mayster-pauer" target="_blank">Гербіцид Майстер Пауер</a></td>
+      <td>7765.0</td>
+      <td>1553 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/reyker-ekstra" target="_blank">Гербіцид Рейкер Екстра</a></td>
+      <td>8495.0</td>
+      <td>1699 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akrobat" target="_blank">Фунгіцид Акробат</a></td>
+      <td>1285.0</td>
+      <td>1285 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poliram" target="_blank">Фунгіцид Полірам</a></td>
+      <td>7030.0</td>
+      <td>703 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/orvego" target="_blank">Фунгіцид Орвего</a></td>
+      <td>2164.0</td>
+      <td>2164 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/serkadis-plyus" target="_blank">Фунгіцид Серкадіс Плюс</a></td>
+      <td>11625.0</td>
+      <td>2325 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/previkur-enerdzhi-840" target="_blank">Фунгіцид Превікур Енерджі 840</a></td>
+      <td>2056.0</td>
+      <td>2056 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/geymer" target="_blank">Фунгіцид Геймер</a></td>
+      <td>4640.0</td>
+      <td>464 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kankun" target="_blank">Фунгіцид Канкун</a></td>
+      <td>2590.0</td>
+      <td>518 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dezal-5-l" target="_blank">Фунгіцид Дезал ( 5 л)</a></td>
+      <td>1560.0</td>
+      <td>312 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/brander" target="_blank">Фунгіцид Брандер</a></td>
+      <td>5315.0</td>
+      <td>1063 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/virtuoz" target="_blank">Фунгіцид Віртуоз</a></td>
+      <td>3025.0</td>
+      <td>605 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dezal-20l" target="_blank">Фунгіцид Дезал (20л)</a></td>
+      <td>5680.0</td>
+      <td>284 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kustodiya" target="_blank">Фунгіцид Кустодія</a></td>
+      <td>5775.0</td>
+      <td>1155 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-stugna-3" target="_blank">Гербіцид Стугна</a></td>
+      <td>1098.0</td>
+      <td>2196 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-prioritet" target="_blank">Гербіцид Пріоритет</a></td>
+      <td>2920.0</td>
+      <td>292 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-prioritet-2" target="_blank">Гербіцид Пріоритет</a></td>
+      <td>606.0</td>
+      <td>606 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-protezhe" target="_blank">Гербіцид Протеже</a></td>
+      <td>8340.0</td>
+      <td>417 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-stugna" target="_blank">Гербіцид Стугна</a></td>
+      <td>720.0</td>
+      <td>2878 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-stugna-2" target="_blank">Гербіцид Стугна</a></td>
+      <td>1843.0</td>
+      <td>1843 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sistemnyy-gerbicid-cukron-turbo-2" target="_blank">Системный гербицид ЦУКРОН ТУРБО</a></td>
+      <td>2110.0</td>
+      <td>422 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/larimar" target="_blank">Протруйник Ларімар</a></td>
+      <td>3675.0</td>
+      <td>735 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-oversayz" target="_blank">Гербіцид Оверсайз</a></td>
+      <td>13680.0</td>
+      <td>684 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-optimum-5l" target="_blank">Гербіцид Оптимум (5л)</a></td>
+      <td>2515.0</td>
+      <td>503 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-optimum-20l" target="_blank">Гербіцид Оптимум (20Л)</a></td>
+      <td>8520.0</td>
+      <td>426 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-ogorodnik" target="_blank">Гербіцид Огородник</a></td>
+      <td>775.0</td>
+      <td>1550 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sistemnyy-gerbicid-cukron-turbo" target="_blank">Системный гербицид ЦУКРОН ТУРБО</a></td>
+      <td>709.0</td>
+      <td>709 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kanonir-ultra" target="_blank">Протруйник Канонір Ультра</a></td>
+      <td>4630.0</td>
+      <td>926 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cikogan" target="_blank">Регулятор росту Цикоган</a></td>
+      <td>2220.0</td>
+      <td>222 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/guliver-hlormekvat-hlorid-bereginya" target="_blank">Регулятор росту Гулівер Хлормекват-хлорид</a></td>
+      <td>4740.0</td>
+      <td>237 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/asgard" target="_blank">Регулятор росту АСГАРД</a></td>
+      <td>5700.0</td>
+      <td>1140 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/brilon" target="_blank">Регулятор росту Брілон</a></td>
+      <td>7220.0</td>
+      <td>361 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/molvit" target="_blank">Регулятор росту МОЛВІТ</a></td>
+      <td>6570.0</td>
+      <td>1314 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kalma" target="_blank">Регулятор росту Кальма</a></td>
+      <td>7235.0</td>
+      <td>1447 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kamposan-ekstra-sl-rk" target="_blank">Регулятор росту Кампосан Екстра SL, РК</a></td>
+      <td>4040.0</td>
+      <td>808 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stabilan-750-sl-v-r-k" target="_blank">Регулятор росту Стабілан 750 SL в.р.к.</a></td>
+      <td>2450.0</td>
+      <td>245 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/moksa-ke" target="_blank">Регулятор росту Мокса, КЕ</a></td>
+      <td>7970.0</td>
+      <td>1594 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/greyvis" target="_blank">Регулятор росту Грейвіс</a></td>
+      <td>3575.0</td>
+      <td>715 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-norvel-5l" target="_blank">Гербіцид Норвел (5л)</a></td>
+      <td>1665.0</td>
+      <td>333 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-mikodin-20l" target="_blank">Гербіцид Мікодин (20л)</a></td>
+      <td>6120.0</td>
+      <td>306 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-mikodin-1l" target="_blank">Гербіцид Мікодин (1л)</a></td>
+      <td>651.0</td>
+      <td>651 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-goplit-2" target="_blank">Гербіцид Гоплит</a></td>
+      <td>4560.0</td>
+      <td>456 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-cirkus" target="_blank">Гербіцид Циркус</a></td>
+      <td>5715.0</td>
+      <td>1143 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-tent" target="_blank">Гербіцид Тент</a></td>
+      <td>1065.0</td>
+      <td>2130 грн./кг</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-falko" target="_blank">Гербіцид Фалко</a></td>
+      <td>2250.0</td>
+      <td>450 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/uragan-forte" target="_blank">Гербіцид Ураган Форте</a></td>
+      <td>6680.0</td>
+      <td>334 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sirius" target="_blank">Гербіцид Сіріус</a></td>
+      <td>10447.0</td>
+      <td>10447 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/karibu-duo-aktiv" target="_blank">Гербіцид Карібу Дуо Актив</a></td>
+      <td>13712.0</td>
+      <td>6856 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/trivium-0-5-kg-par-buster" target="_blank">Тривіум (0,5 кг) + ПАР Бустер (2л)</a></td>
+      <td>3882.0</td>
+      <td>3882 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-kf-40" target="_blank">Гербіцид Грінфорт КФ 40</a></td>
+      <td>1545.0</td>
+      <td>309 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/luazit-5-l" target="_blank">Гербіцид Луазит (5 л)</a></td>
+      <td>2890.0</td>
+      <td>578 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/luazit-20-l" target="_blank">Гербіцид Луазит (20 л)</a></td>
+      <td>10120.0</td>
+      <td>506 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/etaforon" target="_blank">Гербіцид Етафорон</a></td>
+      <td>2333.0</td>
+      <td>9330 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/etasil" target="_blank">Гербіцид Етасил</a></td>
+      <td>2630.0</td>
+      <td>10520 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miladar-duo-5l" target="_blank">Гербіцид Міладар Дуо (5л)</a></td>
+      <td>3705.0</td>
+      <td>741 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/takomir" target="_blank">Гербіцид Такомір</a></td>
+      <td>5460.0</td>
+      <td>1092 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grenader-maksi" target="_blank">Гербіцид Гренадер Максі</a></td>
+      <td>1458.0</td>
+      <td>2915 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/agrimaks" target="_blank">Гербіцид Агрімакс</a></td>
+      <td>6200.0</td>
+      <td>620 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-neofron" target="_blank">Гербіцид Неофрон</a></td>
+      <td>1630.0</td>
+      <td>326 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-vultur" target="_blank">Гербіцид Вультур</a></td>
+      <td>10040.0</td>
+      <td>502 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-batagur" target="_blank">Гербіцид Батагур</a></td>
+      <td>1755.0</td>
+      <td>351 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-gold-star-ekstra" target="_blank">Гербіцид Голд Стар Екстра</a></td>
+      <td>1256.0</td>
+      <td>2511 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-goplit" target="_blank">Гербіцид Гоплит</a></td>
+      <td>784.0</td>
+      <td>784 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/giplit" target="_blank">Гербіцид Гоплит</a></td>
+      <td>2555.0</td>
+      <td>511 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-alkeni" target="_blank">Гербіцид Алькені</a></td>
+      <td>3420.0</td>
+      <td>342 грн./літр</td>
+      <td>Albaugh</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-bingo" target="_blank">Гербіцид Бінго</a></td>
+      <td>2100.0</td>
+      <td>2100 грн./кг</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-logano" target="_blank">Гербіцид Логано</a></td>
+      <td>6580.0</td>
+      <td>1316 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kanuba" target="_blank">Гербіцид Кануба</a></td>
+      <td>1320.0</td>
+      <td>264 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miladar-duo-10-20l" target="_blank">Гербіцид Міладар Дуо (20л)</a></td>
+      <td>6860.0</td>
+      <td>686 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sonhus" target="_blank">Гербіцид Сонхус</a></td>
+      <td>797.0</td>
+      <td>3186 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/efiron" target="_blank">Гербіцид Ефірон</a></td>
+      <td>7020.0</td>
+      <td>351 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stoprost" target="_blank">Регулятор росту Стопрост</a></td>
+      <td>2560.0</td>
+      <td>256 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-1l" target="_blank">Гербіцид Тотал (1л)</a></td>
+      <td>531.0</td>
+      <td>531 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kaput-ekstra-rk" target="_blank">Десикант Капут Екстра, РК</a></td>
+      <td>6900.0</td>
+      <td>345 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gelios-ekstra" target="_blank">Гербіцид Геліос Екстра</a></td>
+      <td>4820.0</td>
+      <td>241 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gelios" target="_blank">Гербіцид Геліос</a></td>
+      <td>3300.0</td>
+      <td>165 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klinik-maks-v-r-k" target="_blank">Гербіцид Клінік Макс, в.р.к.</a></td>
+      <td>6820.0</td>
+      <td>341 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klinik-ikstrim-rk" target="_blank">Гербіцид Клінік Ікстрим, РК</a></td>
+      <td>6740.0</td>
+      <td>337 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klinik-v-r" target="_blank">Гербіцид Клінік, в.р.</a></td>
+      <td>4220.0</td>
+      <td>211 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-ks-500" target="_blank">Десикант Грінфорт КС 500</a></td>
+      <td>4580.0</td>
+      <td>229 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-ig-480" target="_blank">Гербіцид Грінфорт ІГ 480</a></td>
+      <td>3360.0</td>
+      <td>168 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-k-1l" target="_blank">Гербіцид Тотал К (1л)</a></td>
+      <td>597.0</td>
+      <td>597 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-20l" target="_blank">Гербіцид Тотал 20л.</a></td>
+      <td>3140.0</td>
+      <td>157 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/otaman-ekstra" target="_blank">Гербіцид Отаман Екстра</a></td>
+      <td>4700.0</td>
+      <td>235 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/glifovit-20l" target="_blank">Гербіцид Гліфовіт (20л)</a></td>
+      <td>3680.0</td>
+      <td>184 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sokar" target="_blank">Гербіцид Сокар</a></td>
+      <td>4020.0</td>
+      <td>201 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/glifovit-ekstra" target="_blank">Гербіцид Гліфовіт Екстра</a></td>
+      <td>2760.0</td>
+      <td>276 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/otaman-1l" target="_blank">Гербіцид Отаман 1л.</a></td>
+      <td>655.0</td>
+      <td>655 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-raugara" target="_blank">Гербіцид Раугара</a></td>
+      <td>3860.0</td>
+      <td>193 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ad-yuvant-prolif" target="_blank">Ад'ювант ПроЛіф</a></td>
+      <td>1110.0</td>
+      <td>222 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ad-yuvant-bona-plyus-2" target="_blank">Ад'ювант Бона Плюс</a></td>
+      <td>1078.0</td>
+      <td>1078 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ad-yuvant-bona-plyus" target="_blank">Ад'ювант Бона Плюс</a></td>
+      <td>3890.0</td>
+      <td>778 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ad-yuvant-bona-supervet-2" target="_blank">Ад’ ювант Бона Супервет</a></td>
+      <td>4115.0</td>
+      <td>823 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ad-yuvant-bona-supervet" target="_blank">Ад’ ювант Бона Супервет</a></td>
+      <td>1123.0</td>
+      <td>1123 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-total-5l" target="_blank">Гербіцид Тотал (5л)</a></td>
+      <td>1135.0</td>
+      <td>227 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-total" target="_blank">Гербіцид Тотал (10л)</a></td>
+      <td>1800.0</td>
+      <td>180 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-raundap-maks" target="_blank">Гербіцид Раундап Макс</a></td>
+      <td>900.0</td>
+      <td>900 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-raugara-ekstra" target="_blank">Гербіцид Раугара Екстра</a></td>
+      <td>5600.0</td>
+      <td>280 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/raundap-ekstra" target="_blank">Гербіцид Раундап Екстра</a></td>
+      <td>7600.0</td>
+      <td>380 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-k-10-l" target="_blank">Гербіцид Тотал К (10 л)</a></td>
+      <td>2340.0</td>
+      <td>234 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-k-20-l" target="_blank">Гербіцид Тотал К (20 л)</a></td>
+      <td>4260.0</td>
+      <td>213 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-pauer-10-kg" target="_blank">Гербіцид Тотал Пауер (10 кг)</a></td>
+      <td>3540.0</td>
+      <td>354 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gelios-maksi" target="_blank">Гербіцид Геліос Максі</a></td>
+      <td>3340.0</td>
+      <td>334 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/total-pauer-1-kg" target="_blank">Гербіцид Тотал Пауер (1 кг)</a></td>
+      <td>678.0</td>
+      <td>678 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/spiner-ekstra" target="_blank">Гербіцид Спінер Екстра</a></td>
+      <td>4840.0</td>
+      <td>242 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/otaman" target="_blank">Гербіцид Отаман</a></td>
+      <td>3280.0</td>
+      <td>164 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vimpel-k" target="_blank">Регулятор росту Вимпел К (5 л)</a></td>
+      <td>3300.0</td>
+      <td>660 грн./літр</td>
+      <td>Долина</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bakteroncid-gel" target="_blank">Родентицид Бактеронцид гель</a></td>
+      <td>2250.0</td>
+      <td>450 грн./літр</td>
+      <td>Biona</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talon-10-kg" target="_blank">Родентицид Талон брикети (10 кг)</a></td>
+      <td>4410.0</td>
+      <td>441 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talon-2-5-kg" target="_blank">Родентицид Талон гранули</a></td>
+      <td>1160.0</td>
+      <td>464 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antimisha-1kg" target="_blank">Родентицид Антимиша (1кг)</a></td>
+      <td>553.0</td>
+      <td>553 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/misholov" target="_blank">Родентицид Мишолов</a></td>
+      <td>1094.0</td>
+      <td>1094 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/brodivit-r" target="_blank">Родентицид Бродівіт, Р</a></td>
+      <td>4615.0</td>
+      <td>923 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nomays" target="_blank">Родентицид Номайс</a></td>
+      <td>1424.0</td>
+      <td>1424 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/regulyator-rostu-stoprost" target="_blank">Регулятор росту Стопрост</a></td>
+      <td>2560.0</td>
+      <td>256 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/regulyator-rostu-gibb-plyus" target="_blank">Регулятор росту Гібб Плюс</a></td>
+      <td>4335.0</td>
+      <td>4335 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vimpel-k-1-l" target="_blank">Регулятор росту Вимпел К (1 л)</a></td>
+      <td>696.0</td>
+      <td>696 грн./літр</td>
+      <td>Долина</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kelpak-1l" target="_blank">Регулятор росту Келпак (1л)</a></td>
+      <td>857.0</td>
+      <td>857 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/citogrover" target="_blank">Регулятор росту Цитогровер</a></td>
+      <td>25305.0</td>
+      <td>5061 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/hlormekvathlorid-sss-720-rk" target="_blank">Регулятор росту Хлормекватхлорид (ССС-720), РК</a></td>
+      <td>2110.0</td>
+      <td>211 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shetefon-rk" target="_blank">Регулятор росту Шетефон, РК</a></td>
+      <td>4760.0</td>
+      <td>238 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shtefemod-ke" target="_blank">Регулятор росту Штефемод, КЕ</a></td>
+      <td>6220.0</td>
+      <td>1244 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tarder" target="_blank">Регулятор росту Тардер</a></td>
+      <td>1985.0</td>
+      <td>397 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vimpel-2-10l" target="_blank">Регулятор росту Вимпел 2 (10л)</a></td>
+      <td>4570.0</td>
+      <td>457 грн./літр</td>
+      <td>Долина</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/moddus-start" target="_blank">Регулятор росту Моддус Старт</a></td>
+      <td>11185.0</td>
+      <td>2237 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/erini-ke" target="_blank">Регулятор росту Еріні КЕ</a></td>
+      <td>8010.0</td>
+      <td>1602 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/eksirel" target="_blank">Інсектицид Ексірель</a></td>
+      <td>6887.0</td>
+      <td>6887 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/basta-150-sl" target="_blank">Гербіцид Баста 150 SL</a></td>
+      <td>9130.0</td>
+      <td>913 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/raundap-maks" target="_blank">Гербіцид Раундап Макс</a></td>
+      <td>7200.0</td>
+      <td>360 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-amisekt" target="_blank">Інсектицид Амісект</a></td>
+      <td>1536.0</td>
+      <td>1536 грн./літр</td>
+      <td>Basdorf</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-verdavis-2" target="_blank">Інсектицид Вердавіс</a></td>
+      <td>4616.0</td>
+      <td>4616 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-verdavis" target="_blank">Інсектицид Вердавіс</a></td>
+      <td>22015.0</td>
+      <td>4403 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-acetam" target="_blank">Інсектицид Ацетам</a></td>
+      <td>3320.0</td>
+      <td>664 грн./літр</td>
+      <td>Green Express</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-burung" target="_blank">Інсектицид Бурунг</a></td>
+      <td>2395.0</td>
+      <td>479 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/flayp" target="_blank">Інсектицид Флайп</a></td>
+      <td>4650.0</td>
+      <td>930 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/transform" target="_blank">Інсектицид Трансформ</a></td>
+      <td>2843.0</td>
+      <td>11371 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/radiant" target="_blank">Інсектицид Радіант</a></td>
+      <td>1905.0</td>
+      <td>3810 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vamp-200-vp" target="_blank">Інсектицид Вамп 200 ВП</a></td>
+      <td>24440.0</td>
+      <td>1222 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kapkan" target="_blank">Родентицид Капкан</a></td>
+      <td>1326.0</td>
+      <td>221 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rodenticid-bromakem" target="_blank">Родентицид Бромакем</a></td>
+      <td>596.0</td>
+      <td>596 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/belt" target="_blank">Інсектицид Белт</a></td>
+      <td>7919.0</td>
+      <td>7919 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sivanto-praym-200" target="_blank">Інсектицид Сіванто Прайм 200</a></td>
+      <td>4076.0</td>
+      <td>4076 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prokleym-5" target="_blank">Інсектицид Проклейм 5</a></td>
+      <td>4424.0</td>
+      <td>4424 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ac-lyuks-zp" target="_blank">Інсектицид АЦ Люкс, ЗП</a></td>
+      <td>671.0</td>
+      <td>671 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kontador-duo-1l" target="_blank">Інсектицид Контадор Дуо 1л.</a></td>
+      <td>977.0</td>
+      <td>977 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kontador" target="_blank">Інсектицид Контадор</a></td>
+      <td>630.0</td>
+      <td>630 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prima-s-e" target="_blank">Гербіцид Пріма С.Е.</a></td>
+      <td>2650.0</td>
+      <td>530 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/viares" target="_blank">Інсектицид Віарес</a></td>
+      <td>3460.0</td>
+      <td>692 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rimaks-750-vg" target="_blank">Гербіцид Римакс 750, ВГ</a></td>
+      <td>585.0</td>
+      <td>5848 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-daksur" target="_blank">Фунгіцид Даксур</a></td>
+      <td>7430.0</td>
+      <td>1486 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-balero" target="_blank">Фунгіцид Балеро</a></td>
+      <td>5300.0</td>
+      <td>530 грн./літр</td>
+      <td>Green Express</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-ataraks" target="_blank">Фунгіцид Атаракс</a></td>
+      <td>6530.0</td>
+      <td>1306 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-osiris-pro" target="_blank">Фунгіцид Осіріс Про</a></td>
+      <td>6480.0</td>
+      <td>1296 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-reks-pro" target="_blank">Фунгіцид Рекс Про</a></td>
+      <td>7495.0</td>
+      <td>1499 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/insekticid-adarayv" target="_blank">Інсектицид Адарайв</a></td>
+      <td>6365.0</td>
+      <td>1273 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-verben" target="_blank">Фунгіцид Вербен</a></td>
+      <td>8895.0</td>
+      <td>1779 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-tebufan-pro" target="_blank">Фунгіцид Тебуфан Про</a></td>
+      <td>3245.0</td>
+      <td>649 грн./літр</td>
+      <td>Basdorf</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-lamifan" target="_blank">Фунгіцид Ламіфан</a></td>
+      <td>4500.0</td>
+      <td>900 грн./літр</td>
+      <td>Basdorf</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-tebugvard" target="_blank">Фунгіцид Тебугвард</a></td>
+      <td>2280.0</td>
+      <td>456 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-sunkar" target="_blank">Фунгіцид Сункар</a></td>
+      <td>6110.0</td>
+      <td>1222 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/viking" target="_blank">Протруйник Вікінг</a></td>
+      <td>9060.0</td>
+      <td>453 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tumen" target="_blank">Протруйник Тумен</a></td>
+      <td>4275.0</td>
+      <td>855 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/passad-190-tn" target="_blank">Протруйник ПАССАД 190 ТН</a></td>
+      <td>5500.0</td>
+      <td>1100 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bakash" target="_blank">Протруйник Бакаш</a></td>
+      <td>1542.0</td>
+      <td>1542 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grodil-maksi-375" target="_blank">Гербіцид Гроділ Максі 375</a></td>
+      <td>4780.0</td>
+      <td>4780 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/puma-super" target="_blank">Гербіцид Пума Супер</a></td>
+      <td>12910.0</td>
+      <td>1291 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prima-forte" target="_blank">Гербіцид Пріма Форте</a></td>
+      <td>3560.0</td>
+      <td>712 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/aksial-050" target="_blank">Гербіцид Аксіал 050</a></td>
+      <td>7860.0</td>
+      <td>1572 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/derbi-175" target="_blank">Гербіцид Дербі 175</a></td>
+      <td>3057.0</td>
+      <td>6114 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tvist" target="_blank">Гербіцид Твіст</a></td>
+      <td>4485.0</td>
+      <td>8970 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/amador" target="_blank">Гербіцид Амадор</a></td>
+      <td>2110.0</td>
+      <td>4220 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-premium" target="_blank">Гербіцид Грінфорт Преміум</a></td>
+      <td>1420.0</td>
+      <td>284 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-dok" target="_blank">Фунгіцид Грінфорт Док</a></td>
+      <td>2150.0</td>
+      <td>430 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-super" target="_blank">Фунгіцид Грінфорт Супер</a></td>
+      <td>3825.0</td>
+      <td>765 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-kd-500" target="_blank">Фунгіцид Грінфорт КД 500</a></td>
+      <td>1530.0</td>
+      <td>306 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-ff-250" target="_blank">Фунгіцид Грінфорт ФФ 250</a></td>
+      <td>2525.0</td>
+      <td>505 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/doktor-krop-20l" target="_blank">Фунгіцид Доктор Кроп ( 20л.)</a></td>
+      <td>5500.0</td>
+      <td>275 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fitolikar-20l" target="_blank">Фунгіцид Фітолікар (20л)</a></td>
+      <td>9680.0</td>
+      <td>484 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bayzafon" target="_blank">Фунгіцид Байзафон</a></td>
+      <td>731.0</td>
+      <td>731 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/doktor-krop-5-l" target="_blank">Фунгіцид Доктор Кроп (5 л)</a></td>
+      <td>1735.0</td>
+      <td>347 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zhokey-ekstra" target="_blank">Фунгіцид Жокей Екстра</a></td>
+      <td>3850.0</td>
+      <td>770 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tebufor" target="_blank">Фунгіцид Тебуфор</a></td>
+      <td>6400.0</td>
+      <td>320 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fitolikar-10l" target="_blank">Фунгіцид Фітолікар (10л)</a></td>
+      <td>5230.0</td>
+      <td>523 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fitolikar-5l" target="_blank">Фунгіцид Фітолікар (5л)</a></td>
+      <td>2890.0</td>
+      <td>578 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fuzarin" target="_blank">Фунгіцид Фузарин</a></td>
+      <td>10120.0</td>
+      <td>506 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-as" target="_blank">Фунгіцид Грінфорт АС</a></td>
+      <td>3635.0</td>
+      <td>727 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/orbit-kombi" target="_blank">Фунгіцид Орбіт Комбі</a></td>
+      <td>17189.0</td>
+      <td>17189 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vareon" target="_blank">Фунгіцид Вареон</a></td>
+      <td>6155.0</td>
+      <td>1231 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kompakt-plyus-25-ks" target="_blank">Фунгіцид Компакт Плюс 25, КС</a></td>
+      <td>5085.0</td>
+      <td>1017 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/makas-kombi" target="_blank">Фунгіцид Макас Комбі</a></td>
+      <td>15311.0</td>
+      <td>15311 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ikarus-turbo-430-ks" target="_blank">Фунгіцид Ікарус Турбо 430 КС</a></td>
+      <td>3805.0</td>
+      <td>761 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kostas" target="_blank">Фунгіцид Костас</a></td>
+      <td>2400.0</td>
+      <td>480 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/karmelis-ks" target="_blank">Фунгіцид Кармеліс КС</a></td>
+      <td>11970.0</td>
+      <td>1197 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dezaral-ekstra-rr-20l" target="_blank">Фунгіцид Дезарал Екстра, РР (20л)</a></td>
+      <td>9140.0</td>
+      <td>457 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zepan-ks" target="_blank">Фунгіцид Зепан КС</a></td>
+      <td>7900.0</td>
+      <td>1580 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/auris" target="_blank">Фунгіцид Ауріс</a></td>
+      <td>5300.0</td>
+      <td>1060 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klayner" target="_blank">Гербіцид Клайнер</a></td>
+      <td>8300.0</td>
+      <td>16600 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dzhulian" target="_blank">Гербіцид Джуліан</a></td>
+      <td>2650.0</td>
+      <td>530 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pristar" target="_blank">Гербіцид Пристар</a></td>
+      <td>913.0</td>
+      <td>1826 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grizniy" target="_blank">Гербіцид Грізний</a></td>
+      <td>809.0</td>
+      <td>3234 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/konvoy" target="_blank">Гербіцид Конвой</a></td>
+      <td>1305.0</td>
+      <td>5220 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prius" target="_blank">Гербіцид Пріус</a></td>
+      <td>1805.0</td>
+      <td>361 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/legato-trio" target="_blank">Гербіцид Легато Тріо</a></td>
+      <td>7730.0</td>
+      <td>773 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poynter-75" target="_blank">Гербіцид Пойнтер, 75</a></td>
+      <td>4287.0</td>
+      <td>8574 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gersotil" target="_blank">Гербіцид Герсотил</a></td>
+      <td>798.0</td>
+      <td>1595 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-tm-750" target="_blank">Гербіцид Грінфорт ТМ 750</a></td>
+      <td>606.0</td>
+      <td>1212 грн./кг</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kveleks-200" target="_blank">Гербіцид Квелекс 200</a></td>
+      <td>3713.0</td>
+      <td>6188 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pallas-45-md" target="_blank">Гербіцид Паллас 45 МД</a></td>
+      <td>10330.0</td>
+      <td>2066 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pallas-ekstra-317" target="_blank">Гербіцид Паллас Екстра 317</a></td>
+      <td>12175.0</td>
+      <td>12175 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grenader" target="_blank">Гербіцид Гренадер</a></td>
+      <td>995.0</td>
+      <td>1990 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/trigger" target="_blank">Гербіцид Триггер</a></td>
+      <td>1572.0</td>
+      <td>3143 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pauertvin" target="_blank">Гербіцид Пауертвін</a></td>
+      <td>4760.0</td>
+      <td>952 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tomigan" target="_blank">Гербіцид Томіган</a></td>
+      <td>5715.0</td>
+      <td>1143 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shogun" target="_blank">Гербіцид Шогун</a></td>
+      <td>5550.0</td>
+      <td>1110 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/galigan-ke" target="_blank">Гербіцид Галіган КЕ</a></td>
+      <td>8080.0</td>
+      <td>1616 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nikogan" target="_blank">Гербіцид Нікоган</a></td>
+      <td>3385.0</td>
+      <td>677 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ellay-super-70" target="_blank">Гербіцид Еллай Супер 70</a></td>
+      <td>2649.0</td>
+      <td>17657 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/karibu" target="_blank">Гербіцид Карібу</a></td>
+      <td>12045.0</td>
+      <td>20075 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sokil" target="_blank">Гербіцид Сокіл</a></td>
+      <td>2050.0</td>
+      <td>410 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/belveder-forte-40-k-s" target="_blank">Гербіцид Бельведер Форте 40% к.с.</a></td>
+      <td>4700.0</td>
+      <td>940 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vidblok-plyus-62-5-m-e" target="_blank">Гербіцид Відблок Плюс 62,5% м.е.</a></td>
+      <td>6530.0</td>
+      <td>653 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/goltiks-gold" target="_blank">Гербіцид Голтікс Голд</a></td>
+      <td>5000.0</td>
+      <td>1000 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/venzar-80" target="_blank">Гербіцид Вензар 80</a></td>
+      <td>9095.0</td>
+      <td>1819 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/harmoni-75" target="_blank">Гербіцид Хармоні 75</a></td>
+      <td>1885.0</td>
+      <td>18844 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-hors" target="_blank">Гербіцид Грінфорт Хорс</a></td>
+      <td>2050.0</td>
+      <td>410 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/podmarin-5-l" target="_blank">Гербіцид Подмарин 5 л.</a></td>
+      <td>1710.0</td>
+      <td>342 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prioritet" target="_blank">Гербіцид Пріоритет</a></td>
+      <td>5240.0</td>
+      <td>262 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/protezhe" target="_blank">Гербіцид Протеже</a></td>
+      <td>4560.0</td>
+      <td>456 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pulsagro" target="_blank">Гербіцид Пульсагро</a></td>
+      <td>6120.0</td>
+      <td>612 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sveklofor" target="_blank">Гербіцид Свеклофор</a></td>
+      <td>9680.0</td>
+      <td>968 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/belkar" target="_blank">Гербіцид Белкар</a></td>
+      <td>15033.0</td>
+      <td>5011 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lontrel-300" target="_blank">Гербіцид Лонтрел 300</a></td>
+      <td>12665.0</td>
+      <td>2533 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/divikston" target="_blank">Гербіцид Дівікстон</a></td>
+      <td>12114.0</td>
+      <td>4038 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/podmarin-20l" target="_blank">Гербіцид Подмарин 20л.</a></td>
+      <td>5500.0</td>
+      <td>275 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/serp" target="_blank">Гербіцид Серп</a></td>
+      <td>2240.0</td>
+      <td>448 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mikado" target="_blank">Гербіцид Мікадо</a></td>
+      <td>4755.0</td>
+      <td>951 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/legenda" target="_blank">Гербіцид Легенда</a></td>
+      <td>3020.0</td>
+      <td>604 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kare" target="_blank">Гербіцид Каре</a></td>
+      <td>2336.0</td>
+      <td>3892 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/volens" target="_blank">Гербіцид Воленс</a></td>
+      <td>4300.0</td>
+      <td>860 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/batu-v-g" target="_blank">Гербіцид Бату, в.г.</a></td>
+      <td>1863.0</td>
+      <td>6209 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kelt" target="_blank">Гербіцид Кельт</a></td>
+      <td>11840.0</td>
+      <td>592 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-floracid-aktiv-pro" target="_blank">Гербіцид Флорацид Актив Про</a></td>
+      <td>1867.0</td>
+      <td>3733 грн./літр</td>
+      <td>Basdorf</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pik-75" target="_blank">Гербіцид Пік 75</a></td>
+      <td>2883.0</td>
+      <td>28830 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/logran-75" target="_blank">Гербіцид Логран 75</a></td>
+      <td>1473.0</td>
+      <td>12269 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lontrel-grand" target="_blank">Гербіцид Лонтрел Гранд</a></td>
+      <td>15048.0</td>
+      <td>7524 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dialen-super-464" target="_blank">Гербіцид Діален Супер 464</a></td>
+      <td>5620.0</td>
+      <td>562 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nopasaran" target="_blank">Гербіцид Нопасаран</a></td>
+      <td>13920.0</td>
+      <td>1392 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/marafon" target="_blank">Гербіцид Марафон</a></td>
+      <td>3150.0</td>
+      <td>315 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/betanal-maks-pro-209" target="_blank">Гербіцид Бетанал Макс ПРО 209</a></td>
+      <td>5195.0</td>
+      <td>1039 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/betanal-ekspert-274" target="_blank">Гербіцид Бетанал Експерт 274</a></td>
+      <td>6200.0</td>
+      <td>1240 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-florti-duo" target="_blank">Гербіцид Флорті-Дуо</a></td>
+      <td>2187.0</td>
+      <td>4374 грн./кг</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-segment" target="_blank">Гербіцид Сегмент</a></td>
+      <td>2156.0</td>
+      <td>4312 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mushket-universal" target="_blank">Гербіцид Мушкет Універсал</a></td>
+      <td>4915.0</td>
+      <td>983 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/agent" target="_blank">Гербіцид Агент</a></td>
+      <td>1650.0</td>
+      <td>330 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/formula" target="_blank">Гербіцид Формула</a></td>
+      <td>2123.0</td>
+      <td>4245 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/flagman-ekstra" target="_blank">Гербіцид Флагман Екстра</a></td>
+      <td>24640.0</td>
+      <td>1232 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/flagman" target="_blank">Гербіцид Флагман</a></td>
+      <td>9140.0</td>
+      <td>457 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tur" target="_blank">Гербіцид Тур</a></td>
+      <td>7580.0</td>
+      <td>379 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/naraps" target="_blank">Гербіцид Нарапс</a></td>
+      <td>5270.0</td>
+      <td>1054 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mastak" target="_blank">Гербіцид Мастак</a></td>
+      <td>4400.0</td>
+      <td>880 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/goliaf" target="_blank">Гербіцид Голіаф</a></td>
+      <td>11440.0</td>
+      <td>572 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gold-star" target="_blank">Гербіцид Голд Стар</a></td>
+      <td>931.0</td>
+      <td>1861 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vitalon-ekspert-5l" target="_blank">Гербіцид Віталон Експерт (5л)</a></td>
+      <td>3470.0</td>
+      <td>694 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/agrostar" target="_blank">Гербіцид Агростар</a></td>
+      <td>7600.0</td>
+      <td>380 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rondos-750" target="_blank">Гербіцид Рондос 750</a></td>
+      <td>3656.0</td>
+      <td>24369 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/teson-622-se-10-l" target="_blank">Гербіцид Тесон 622 СЕ (10 л)</a></td>
+      <td>4180.0</td>
+      <td>418 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/salyut-40" target="_blank">Гербіцид Салют 40</a></td>
+      <td>1695.0</td>
+      <td>339 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/eskalip" target="_blank">Інсектицид Ескаліп</a></td>
+      <td>5700.0</td>
+      <td>1140 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rias-300" target="_blank">Фунгіцид Ріас 300</a></td>
+      <td>13490.0</td>
+      <td>2698 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akanto-25sc" target="_blank">Фунгіцид Аканто 25SC</a></td>
+      <td>8795.0</td>
+      <td>1759 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/makas-ks" target="_blank">Фунгіцид Макас, КС</a></td>
+      <td>2205.0</td>
+      <td>441 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/azoksin" target="_blank">Фунгіцид Азоксин</a></td>
+      <td>3230.0</td>
+      <td>646 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kiper" target="_blank">Фунгіцид Кіпер</a></td>
+      <td>4185.0</td>
+      <td>837 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tetris" target="_blank">Фунгіцид Тетріс</a></td>
+      <td>3215.0</td>
+      <td>643 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zidan" target="_blank">Фунгіцид Зидан</a></td>
+      <td>1905.0</td>
+      <td>381 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rialt-ks" target="_blank">Фунгіцид РІАЛЬТ, КС</a></td>
+      <td>12205.0</td>
+      <td>2441 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/artis-plyus" target="_blank">Фунгіцид Артіс Плюс</a></td>
+      <td>4815.0</td>
+      <td>963 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/amikon" target="_blank">Фунгіцид Амікон</a></td>
+      <td>4630.0</td>
+      <td>926 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-standart-k-s" target="_blank">Фунгіцид Альфа-Стандарт к.с</a></td>
+      <td>3040.0</td>
+      <td>304 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fumifos" target="_blank">Фумігант Фуміфос</a></td>
+      <td>709.0</td>
+      <td>709 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/foks-325" target="_blank">Фунгіцид Фокс 325</a></td>
+      <td>10660.0</td>
+      <td>2132 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/propuls-250" target="_blank">Фунгіцид Пропульс 250</a></td>
+      <td>12135.0</td>
+      <td>2427 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/arhitekt" target="_blank">Фунгіцид Архітект</a></td>
+      <td>13260.0</td>
+      <td>1326 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fosminiy-tabl" target="_blank">Фумігант Фосміній Табл.</a></td>
+      <td>818.0</td>
+      <td>818 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miladar-10-20l" target="_blank">Гербіцид Міладар (20л)</a></td>
+      <td>5660.0</td>
+      <td>283 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-primekstra-gold-720" target="_blank">Гербіцид Примекстра Голд 720</a></td>
+      <td>10680.0</td>
+      <td>534 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-aviseda" target="_blank">Гербіцид Авіседа</a></td>
+      <td>12500.0</td>
+      <td>625 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-ekran-ekstra" target="_blank">Гербіцид Екран Екстра</a></td>
+      <td>9700.0</td>
+      <td>485 грн./літр</td>
+      <td>Green Express</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-milafort-pro" target="_blank">Гербіцид Мілафорт Про</a></td>
+      <td>3495.0</td>
+      <td>699 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-lortama" target="_blank">Гербіцид Лортама</a></td>
+      <td>6080.0</td>
+      <td>1216 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-ekspert-pro" target="_blank">Гербіцид Експерт Про</a></td>
+      <td>4700.0</td>
+      <td>470 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-bayndstrayk" target="_blank">Гербіцид Байндстрайк</a></td>
+      <td>9620.0</td>
+      <td>962 грн./літр</td>
+      <td>Green Express</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antrakol-70" target="_blank">Фунгіцид Антракол 70</a></td>
+      <td>7660.0</td>
+      <td>766 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/infinito" target="_blank">Фунгіцид Інфініто</a></td>
+      <td>7180.0</td>
+      <td>1436 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/luna-ekspiriens-400" target="_blank">Фунгіцид Луна Експіріенс 400</a></td>
+      <td>4853.0</td>
+      <td>4853 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nativo-75" target="_blank">Фунгіцид НАТІВО 75</a></td>
+      <td>9356.0</td>
+      <td>4678 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ridomil-gold" target="_blank">Фунгіцид Ридоміл Голд Mz 68</a></td>
+      <td>4780.0</td>
+      <td>956 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kvadris-top-325" target="_blank">Фунгіцид Квадріс ТОП 325</a></td>
+      <td>13895.0</td>
+      <td>2779 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/orondis-ultra" target="_blank">Фунгіцид Орондіс Ультра</a></td>
+      <td>18805.0</td>
+      <td>3761 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pergado-r-270" target="_blank">Фунгіцид Пергадо R 270</a></td>
+      <td>3560.0</td>
+      <td>712 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/revus-top-500" target="_blank">Фунгіцид Ревус Топ 500</a></td>
+      <td>21775.0</td>
+      <td>4355 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nautil-vg" target="_blank">Фунгіцид Наутіл ,ВГ</a></td>
+      <td>2785.0</td>
+      <td>557 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ranman-top-ks" target="_blank">Фунгіцид Ранман ТОП, КС</a></td>
+      <td>3378.0</td>
+      <td>3378 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bandzho-forte-1-l" target="_blank">Фунгіцид Банджо Форте (1 л)</a></td>
+      <td>1905.0</td>
+      <td>1905 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bandzho-forte-5-l" target="_blank">Фунгіцид Банджо Форте (5 л)</a></td>
+      <td>8425.0</td>
+      <td>1685 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bandzho-ks" target="_blank">Фунгіцид Банджо КС</a></td>
+      <td>4248.0</td>
+      <td>4248 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kvadris-250-sc-k-s" target="_blank">Фунгіцид Квадріс 250 SC, к. с.</a></td>
+      <td>3450.0</td>
+      <td>3450 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kabrio-duo" target="_blank">Фунгіцид Кабріо Дуо</a></td>
+      <td>1245.0</td>
+      <td>1245 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miravis-200-sc-k-s" target="_blank">Фунгіцид МІРАВІС 200 SC, к. с</a></td>
+      <td>6186.0</td>
+      <td>6186 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/melodi-kompakt" target="_blank">Фунгіцид Мелоді Компакт</a></td>
+      <td>10524.0</td>
+      <td>1754 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fandango" target="_blank">Фунгіцид Фанданго</a></td>
+      <td>14585.0</td>
+      <td>2917 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/folpan-gold" target="_blank">Фунгіцид Фольпан Голд</a></td>
+      <td>4665.0</td>
+      <td>933 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-aspekt" target="_blank">Фунгіцид Аспект</a></td>
+      <td>515.0</td>
+      <td>515 грн./кг</td>
+      <td>Green Express</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-orondis-evo" target="_blank">Фунгіцид Орондіс Ево</a></td>
+      <td>2663.0</td>
+      <td>2663 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/folikur-250" target="_blank">Фунгіцид Фолікур 250</a></td>
+      <td>5065.0</td>
+      <td>1013 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tilmor-240" target="_blank">Фунгіцид Тілмор 240</a></td>
+      <td>6265.0</td>
+      <td>1253 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alterno" target="_blank">Фунгіцид Альтерно</a></td>
+      <td>11035.0</td>
+      <td>2207 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/setar-375" target="_blank">Фунгіцид Сетар 375</a></td>
+      <td>12575.0</td>
+      <td>2515 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tezis-k-s" target="_blank">Фунгіцид Тезис к.с.</a></td>
+      <td>3035.0</td>
+      <td>607 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/aperol" target="_blank">Фунгіцид Аперол</a></td>
+      <td>2005.0</td>
+      <td>401 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/berkut" target="_blank">Фунгіцид Беркут</a></td>
+      <td>3430.0</td>
+      <td>686 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/berkut-forte" target="_blank">Фунгіцид Беркут Форте</a></td>
+      <td>3800.0</td>
+      <td>760 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/topaz-100-1-l" target="_blank">Фунгіцид Топаз 100 (1 л)</a></td>
+      <td>3191.0</td>
+      <td>3191 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/horus-75" target="_blank">Фунгіцид Хорус 75</a></td>
+      <td>5415.0</td>
+      <td>5415 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/anelas" target="_blank">Фунгіцид Анелас</a></td>
+      <td>2092.0</td>
+      <td>2092 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kamelot-1l" target="_blank">Фунгіцид Камелот (1л.)</a></td>
+      <td>1387.0</td>
+      <td>1387 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dzhek-pot-ke" target="_blank">Фунгіцид Джек Пот, КЕ</a></td>
+      <td>7220.0</td>
+      <td>1444 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/strazh-ks" target="_blank">Фунгіцид Страж, КС</a></td>
+      <td>1147.0</td>
+      <td>2294 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dzhek-pot-1-l" target="_blank">Фунгіцид Джек Пот 1 л.</a></td>
+      <td>1685.0</td>
+      <td>1685 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/troyset" target="_blank">Фунгіцид ТРОЙСЕТ</a></td>
+      <td>2665.0</td>
+      <td>533 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fenomen-5-kg" target="_blank">Фунгіцид Феномен (5 кг)</a></td>
+      <td>2450.0</td>
+      <td>490 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akkord" target="_blank">Фунгіцид Аккорд</a></td>
+      <td>2445.0</td>
+      <td>489 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/almaz-100" target="_blank">Фунгіцид Алмаз 100</a></td>
+      <td>1514.0</td>
+      <td>1514 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kuper-5-l" target="_blank">Фунгіцид Купер 5 л</a></td>
+      <td>2520.0</td>
+      <td>504 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rinkoceb" target="_blank">Фунгіцид Рінкоцеб</a></td>
+      <td>837.0</td>
+      <td>837 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/acidan-1-kg" target="_blank">Фунгіцид Ацидан (1 кг)</a></td>
+      <td>798.0</td>
+      <td>798 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/acidan-2-5-kg" target="_blank">Фунгіцид Ацидан (2,5 кг)</a></td>
+      <td>1443.0</td>
+      <td>577 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/acidan-5-kg" target="_blank">Фунгіцид Ацидан 5 кг</a></td>
+      <td>2515.0</td>
+      <td>503 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/brodvey-5l" target="_blank">Фунгіцид Бродвей ( 5л.)</a></td>
+      <td>3115.0</td>
+      <td>623 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/layfsul-tioros" target="_blank">Фунгіцид Лайфсул</a></td>
+      <td>3450.0</td>
+      <td>138 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/varos" target="_blank">Фунгіцид Варос</a></td>
+      <td>2115.0</td>
+      <td>423 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/reviona-5l" target="_blank">Фунгіцид Ревіона (5л)</a></td>
+      <td>4405.0</td>
+      <td>881 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/artemiks-ks" target="_blank">Фунгіцид Артемікс КС</a></td>
+      <td>5720.0</td>
+      <td>572 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/brodvey-1l" target="_blank">Фунгіцид Бродвей (1л)</a></td>
+      <td>900.0</td>
+      <td>900 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fenomen-praym" target="_blank">Фунгіцид Феномен Прайм</a></td>
+      <td>3595.0</td>
+      <td>719 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zodiak" target="_blank">Гербіцид Зодіак</a></td>
+      <td>3160.0</td>
+      <td>632 грн./літр</td>
+      <td>Globachem</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-norvel-ekstra" target="_blank">Гербіцид Норвел Екстра</a></td>
+      <td>6740.0</td>
+      <td>337 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-gelianteks-pro-2" target="_blank">Гербіцид Геліантекс ПРО</a></td>
+      <td>22856.0</td>
+      <td>19046 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-klerio" target="_blank">Гербіцид Клеріо</a></td>
+      <td>9930.0</td>
+      <td>993 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-artiks-maksi" target="_blank">Гербіцид Атрікс Максі</a></td>
+      <td>1202.0</td>
+      <td>1202 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-tanart" target="_blank">Гербіцид Танарт</a></td>
+      <td>3035.0</td>
+      <td>607 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-alfa-getman" target="_blank">Гербіцид Альфа-Гетьман</a></td>
+      <td>3740.0</td>
+      <td>374 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-ternat" target="_blank">Гербіцид Тернат</a></td>
+      <td>5920.0</td>
+      <td>296 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-imacid-aktiv" target="_blank">Гербіцид Імацид Актив</a></td>
+      <td>4140.0</td>
+      <td>828 грн./літр</td>
+      <td>Basdorf</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-propizocid" target="_blank">Гербіцид Пропізоцид</a></td>
+      <td>10620.0</td>
+      <td>531 грн./літр</td>
+      <td>Basdorf</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-lending" target="_blank">Гербіцид Лендінг</a></td>
+      <td>17760.0</td>
+      <td>888 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cimoksil" target="_blank">Фунгіцид Цимоксил</a></td>
+      <td>3028.0</td>
+      <td>1211 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/glori-vg" target="_blank">Фунгіцид Глорі ВГ</a></td>
+      <td>8580.0</td>
+      <td>572 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-alligator" target="_blank">Фунгіцид Аллігатор</a></td>
+      <td>10300.0</td>
+      <td>1030 грн./літр</td>
+      <td>Green Express</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/histik-soya-rizap-soya" target="_blank">Інокулянт ХіСтік Соя</a></td>
+      <td>960.0</td>
+      <td>2398 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/atuva" target="_blank">Інокулянт Атува</a></td>
+      <td>8772.0</td>
+      <td>2193 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/maximize" target="_blank">Інокулянт MAXIMIZE</a></td>
+      <td>2891.0</td>
+      <td>2891 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/terramax-dry" target="_blank">Інокулянт TerraMax Dry</a></td>
+      <td>2140.0</td>
+      <td>2140 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/aviator-xpro-225" target="_blank">Фунгіцид Авіатор XPRO 225</a></td>
+      <td>12885.0</td>
+      <td>2577 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/askra-xpro" target="_blank">Фунгіцид Аскра Xpro</a></td>
+      <td>12760.0</td>
+      <td>2552 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alto-super-330" target="_blank">Фунгіцид Альто Супер 330</a></td>
+      <td>33200.0</td>
+      <td>1660 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ti-reks-ke" target="_blank">Фунгіцид Ті Рекс, КЕ</a></td>
+      <td>3965.0</td>
+      <td>793 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/top-efekt-ks" target="_blank">Фунгіцид Топ Ефект, КС</a></td>
+      <td>2885.0</td>
+      <td>577 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fundazim-zp" target="_blank">Фунгіцид Фундазим, ЗП</a></td>
+      <td>1061.0</td>
+      <td>1061 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zahisnik-ekstra" target="_blank">Фунгіцид Захисник Екстра</a></td>
+      <td>4835.0</td>
+      <td>967 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/inspir-gold" target="_blank">Фунгіцид Інспір Голд</a></td>
+      <td>5920.0</td>
+      <td>1184 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sinan" target="_blank">Фунгіцид Сінан</a></td>
+      <td>4615.0</td>
+      <td>923 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/suprim-ev" target="_blank">Фунгіцид Супрім ЕВ</a></td>
+      <td>4420.0</td>
+      <td>884 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/impakt-25" target="_blank">Фунгіцид Імпакт 25</a></td>
+      <td>1671.0</td>
+      <td>1671 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/impakt-k" target="_blank">Фунгіцид Імпакт К</a></td>
+      <td>4510.0</td>
+      <td>902 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/impakt-t" target="_blank">Фунгіцид Імпакт Т</a></td>
+      <td>4880.0</td>
+      <td>976 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akanto-plyus-28" target="_blank">Фунгіцид Аканто Плюс 28</a></td>
+      <td>8315.0</td>
+      <td>1663 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/maestro" target="_blank">Фунгіцид Маестро</a></td>
+      <td>3830.0</td>
+      <td>766 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungimaks" target="_blank">Фунгіцид Фунгімакс</a></td>
+      <td>5120.0</td>
+      <td>512 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungisil" target="_blank">Фунгіцид Фунгісил</a></td>
+      <td>6900.0</td>
+      <td>1380 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talius-20" target="_blank">Фунгіцид Таліус 20</a></td>
+      <td>3275.0</td>
+      <td>3275 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fezan-plyus-ks" target="_blank">Фунгіцид ФЕЗАН ПЛЮС, КС</a></td>
+      <td>4200.0</td>
+      <td>420 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/miravis-eys" target="_blank">Фунгіцид МІРАВІС ЕЙС</a></td>
+      <td>11395.0</td>
+      <td>2279 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/orius" target="_blank">Фунгіцид Оріус</a></td>
+      <td>3140.0</td>
+      <td>628 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/delaro-forte" target="_blank">Фунгіцид Деларо Форте</a></td>
+      <td>6630.0</td>
+      <td>1326 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kayunis" target="_blank">Фунгіцид Каюніс</a></td>
+      <td>9610.0</td>
+      <td>1922 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kvalifay" target="_blank">Фунгіцид Кваліфай</a></td>
+      <td>3905.0</td>
+      <td>781 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/heller" target="_blank">Фунгіцид Хеллер</a></td>
+      <td>3215.0</td>
+      <td>643 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fidelis" target="_blank">Фунгіцид Фіделіс</a></td>
+      <td>3680.0</td>
+      <td>736 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klabris" target="_blank">Фунгіцид Клабріс</a></td>
+      <td>25000.0</td>
+      <td>2500 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/barret" target="_blank">Фунгіцид Баррет</a></td>
+      <td>5145.0</td>
+      <td>1029 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/avikton-pro" target="_blank">Фунгіцид Авіктон Про</a></td>
+      <td>8580.0</td>
+      <td>1716 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fungicid-kapalo-pro" target="_blank">Фунгіцид Капало Про</a></td>
+      <td>9245.0</td>
+      <td>1849 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rimaks-plyus-750" target="_blank">Гербіцид Римакс Плюс 750</a></td>
+      <td>967.0</td>
+      <td>9661 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-star" target="_blank">Гербіцид Альфа-Стар</a></td>
+      <td>990.0</td>
+      <td>1980 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/triatlon" target="_blank">Гербіцид Триатлон</a></td>
+      <td>2609.0</td>
+      <td>5218 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/veyron" target="_blank">Гербіцид Вейрон</a></td>
+      <td>3315.0</td>
+      <td>3315 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/divo-n" target="_blank">Гербіцид Диво Н</a></td>
+      <td>3210.0</td>
+      <td>642 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/aksial-kros-050-es-k-e" target="_blank">Гербіцид АКСІАЛ КРОС 050 ЕС, к. е.</a></td>
+      <td>8045.0</td>
+      <td>1609 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zlakodin-0-133-kg" target="_blank">Гербіцид Злакодин 0,133 кг</a></td>
+      <td>1988.0</td>
+      <td>1988 грн./шт.</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zlakodin-0-200-kg" target="_blank">Гербіцид Злакодин 0,200 кг</a></td>
+      <td>2733.0</td>
+      <td>13665 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/triatlon-praym" target="_blank">Гербіцид Триатлон Прайм</a></td>
+      <td>2609.0</td>
+      <td>5218 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/saracin" target="_blank">Гербіцид Сарацин</a></td>
+      <td>586.0</td>
+      <td>2344 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gyunter" target="_blank">Гербіцид Гюнтер</a></td>
+      <td>1967.0</td>
+      <td>3934 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/saber" target="_blank">Гербіцид Сабер</a></td>
+      <td>1290.0</td>
+      <td>5159 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/laplas" target="_blank">Гербіцид Лаплас</a></td>
+      <td>2405.0</td>
+      <td>4809 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-visnik" target="_blank">Гербіцид Вісник</a></td>
+      <td>2250.0</td>
+      <td>4500 грн./кг</td>
+      <td>Дар Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-tekvil" target="_blank">Гербіцид Теквіл</a></td>
+      <td>1525.0</td>
+      <td>1525 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fyuzilad-forte" target="_blank">Гербіцид Фюзілад Форте</a></td>
+      <td>19520.0</td>
+      <td>976 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grantoks-rk" target="_blank">Гербіцид Грантокс, РК</a></td>
+      <td>7480.0</td>
+      <td>374 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/istilayk-334-rk" target="_blank">Гербіцид Істилайк 334, РК</a></td>
+      <td>6325.0</td>
+      <td>1265 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-brigadir-k-e" target="_blank">Гербіцид Альфа-Бригадир к.е.</a></td>
+      <td>2400.0</td>
+      <td>480 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-piralid" target="_blank">Гербіцид Альфа-Піралід</a></td>
+      <td>5220.0</td>
+      <td>1044 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kontroler-z-p" target="_blank">Гербіцид Контролер з.п.</a></td>
+      <td>2712.0</td>
+      <td>4520 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ramzes" target="_blank">Гербіцид Рамзес</a></td>
+      <td>2090.0</td>
+      <td>4180 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/hammer-v-g" target="_blank">Гербіцид Хаммер, в.г.</a></td>
+      <td>2139.0</td>
+      <td>4277 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/imi-vit-5l" target="_blank">Гербіцид Імі-Віт (5л)</a></td>
+      <td>2405.0</td>
+      <td>481 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/salsa-75" target="_blank">Гербіцид Сальса 75</a></td>
+      <td>6996.0</td>
+      <td>27981 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/2-4-d-aktiv-10l" target="_blank">Гербіцид 2,4-Д Актив (10л)</a></td>
+      <td>3450.0</td>
+      <td>345 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/luazit-10-l" target="_blank">Гербіцид Луазит (10 л)</a></td>
+      <td>5320.0</td>
+      <td>532 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mikodin-10l" target="_blank">Гербіцид Мікодин (10л)</a></td>
+      <td>3320.0</td>
+      <td>332 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/norvel-10l" target="_blank">Гербіцид Норвел (10л)</a></td>
+      <td>2920.0</td>
+      <td>292 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ogorodnik-1-kg" target="_blank">Гербіцид Огородник 1 кг</a></td>
+      <td>1176.0</td>
+      <td>1176 грн./кг</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/opora-20-l" target="_blank">Гербіцид Опора ( 20 л.)</a></td>
+      <td>8340.0</td>
+      <td>417 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/opora-10l" target="_blank">Гербіцид Опора (10л)</a></td>
+      <td>4430.0</td>
+      <td>443 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/optimum-10l" target="_blank">Гербіцид Оптимум (10л)</a></td>
+      <td>4560.0</td>
+      <td>456 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/podmarin-10l" target="_blank">Гербіцид Подмарин 10л.</a></td>
+      <td>3000.0</td>
+      <td>300 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/podmarin-1l" target="_blank">Гербіцид Подмарин 1л.</a></td>
+      <td>620.0</td>
+      <td>620 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/baksiga" target="_blank">Гербіцид Баксіга</a></td>
+      <td>18660.0</td>
+      <td>3732 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/slash-125-es" target="_blank">Гербіцид Слаш 125 ЕС</a></td>
+      <td>9430.0</td>
+      <td>1886 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/starane-premium-330" target="_blank">Гербіцид Старане Преміум 330</a></td>
+      <td>5855.0</td>
+      <td>1171 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/titus-25" target="_blank">Гербіцид Тітус 25</a></td>
+      <td>11300.0</td>
+      <td>22599 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/citadel" target="_blank">Гербіцид Цитадель</a></td>
+      <td>13460.0</td>
+      <td>2692 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sulfonil" target="_blank">Гербіцид Сульфоніл</a></td>
+      <td>1945.0</td>
+      <td>3890 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/unisulam" target="_blank">Гербіцид Унісулам</a></td>
+      <td>1075.0</td>
+      <td>2150 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stemat-500-ks" target="_blank">Гербіцид Стемат 500, КС</a></td>
+      <td>3765.0</td>
+      <td>753 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shteferib-vg" target="_blank">Гербіцид Штеферіб, ВГ</a></td>
+      <td>2290.0</td>
+      <td>3816 грн./кг</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/elegant-2fd-ce" target="_blank">Гербіцид Елегант 2FD CE</a></td>
+      <td>3035.0</td>
+      <td>607 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antizlak" target="_blank">Комплект Гербіцид Антизлак + ПАР Омега Екстра</a></td>
+      <td>5030.0</td>
+      <td>1006 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/selenit-maks" target="_blank">Гербіцид Селеніт Макс</a></td>
+      <td>3425.0</td>
+      <td>685 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/imi-vit-10l" target="_blank">Гербіцид Імі-Віт (20л)</a></td>
+      <td>8520.0</td>
+      <td>426 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/optimum-1l" target="_blank">Гербіцид Оптимум (1л)</a></td>
+      <td>775.0</td>
+      <td>775 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/belkar-fleks" target="_blank">Гербіцид Белкар Флекс</a></td>
+      <td>25055.0</td>
+      <td>5011 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bazagran-pro" target="_blank">Гербіцид Базагран Про</a></td>
+      <td>7840.0</td>
+      <td>784 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tivitus-500g" target="_blank">Гербіцид Тівітус</a></td>
+      <td>2340.0</td>
+      <td>4679 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/akvati-800-ec-ke" target="_blank">Гербіцид Акваті 800 EC, KЕ</a></td>
+      <td>6630.0</td>
+      <td>663 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-verdan" target="_blank">Гербіцид Вердан</a></td>
+      <td>3870.0</td>
+      <td>774 грн./літр</td>
+      <td>Kartal</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiatrin" target="_blank">Протруйник Тіатрин</a></td>
+      <td>5230.0</td>
+      <td>1046 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shtef-protruynik-tn" target="_blank">Штеф-протруйник, ТН</a></td>
+      <td>4205.0</td>
+      <td>841 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/avicenna-plyus" target="_blank">Протруйник Авіценна Плюс</a></td>
+      <td>8080.0</td>
+      <td>1616 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ceron-480" target="_blank">Регулятор росту Церон 480</a></td>
+      <td>5345.0</td>
+      <td>1069 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/karamba-turbo" target="_blank">Фунгіцид Карамба Турбо</a></td>
+      <td>9370.0</td>
+      <td>1874 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/medaks-top" target="_blank">Регулятор росту Медакс Топ</a></td>
+      <td>6085.0</td>
+      <td>1217 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/regalis-plyus" target="_blank">Регулятор росту Регаліс Плюс</a></td>
+      <td>8016.0</td>
+      <td>5344 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/terpal" target="_blank">Регулятор росту Терпал</a></td>
+      <td>3860.0</td>
+      <td>772 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/moddus-250" target="_blank">Регулятор росту Моддус 250</a></td>
+      <td>10730.0</td>
+      <td>2146 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mekvalan-750" target="_blank">Регулятор росту Меквалан 750</a></td>
+      <td>4300.0</td>
+      <td>215 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-etafon" target="_blank">Регулятор росту Альфа-Етафон</a></td>
+      <td>1975.0</td>
+      <td>395 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/trineks" target="_blank">Регулятор росту Трінекс</a></td>
+      <td>5785.0</td>
+      <td>1157 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kelpak-5l" target="_blank">Регулятор росту Келпак (5л)</a></td>
+      <td>2430.0</td>
+      <td>486 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talon-granuli" target="_blank">Родентицид Талон (Гранули)</a></td>
+      <td>13560.0</td>
+      <td>339 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekstraklin-607-rk" target="_blank">Гербіцид Екстраклін 607, РК</a></td>
+      <td>6040.0</td>
+      <td>302 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/spiner" target="_blank">Гербіцид Спінер</a></td>
+      <td>3580.0</td>
+      <td>179 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/argument-v-r" target="_blank">Гербіцид Аргумент в.р.</a></td>
+      <td>3300.0</td>
+      <td>165 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/argument-forte-500-sl" target="_blank">Гербіцид Аргумент Форте 500 SL</a></td>
+      <td>4220.0</td>
+      <td>211 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/glifogan" target="_blank">Гербіцид Гліфоган</a></td>
+      <td>5360.0</td>
+      <td>268 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kaput-rk" target="_blank">Десикант Капут, РК</a></td>
+      <td>4280.0</td>
+      <td>214 грн./літр</td>
+      <td>STEFES</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/barkley-gallap-360-rk" target="_blank">Гербіцид Барклей Галлап 360, РК</a></td>
+      <td>8540.0</td>
+      <td>427 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/raundap-enerdzhi" target="_blank">Гербіцид Раундап Енерджі</a></td>
+      <td>7200.0</td>
+      <td>360 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gerbicid-total-k-5-l" target="_blank">Гербіцид Тотал К (5 л)</a></td>
+      <td>1535.0</td>
+      <td>307 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/asistent" target="_blank">Інсектицид Асистент</a></td>
+      <td>1052.0</td>
+      <td>1052 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/raps-kley-ke" target="_blank">Допоміжний засіб Рапс-клей, КЕ</a></td>
+      <td>1490.0</td>
+      <td>298 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/terrahlor-480" target="_blank">Інсектицид Террахлор 480</a></td>
+      <td>8040.0</td>
+      <td>402 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pirineks-5-l" target="_blank">Інсектицид Пірінекс (5 л)</a></td>
+      <td>2960.0</td>
+      <td>592 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dimefos" target="_blank">Інсектицид Димефос</a></td>
+      <td>1590.0</td>
+      <td>318 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/diktator" target="_blank">Фумігант ДИКТАТОР</a></td>
+      <td>1365.0</td>
+      <td>910 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/scenik-80" target="_blank">Протруйник Сценік 80</a></td>
+      <td>4445.0</td>
+      <td>889 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ranazol-ultra" target="_blank">Протруйник Раназол Ультра</a></td>
+      <td>2230.0</td>
+      <td>446 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/funaben-t480" target="_blank">Протруйник Фунабен Т480</a></td>
+      <td>2400.0</td>
+      <td>480 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stiraks" target="_blank">Протруйник Стиракс</a></td>
+      <td>822.0</td>
+      <td>822 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/zumer-ks" target="_blank">Гербіцид Зумер КС</a></td>
+      <td>6370.0</td>
+      <td>637 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dikogerb-super" target="_blank">Гербіцид Дікогерб Супер</a></td>
+      <td>4540.0</td>
+      <td>454 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mezzo-v-g" target="_blank">Гербіцид Меззо, в.г.</a></td>
+      <td>365.0</td>
+      <td>3649 грн./кг</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kafaro" target="_blank">Гербіцид Кафаро</a></td>
+      <td>1380.0</td>
+      <td>276 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/artist-41-5" target="_blank">Гербіцид Артист 41,5</a></td>
+      <td>7350.0</td>
+      <td>1470 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/piramin-turbo" target="_blank">Гербіцид Пірамін Турбо</a></td>
+      <td>5820.0</td>
+      <td>582 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/acenit-88-k-e" target="_blank">Гербіцид Аценіт 88% к.е.</a></td>
+      <td>8520.0</td>
+      <td>426 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tolazin" target="_blank">Гербіцид Толазин</a></td>
+      <td>6300.0</td>
+      <td>315 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/admiral-ke" target="_blank">Інсектицид Адмірал, КЕ</a></td>
+      <td>5916.0</td>
+      <td>5916 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kosmos-500" target="_blank">Протруйник Космос 500</a></td>
+      <td>53200.0</td>
+      <td>10640 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prestizh-290" target="_blank">Протруйник Престиж 290</a></td>
+      <td>7840.0</td>
+      <td>1568 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/yunta-kvadro-t-k-s" target="_blank">Протруйник Юнта Квадро т.к.с.</a></td>
+      <td>8980.0</td>
+      <td>1796 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/armada" target="_blank">Протруйник Армада</a></td>
+      <td>1326.0</td>
+      <td>1326 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/decis-f-lyuks" target="_blank">Інсектицид Децис f-Люкс</a></td>
+      <td>3920.0</td>
+      <td>784 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/atriks" target="_blank">Інсектицид Атрікс</a></td>
+      <td>1400.0</td>
+      <td>280 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/emiprid" target="_blank">Інсектицид Еміприд</a></td>
+      <td>2960.0</td>
+      <td>2960 грн./кг</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cefey-642" target="_blank">Гербіцид Цефей 642</a></td>
+      <td>673.0</td>
+      <td>1748 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/astamil" target="_blank">Гербіцид Астаміл</a></td>
+      <td>1990.0</td>
+      <td>398 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/task-ekstra-vg-4-4kg" target="_blank">Гербіцид Таск Екстра ВГ 4.4кг</a></td>
+      <td>16074.0</td>
+      <td>3653 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/stellar" target="_blank">Гербіцид Стеллар</a></td>
+      <td>15050.0</td>
+      <td>1505 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/blu-bordo" target="_blank">Фунгіцид БЛУ БОРДО</a></td>
+      <td>7960.0</td>
+      <td>398 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/areva-gold-1-kg" target="_blank">Фунгіцид Арева Голд (1 кг)</a></td>
+      <td>1045.0</td>
+      <td>1045 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/penkoceb-zp" target="_blank">Фунгіцид Пенкоцеб ЗП</a></td>
+      <td>392.0</td>
+      <td>392 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/penkoceb-zp-2" target="_blank">Фунгіцид Пенкоцеб ЗП</a></td>
+      <td>8750.0</td>
+      <td>350 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/areva-gold-5-kg" target="_blank">Фунгіцид Арева Голд ( 5 кг)</a></td>
+      <td>3815.0</td>
+      <td>763 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/flint-star-520" target="_blank">Фунгіцид Флінт Стар 520</a></td>
+      <td>2466.0</td>
+      <td>2466 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pirus-400ks" target="_blank">Фунгіцид Пірус 400КС</a></td>
+      <td>3390.0</td>
+      <td>678 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shavit-f-5-kg" target="_blank">Фунгіцид Шавіт - Ф (5 кг)</a></td>
+      <td>3900.0</td>
+      <td>780 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/karneol" target="_blank">Фунгіцид Карнеоль</a></td>
+      <td>2935.0</td>
+      <td>587 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shavit-f-1-kg" target="_blank">Фунгіцид Шавіт - Ф (1 кг)</a></td>
+      <td>1033.0</td>
+      <td>1033 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/embreliya-140-sc-ks-5-l" target="_blank">Фунгіцид Ембрелія 140 SC, КС ( 5 л)</a></td>
+      <td>10830.0</td>
+      <td>2166 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/embreliya-140-sc-ks-1-l" target="_blank">Фунгіцид Ембрелія 140 SC, КС ( 1 л)</a></td>
+      <td>2380.0</td>
+      <td>2380 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/flutrivit" target="_blank">Фунгіцид Флутривіт</a></td>
+      <td>2840.0</td>
+      <td>568 грн./літр</td>
+      <td>АХТ</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fabus-497-ks" target="_blank">Фунгіцид Фабус 497, КС</a></td>
+      <td>7940.0</td>
+      <td>1588 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/arkan-75" target="_blank">Гербіцид Аркан 75</a></td>
+      <td>3551.0</td>
+      <td>5918 грн./кг</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-star-duo" target="_blank">Гербіцид Альфа-Стар-Дуо</a></td>
+      <td>1907.0</td>
+      <td>3813 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kalibr-75" target="_blank">Гербіцид Калібр 75</a></td>
+      <td>3584.0</td>
+      <td>7168 грн./кг</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/galaksi-ultra" target="_blank">Гербіцид Галаксі Ультра</a></td>
+      <td>11580.0</td>
+      <td>1158 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/chekker-xtend-39" target="_blank">Гербіцид Чеккер Xtend 39</a></td>
+      <td>7332.0</td>
+      <td>2444 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/torero" target="_blank">Гербіцид Тореро</a></td>
+      <td>4455.0</td>
+      <td>891 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/granstar-gold-75" target="_blank">Гербіцид Гранстар Голд 75</a></td>
+      <td>4110.0</td>
+      <td>11742 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/galera-super" target="_blank">Гербіцид Галера Супер</a></td>
+      <td>16805.0</td>
+      <td>3361 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/goal-2e" target="_blank">Гербіцид Гоал 2Е</a></td>
+      <td>6260.0</td>
+      <td>1252 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/esteron-600-ke" target="_blank">Гербіцид Естерон 600 КЕ</a></td>
+      <td>8800.0</td>
+      <td>440 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/totril" target="_blank">Гербіцид Тотріл</a></td>
+      <td>3885.0</td>
+      <td>777 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kromado" target="_blank">Протруйник Кромадо</a></td>
+      <td>20010.0</td>
+      <td>2001 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/movento-100" target="_blank">Інсектицид Мовенто 100</a></td>
+      <td>2473.0</td>
+      <td>2473 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mospilan-vg-0-05-kg" target="_blank">Інсектицид Моспілан ВГ (0,05 кг)</a></td>
+      <td>442.0</td>
+      <td>8840 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-r-3-vid" target="_blank">Деструктор Екостерн Триходерма-р (3 вид)</a></td>
+      <td>2250.0</td>
+      <td>225 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-r-4-vid" target="_blank">Деструктор Екостерн Триходерма-р (4 вид)</a></td>
+      <td>2250.0</td>
+      <td>225 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-t-2-vid" target="_blank">Деструктор Екостерн Триходерма-т (2 вид)</a></td>
+      <td>5100.0</td>
+      <td>510 грн./кг</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ekostern-trihoderma-geleva-forma-2-vid" target="_blank">Деструктор Екостерн Триходерма- гелева форма (2 вид)</a></td>
+      <td>3150.0</td>
+      <td>315 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mikohelp-organichniy" target="_blank">Біофунгіцид МікоХелп Органічний</a></td>
+      <td>3000.0</td>
+      <td>300 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mikohelp-intensiv" target="_blank">Мікохелп Інтенсив</a></td>
+      <td>3000.0</td>
+      <td>300 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bioinokulyant-btu-r-bobovi" target="_blank">Біоінокулянт БТУ-р (Бобові)</a></td>
+      <td>6000.0</td>
+      <td>600 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/melanoriz" target="_blank">Комплексний мікоризоутворюючий препарат Меланоріз</a></td>
+      <td>13500.0</td>
+      <td>1350 грн./літр</td>
+      <td>БТУ Центр</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/reglon-super-150" target="_blank">Десикант Реглон Супер 150</a></td>
+      <td>2450.0</td>
+      <td>245 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/desikant-maks-rk" target="_blank">Десикант Макс, РК</a></td>
+      <td>1540.0</td>
+      <td>308 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/skorpion-rk" target="_blank">Десикант Скорпіон, РК</a></td>
+      <td>3340.0</td>
+      <td>167 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dikvat-10l" target="_blank">Десикант Дикват 10л</a></td>
+      <td>1670.0</td>
+      <td>167 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ayvori" target="_blank">Допоміжний засіб Айворі</a></td>
+      <td>1140.0</td>
+      <td>228 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/citrik" target="_blank">Допоміжні засоби Цитрик</a></td>
+      <td>211.0</td>
+      <td>211 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/selfi-ekstermo" target="_blank">Ад’ювант Селфі екстермо</a></td>
+      <td>1357.0</td>
+      <td>1357 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/selfi-oyl" target="_blank">Ад’ювант Селфі ойл</a></td>
+      <td>2205.0</td>
+      <td>441 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/olemiks-84-1l" target="_blank">Прилипач Олемікс 84 (1л)</a></td>
+      <td>460.0</td>
+      <td>460 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vays" target="_blank">Допоміжний засіб Вайс</a></td>
+      <td>793.0</td>
+      <td>793 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/prilipach-roubek-ke" target="_blank">Прилипач Роубек КЕ</a></td>
+      <td>2346.0</td>
+      <td>782 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nuredin-super" target="_blank">Інсектицид Нуредін Супер</a></td>
+      <td>3015.0</td>
+      <td>603 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sertikor-050-fs" target="_blank">Протруйник Сертікор 050 FS</a></td>
+      <td>3195.0</td>
+      <td>639 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grinfort-kt-170" target="_blank">Протруйник Грінфорт КТ 170</a></td>
+      <td>1950.0</td>
+      <td>390 грн./літр</td>
+      <td>ТМ Грінфорт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/sferiko-1-l" target="_blank">Протруйник Сферіко (1 л)</a></td>
+      <td>1786.0</td>
+      <td>1786 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/astral-kideka" target="_blank">Гербіциди Астрал + Кідека</a></td>
+      <td>11184.0</td>
+      <td>11184 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cukron-10l" target="_blank">Гербіцид Цукрон + (10л)</a></td>
+      <td>10890.0</td>
+      <td>1089 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dikopur-f-600-rk" target="_blank">Гербіцид Дікопур Ф 600, РК</a></td>
+      <td>8000.0</td>
+      <td>320 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/monitor-75-wg" target="_blank">Гербіцид Монітор 75 WG</a></td>
+      <td>5779.0</td>
+      <td>43451 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fornet-040" target="_blank">Гербіцид Форнет 040</a></td>
+      <td>3595.0</td>
+      <td>719 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/ventura-10l" target="_blank">Грамініцид Вентура (10Л)</a></td>
+      <td>2830.0</td>
+      <td>283 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/targa-maks" target="_blank">Гербіцид Тарга Макс</a></td>
+      <td>861.0</td>
+      <td>1722 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gvardian-tetra" target="_blank">Гербіцид Гвардіан Тетра</a></td>
+      <td>7940.0</td>
+      <td>397 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/harnes-90" target="_blank">Гербіцид Харнес 90</a></td>
+      <td>7180.0</td>
+      <td>359 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/oskar-pauer" target="_blank">Гербіцид Оскар Пауер</a></td>
+      <td>9080.0</td>
+      <td>454 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/reyser" target="_blank">Гербіцид Рейсер</a></td>
+      <td>4000.0</td>
+      <td>800 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klok-10l" target="_blank">Гербіцид Клок (10л)</a></td>
+      <td>3780.0</td>
+      <td>378 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/triflureks" target="_blank">Гербіцид Трифлурекс</a></td>
+      <td>2355.0</td>
+      <td>471 грн./літр</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klok-20l" target="_blank">Гербіцид Клок (20л)</a></td>
+      <td>7360.0</td>
+      <td>368 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/operkot" target="_blank">Інсектицид Оперкот</a></td>
+      <td>457.0</td>
+      <td>914 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nuprid-200-k-s" target="_blank">Інсектицид Нупрід 200 к.с.</a></td>
+      <td>550.0</td>
+      <td>1099 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gaucho-600" target="_blank">Протруйник Гаучо 600</a></td>
+      <td>2392.0</td>
+      <td>2392 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/krujizer-600-fs" target="_blank">Протруйник Круїзер 600 FS</a></td>
+      <td>107620.0</td>
+      <td>5381 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kayzer-2" target="_blank">Протруйник Кайзер</a></td>
+      <td>898.0</td>
+      <td>898 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/nuprid-maks-t-k-s" target="_blank">Протруйник Нупрід Макс, т.к.с.</a></td>
+      <td>5070.0</td>
+      <td>1014 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dzhersi-120-tn" target="_blank">Протруйник Джерсі 120 ТН</a></td>
+      <td>1980.0</td>
+      <td>396 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/fors-zea-280-fs-th" target="_blank">Протруйник Форс Зеа 280 FS, TH</a></td>
+      <td>17200.0</td>
+      <td>860 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antikolorad" target="_blank">Інсектицид Антиколорад</a></td>
+      <td>4585.0</td>
+      <td>917 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/inazuma-1kg" target="_blank">Інсектицид Іназума (1кг)</a></td>
+      <td>1513.0</td>
+      <td>1513 грн./кг</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vaybrans-integral-235" target="_blank">Протруйник Вайбранс Інтеграл 235</a></td>
+      <td>14025.0</td>
+      <td>2805 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/selest-maks-165-5-l" target="_blank">Протруйник Селест Макс 165 (5 л)</a></td>
+      <td>9900.0</td>
+      <td>1980 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/maksim-star-025-fs" target="_blank">Протруйник Максим Стар 025 FS</a></td>
+      <td>4930.0</td>
+      <td>986 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/blaster" target="_blank">Інсектицид Бластер</a></td>
+      <td>3005.0</td>
+      <td>3005 грн./кг</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/smert-zhukam-vg" target="_blank">Інсектицид Смерть жукам, ВГ</a></td>
+      <td>1916.0</td>
+      <td>1916 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lyuter-1l" target="_blank">Інсектицид Лютер 1л.</a></td>
+      <td>504.0</td>
+      <td>504 грн./літр</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/koragen-22" target="_blank">Інсектицид Кораген (банка 0,2 л)</a></td>
+      <td>2186.0</td>
+      <td>10929 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/mist-super" target="_blank">Інсектицид Міст Супер</a></td>
+      <td>872.0</td>
+      <td>872 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/faraon-10l" target="_blank">Інсектицид Фараон 10л</a></td>
+      <td>4490.0</td>
+      <td>449 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/klasik-forte-harmoni-klasik" target="_blank">Гербіцид Класік Форте (Хармоні Класік)</a></td>
+      <td>3262.0</td>
+      <td>6523 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/dianat" target="_blank">Гербіцид Діанат</a></td>
+      <td>7600.0</td>
+      <td>760 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/task-ekstra-vg-440g" target="_blank">Гербіцид Таск Екстра ВГ 440г</a></td>
+      <td>1445.0</td>
+      <td>3283 грн./літр</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/samson-ekstra" target="_blank">Гербіцид Самсон Екстра</a></td>
+      <td>5995.0</td>
+      <td>1199 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kuproksat-ks-25l" target="_blank">Фунгіцид Купроксат, КС, 25л</a></td>
+      <td>8675.0</td>
+      <td>347 грн./літр</td>
+      <td>Nufarm</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/folpan-1-kg" target="_blank">Фунгіцид Фольпан (1 кг)</a></td>
+      <td>998.0</td>
+      <td>998 грн./кг</td>
+      <td>АДАМА</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tilt-250" target="_blank">Фунгіцид Тілт 250</a></td>
+      <td>4500.0</td>
+      <td>900 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kamelot-5l" target="_blank">Фунгіцид Камелот (5л.)</a></td>
+      <td>5015.0</td>
+      <td>1003 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bonafayt" target="_blank">Фунгіцид Бонафайт</a></td>
+      <td>1370.0</td>
+      <td>274 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bonafayt-2" target="_blank">Фунгіцид Бонафайт</a></td>
+      <td>540.0</td>
+      <td>540 грн./кг</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/optimayz-200" target="_blank">Інокулянт Оптімайз 200</a></td>
+      <td>1326.0</td>
+      <td>1326 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/optimayz-400" target="_blank">Інокулянт Оптімайз 400</a></td>
+      <td>1437.0</td>
+      <td>1437 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/osiris-star" target="_blank">Фунгіцид Осіріс Стар</a></td>
+      <td>14910.0</td>
+      <td>1491 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/torrinto-500-ke" target="_blank">Фунгіцид Торрінто 500 КЕ</a></td>
+      <td>5220.0</td>
+      <td>1044 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/skayvey-hpro" target="_blank">Фунгіцид Скайвей Хpro</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/rimaks-d" target="_blank">Гербіцид Римакс Д</a></td>
+      <td>1876.0</td>
+      <td>1876 грн./кг</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/avrora" target="_blank">Гербіцид Аврора</a></td>
+      <td>1530.0</td>
+      <td>3824 грн./літр</td>
+      <td>FMC</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/tiberiy" target="_blank">Гербіцид ТИБЕРІЙ</a></td>
+      <td>1266.0</td>
+      <td>2531 грн./кг</td>
+      <td>PEST.UA</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/bazagran-m" target="_blank">Гербіцид Базагран М</a></td>
+      <td>2685.0</td>
+      <td>537 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/pulsar-40" target="_blank">Гербіцид Пульсар 40</a></td>
+      <td>13590.0</td>
+      <td>1359 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lintur-70" target="_blank">Гербіцид Лінтур 70</a></td>
+      <td>1535.0</td>
+      <td>1535 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/toplanc-240-ke-1l" target="_blank">Гербіцид Топланц 240 КЕ (1Л)</a></td>
+      <td>1011.0</td>
+      <td>1011 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/toplanc-240-ke-5l" target="_blank">Гербіцид Топланц 240 КЕ (5Л)</a></td>
+      <td>4175.0</td>
+      <td>835 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/alfa-efir" target="_blank">Гербіцид Альфа - Ефір</a></td>
+      <td>2005.0</td>
+      <td>401 грн./літр</td>
+      <td>ALFA Smart Agro</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antipiriy" target="_blank">Гербіцид Антипирій</a></td>
+      <td>57.0</td>
+      <td>570 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/gold-star-ekstra" target="_blank">Гербіцид Голд Стар Екстра</a></td>
+      <td>143.0</td>
+      <td>2032 грн./кг</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/premium-gold" target="_blank">Гербіцид Преміум Голд</a></td>
+      <td>5000.0</td>
+      <td>250 грн./літр</td>
+      <td>Нертус</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/lancelot-450-wg" target="_blank">Гербіцид Ланцелот 450 WG</a></td>
+      <td>3969.0</td>
+      <td>7937 грн./кг</td>
+      <td>Corteva (Кортева)</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/2-4-d-aktiv-20l" target="_blank">Гербіцид 2,4-Д Актив (20л)</a></td>
+      <td>6600.0</td>
+      <td>330 грн./літр</td>
+      <td>Хімагромаркетинг</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/vitalon-ekspert-10-l" target="_blank">Гербіцид Віталон Експерт (10 л)</a></td>
+      <td>7290.0</td>
+      <td>729 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/karamba" target="_blank">Фунгіцид Карамба</a></td>
+      <td>6990.0</td>
+      <td>1398 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/hlormekvat-hlorid-750" target="_blank">Регулятор росту Хлормекват-хлорид 750</a></td>
+      <td>2600.0</td>
+      <td>260 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/amalgerol-10l" target="_blank">Регулятор росту Амалгерол (10л)</a></td>
+      <td>4740.0</td>
+      <td>474 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/amalgerol-1l" target="_blank">Регулятор росту Амалгерол (1л)</a></td>
+      <td>726.0</td>
+      <td>726 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kinaktiv-frut" target="_blank">Регулятор росту Кінактив Фрут</a></td>
+      <td>2885.0</td>
+      <td>577 грн./літр</td>
+      <td>Самміт Агро</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/kelpak" target="_blank">Регулятор росту Келпак</a></td>
+      <td>7900.0</td>
+      <td>395 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/shtorm" target="_blank">Родентицид Шторм</a></td>
+      <td>761.0</td>
+      <td>761 грн./кг</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/talon-40-kg" target="_blank">Родентицид Талон брикети (40 кг)</a></td>
+      <td>13920.0</td>
+      <td>348 грн./кг</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/glifovit-ekstra-5l" target="_blank">Десикант Гліфовіт Екстра (5л)</a></td>
+      <td>1445.0</td>
+      <td>289 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/superklin-480" target="_blank">Гербіцид Суперклін 480</a></td>
+      <td>3140.0</td>
+      <td>157 грн./літр</td>
+      <td>Terra Vita</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/grodil-maksi-zenkor-likvid" target="_blank">Комплект Гроділ Максі + Зенкор Ліквид</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poncho-beta" target="_blank">Протруйник Пончо Бета</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poncho" target="_blank">Протруйник Пончо</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/poncho-votivo" target="_blank">Протруйник Пончо Вотіво</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>BASF</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/modesto-plyus" target="_blank">Протруйник Модесто Плюс</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/cipervit" target="_blank">Інсектоакарицид Ципервіт</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/amistar-trio" target="_blank">Фунгіцид Амістар Тріо</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>Syngenta</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/konvizo-1" target="_blank">Гербіцид Конвізо 1</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>Bayer</td>
+    </tr>
+    <tr>
+      <td><a href="https://growex.market/product/antibur-yan" target="_blank">Гербіцид Антибур'ян</a></td>
+      <td>nan</td>
+      <td>0 грн./літр</td>
+      <td>УкрАвіт</td>
+    </tr></tbody>
+  </table>
+  <script>
+    function filter() {
+      const q = document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('#table tbody tr').forEach(r => {
+        r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
