@@ -22,13 +22,48 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests beautifulsoup4 pandas openpyxl
-          pip list
-          python -c "import requests; print('requests OK')"
+        run: pip install requests beautifulsoup4 pandas openpyxl
 
       - name: Run parser
         run: python parser.py
+
+      - name: Send email with results
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python - <<'EOF'
+          import requests, os, base64, datetime
+
+          api_key = os.environ["RESEND_API_KEY"]
+          email_to = os.environ["EMAIL_TO"]
+          updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+
+          with open("growex_zzr.xlsx", "rb") as f:
+              file_data = base64.b64encode(f.read()).decode()
+
+          response = requests.post(
+              "https://api.resend.com/emails",
+              headers={
+                  "Authorization": f"Bearer {api_key}",
+                  "Content-Type": "application/json"
+              },
+              json={
+                  "from": "Growex Parser <onboarding@resend.dev>",
+                  "to": [email_to],
+                  "subject": f"Growex ЗЗР — {updated}",
+                  "html": f"<h2>🌿 Growex — Засоби захисту рослин</h2><p>Оновлено: {updated}</p><p>Файл з результатами у вкладенні.</p>",
+                  "attachments": [
+                      {
+                          "filename": "growex_zzr.xlsx",
+                          "content": file_data
+                      }
+                  ]
+              }
+          )
+          print(f"Status: {response.status_code}")
+          print(response.text)
+          EOF
 
       - name: Generate HTML page
         run: |
