@@ -1,3 +1,4 @@
+import concurrent.futures
 import time
 from typing import Optional
 import pandas as pd
@@ -9,29 +10,33 @@ BASE_URL = "https://growex.market"
 CATALOG_URL = BASE_URL + "/products/zasobi-zahistu-roslin-zzr"
 
 HEADERS = {
-    "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                       "AppleWebKit/537.36 (KHTML, like Gecko) "
-                       "Chrome/124.0.0.0 Safari/537.36",
-    "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "uk-UA,uk;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Referer":         "https://growex.market/",
+    "Referer": "https://growex.market/",
 }
 
-DELAY = 1.0  # секунди між запитами (щоб не перевантажувати сервер)
+# Кількість одночасних потоків для Кроку 2.
+# 5-10 — безпечно для сервера, але прискорює процес у 5-10 разів.
+MAX_WORKERS = 8  
 
 
 # ── Крок 1: завантаження однієї сторінки каталогу ─────────────
-def load_page(page: int) -> Optional[list]:
+def load_page(session: requests.Session, page: int) -> Optional[list]:
     url = f"{CATALOG_URL}?page={page}"
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=15)
+        # Використовуємо сесію замість requests.get
+        resp = session.get(url, headers=HEADERS, timeout=10)
         if resp.status_code in (403, 404):
             return None
         resp.raise_for_status()
     except requests.RequestException:
         return None
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    # 'lxml' працює значно швидше за 'html.parser'
+    soup = BeautifulSoup(resp.text, "lxml")
     cards = soup.select(".card_product")
     if not cards:
         return None
@@ -41,7 +46,6 @@ def load_page(page: int) -> Optional[list]:
         a_tag = card.select_one("a[href*='/product/']")
         name = a_tag.get_text(strip=True) if a_tag else ""
         href = a_tag["href"] if a_tag and a_tag.get("href") else ""
-        # перетворюємо відносне посилання на абсолютне
         full_url = href if href.startswith("http") else BASE_URL + href
 
         price_tag = card.select_one("div.card_product-price")
@@ -53,18 +57,18 @@ def load_page(page: int) -> Optional[list]:
 
 
 # ── Крок 1: обхід усіх сторінок каталогу ─────────────────────
-def load_catalog() -> pd.DataFrame:
+def load_catalog(session: requests.Session) -> pd.DataFrame:
     all_rows = []
     page = 1
     while True:
         print(f"  Каталог — сторінка {page}…")
-        rows = load_page(page)
+        rows = load_page(session, page)
         if rows is None:
             print(f"  → Сторінка {page} порожня або недоступна. Зупинка.")
             break
         all_rows.extend(rows)
         page += 1
-        time.sleep(DELAY)
+        time.sleep(0.2)  # Невеликий таймаут для каталогу, безпечно для сервера
 
     df = pd.DataFrame(all_rows)
     if df.empty:
@@ -74,16 +78,16 @@ def load_catalog() -> pd.DataFrame:
 
 
 # ── Крок 2: деталі товару (виробник + ціна за літр) ───────────
-def get_details(url: str) -> dict:
+def get_details(session: requests.Session, url: str) -> dict:
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=15)
+        resp = session.get(url, headers=HEADERS, timeout=10)
         if resp.status_code in (403, 404):
-            return {"Виробник": "", "Ціна_за_літр": ""}
+            return {"Виробник": "", "Ціна_за_літр": "", "URL": url}
         resp.raise_for_status()
     except requests.RequestException:
-        return {"Виробник": "", "Ціна_за_літр": ""}
+        return {"Виробник": "", "Ціна_за_літр": "", "URL": url}
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    soup = BeautifulSoup(resp.text, "lxml")
 
     brand_tag = soup.select_one("a[href*='/brand/']")
     brand = brand_tag.get_text(strip=True) if brand_tag else ""
@@ -91,29 +95,49 @@ def get_details(url: str) -> dict:
     price_l_tag = soup.select_one("div.one_price")
     price_l = price_l_tag.get_text(strip=True) if price_l_tag else ""
 
-    return {"Виробник": brand, "Ціна_за_літр": price_l}
+    # Повертаємо також URL, щоб точно зіставити дані при асинхронній роботі
+    return {"Виробник": brand, "Ціна_за_літр": price_l, "URL": url}
 
 
 # ── Головна функція ───────────────────────────────────────────
 def main() -> pd.DataFrame:
-    print("=== Крок 1: завантажуємо каталог ===")
-    catalog = load_catalog()
-    if catalog.empty:
-        print("Каталог порожній — перевірте URL або з'єднання.")
-        return catalog
+    start_time = time.time()
+    
+    # Створюємо єдину сесію для всього процесу
+    with requests.Session() as session:
+        print("=== Крок 1: завантажуємо каталог ===")
+        catalog = load_catalog(session)
+        if catalog.empty:
+            print("Каталог порожній — перевірте URL або з'єднання.")
+            return catalog
 
-    print(f"\nЗнайдено {len(catalog)} товарів. Починаємо збір деталей…")
-    print("=== Крок 2: завантажуємо деталі товарів ===")
+        print(f"\nЗнайдено {len(catalog)} товарів. Починаємо багатопотоковий збір деталей…")
+        print("=== Крок 2: завантажуємо деталі товарів (у декілька потоків) ===")
 
-    details_list = []
-    for i, row in catalog.iterrows():
-        print(f"  [{i + 1}/{len(catalog)}] {row['URL']}")
-        details = get_details(row["URL"])
-        details_list.append(details)
-        time.sleep(DELAY)
+        urls = catalog["URL"].tolist()
+        details_list = []
+        counter = 0
 
+        # Запускаємо пул потоків для паралельних запитів сторінок товарів
+        with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            # Передаємо сесію та url у кожну функцію
+            future_to_url = {executor.submit(get_details, session, url): url for url in urls}
+            
+            for future in concurrent.futures.as_completed(future_to_url):
+                counter += 1
+                if counter % 10 == 0 or counter == len(urls):
+                    print(f"  Оброблено товарів: {counter}/{len(urls)}")
+                try:
+                    data = future.result()
+                    details_list.append(data)
+                except Exception as e:
+                    url = future_to_url[future]
+                    print(f"  Помилка при обробці {url}: {e}")
+                    details_list.append({"Виробник": "", "Ціна_за_літр": "", "URL": url})
+
+    # Об'єднуємо через merge по URL, щоб уникнути зсуву рядків через асинхронність
     details_df = pd.DataFrame(details_list)
-    result = pd.concat([catalog.reset_index(drop=True), details_df], axis=1)
+    result = pd.merge(catalog, details_df, on="URL", how="left")
 
     # ── Очищення ──
     result["Ціна"] = (
@@ -123,14 +147,17 @@ def main() -> pd.DataFrame:
         .str.strip()
     )
     for col in ["Назва", "Ціна_за_літр", "Виробник"]:
-        result[col] = result[col].str.strip()
+        result[col] = result[col].astype(str).str.strip()
 
     result = result[["Назва", "Ціна", "Ціна_за_літр", "Виробник", "URL"]]
 
     # ── Зберігаємо ──
     out_file = "growex_zzr.xlsx"
     result.to_excel(out_file, index=False)
+    
+    end_time = time.time()
     print(f"\n✅ Готово! Збережено {len(result)} рядків → {out_file}")
+    print(f"Час виконання: {end_time - start_time:.2f} сек.")
     return result
 
 
