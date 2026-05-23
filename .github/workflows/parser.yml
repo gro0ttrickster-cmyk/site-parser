@@ -135,12 +135,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add growex_zzr.xlsx index.html
-          
-          # Якщо змін немає, скрипт завершить роботу без помилки
-          git diff --staged --quiet || git commit -m "Update parser results"
-          
-          # Стягуємо свіжі зміни через rebase, якщо хтось оновив репозиторій під час роботи парсера
           git pull --rebase origin main
-          
+          git add growex_zzr.xlsx index.html
+          git diff --staged --quiet || git commit -m "Update parser results"
           git push origin main
