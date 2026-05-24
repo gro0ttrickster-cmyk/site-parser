@@ -2,7 +2,7 @@ name: Growex Parser
 
 on:
   schedule:
-    - cron: '15 8 * * *'
+    - cron: '15 7 * * *'
   workflow_dispatch:
 
 permissions:
