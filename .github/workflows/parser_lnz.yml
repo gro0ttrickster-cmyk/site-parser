@@ -1,0 +1,104 @@
+name: LNZ Defenda Parser
+
+on:
+  schedule:
+    - cron: '35 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Show Python info
+        run: |
+          which python3
+          python3 --version
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install playwright beautifulsoup4 pandas openpyxl requests
+
+      - name: Verify requests
+        run: |
+          python3 -c "import requests; print(requests.__version__)"
+
+      - name: Install Playwright browsers
+        run: python3 -m playwright install chromium --with-deps
+
+      - name: Run parser
+        run: python3 parser_2.py
+
+      - name: Send email with results
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python3 - <<'EOF'
+          import requests
+          import os
+          import base64
+          import datetime
+
+          api_key = os.environ["RESEND_API_KEY"]
+          email_to = os.environ["EMAIL_TO"]
+
+          updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+
+          with open("lnz_defenda.xlsx", "rb") as f:
+              file_data = base64.b64encode(f.read()).decode()
+
+          response = requests.post(
+              "https://api.resend.com/emails",
+              headers={
+                  "Authorization": f"Bearer {api_key}",
+                  "Content-Type": "application/json"
+              },
+              json={
+                  "from": "LNZ Parser <onboarding@resend.dev>",
+                  "to": [email_to],
+                  "subject": f"LNZ Defenda ЗЗР — {updated}",
+                  "html": f"""
+                  <h2>🌿 LNZ Defenda — ЗЗР</h2>
+                  <p>Оновлено: {updated}</p>
+                  <p>Файл у вкладенні.</p>
+                  """,
+                  "attachments": [
+                      {
+                          "filename": "lnz_defenda.xlsx",
+                          "content": file_data
+                      }
+                  ]
+              }
+          )
+
+          print(f"Status: {response.status_code}")
+          print(response.text)
+
+          response.raise_for_status()
+          EOF
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git pull --rebase origin main
+
+          git add lnz_defenda.xlsx
+
+          git diff --staged --quiet || git commit -m "Update LNZ results"
+
+          git push origin main
