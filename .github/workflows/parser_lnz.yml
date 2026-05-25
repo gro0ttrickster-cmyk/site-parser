@@ -41,7 +41,7 @@ jobs:
 
           git add .
 
-          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git diff --cached --quiet && echo "No changes" && exit 0
 
           git commit -m "Update LNZ results"
 
