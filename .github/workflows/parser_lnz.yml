@@ -21,8 +21,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
       - name: Install dependencies
-        run: pip install playwright beautifulsoup4 pandas openpyxl
+        run: pip install requests playwright beautifulsoup4 pandas openpyxl
 
       - name: Install Playwright browsers
         run: python -m playwright install chromium --with-deps
@@ -36,7 +39,10 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: |
           python - <<'EOF'
-          import requests, os, base64, datetime
+          import requests
+          import os
+          import base64
+          import datetime
 
           api_key = os.environ["RESEND_API_KEY"]
           email_to = os.environ["EMAIL_TO"]
@@ -55,13 +61,20 @@ jobs:
                   "from": "LNZ Parser <onboarding@resend.dev>",
                   "to": [email_to],
                   "subject": f"LNZ Defenda ЗЗР — {updated}",
-                  "html": f"<h2>🌿 LNZ Defenda — ЗЗР</h2><p>Оновлено: {updated}</p><p>Файл у вкладенні.</p>",
-                  "attachments": [{
-                      "filename": "lnz_defenda.xlsx",
-                      "content": file_data
-                  }]
+                  "html": f"""
+                      <h2>🌿 LNZ Defenda — ЗЗР</h2>
+                      <p>Оновлено: {updated}</p>
+                      <p>Файл у вкладенні.</p>
+                  """,
+                  "attachments": [
+                      {
+                          "filename": "lnz_defenda.xlsx",
+                          "content": file_data
+                      }
+                  ]
               }
           )
+
           print(f"Status: {response.status_code}")
           print(response.text)
           EOF
