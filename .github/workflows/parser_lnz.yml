@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -21,43 +21,45 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Show Python info
+      - name: Upgrade pip
         run: |
-          which python3
-          python3 --version
+          python3 -m pip install --upgrade pip
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install playwright beautifulsoup4 pandas openpyxl requests
+          python3 -m pip install -r requirements.txt
 
-      - name: Verify requests
+      - name: Verify requests installation
         run: |
-          python3 -c "import requests; print(requests.__version__)"
+          python3 -c "import requests; print('Requests OK')"
 
-      - name: Install Playwright browsers
-        run: python3 -m playwright install chromium --with-deps
+      - name: Install Playwright Chromium
+        run: |
+          python3 -m playwright install chromium --with-deps
 
       - name: Run parser
-        run: python3 parser_2.py
+        run: |
+          python3 parser_2.py
 
-      - name: Send email with results
+      - name: Send email with Excel file
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: |
           python3 - <<'EOF'
-          import requests
           import os
           import base64
           import datetime
+          import requests
 
           api_key = os.environ["RESEND_API_KEY"]
           email_to = os.environ["EMAIL_TO"]
 
+          file_path = "lnz_defenda.xlsx"
+
           updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
-          with open("lnz_defenda.xlsx", "rb") as f:
+          with open(file_path, "rb") as f:
               file_data = base64.b64encode(f.read()).decode()
 
           response = requests.post(
@@ -71,9 +73,9 @@ jobs:
                   "to": [email_to],
                   "subject": f"LNZ Defenda ЗЗР — {updated}",
                   "html": f"""
-                  <h2>🌿 LNZ Defenda — ЗЗР</h2>
+                  <h2>LNZ Defenda — ЗЗР</h2>
                   <p>Оновлено: {updated}</p>
-                  <p>Файл у вкладенні.</p>
+                  <p>Excel файл у вкладенні.</p>
                   """,
                   "attachments": [
                       {
@@ -84,13 +86,13 @@ jobs:
               }
           )
 
-          print(f"Status: {response.status_code}")
+          print("Status:", response.status_code)
           print(response.text)
 
           response.raise_for_status()
           EOF
 
-      - name: Commit results
+      - name: Commit updated Excel
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
