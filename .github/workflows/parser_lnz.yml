@@ -2,7 +2,7 @@ name: LNZ Defenda Parser
 
 on:
   schedule:
-    - cron: '35 8 * * *'
+    - cron: '35 8 * * *'   # 11:35 Київ
   workflow_dispatch:
 
 permissions:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -21,45 +21,35 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Upgrade pip
-        run: |
-          python3 -m pip install --upgrade pip
-
+      # 🔥 ВСТАНОВЛЕННЯ ВСІХ ЗАЛЕЖНОСТЕЙ
       - name: Install dependencies
         run: |
-          python3 -m pip install -r requirements.txt
+          pip install requests playwright beautifulsoup4 pandas openpyxl lxml
 
-      - name: Verify requests installation
+      # 🔥 ПРАВИЛЬНА ІНСТАЛЯЦІЯ PLAYWRIGHT
+      - name: Install Playwright browsers
         run: |
-          python3 -c "import requests; print('Requests OK')"
+          python -m playwright install-deps
+          python -m playwright install chromium
 
-      - name: Install Playwright Chromium
-        run: |
-          python3 -m playwright install chromium --with-deps
-
+      # 🚀 ЗАПУСК ПАРСЕРА
       - name: Run parser
-        run: |
-          python3 parser_2.py
+        run: python parser_2.py
 
-      - name: Send email with Excel file
+      # 📧 ВІДПРАВКА EMAIL
+      - name: Send email with results
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: |
-          python3 - <<'EOF'
-          import os
-          import base64
-          import datetime
-          import requests
+          python - <<'EOF'
+          import requests, os, base64, datetime
 
           api_key = os.environ["RESEND_API_KEY"]
           email_to = os.environ["EMAIL_TO"]
-
-          file_path = "lnz_defenda.xlsx"
-
           updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
-          with open(file_path, "rb") as f:
+          with open("lnz_defenda.xlsx", "rb") as f:
               file_data = base64.b64encode(f.read()).decode()
 
           response = requests.post(
@@ -72,11 +62,7 @@ jobs:
                   "from": "LNZ Parser <onboarding@resend.dev>",
                   "to": [email_to],
                   "subject": f"LNZ Defenda ЗЗР — {updated}",
-                  "html": f"""
-                  <h2>LNZ Defenda — ЗЗР</h2>
-                  <p>Оновлено: {updated}</p>
-                  <p>Excel файл у вкладенні.</p>
-                  """,
+                  "html": f"<h2>🌿 LNZ Defenda — ЗЗР</h2><p>Оновлено: {updated}</p><p>Файл у вкладенні.</p>",
                   "attachments": [
                       {
                           "filename": "lnz_defenda.xlsx",
@@ -86,18 +72,15 @@ jobs:
               }
           )
 
-          print("Status:", response.status_code)
+          print(f"Status: {response.status_code}")
           print(response.text)
-
-          response.raise_for_status()
           EOF
 
-      - name: Commit updated Excel
+      # 💾 COMMIT РЕЗУЛЬТАТІВ (СТАБІЛЬНИЙ ВАРІАНТ)
+      - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git pull --rebase origin main
 
           git add lnz_defenda.xlsx
 
