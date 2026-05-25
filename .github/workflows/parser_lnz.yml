@@ -11,6 +11,7 @@ permissions:
 jobs:
   parse:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -20,9 +21,20 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
       - name: Install dependencies
-        # ДОДАНО: requests в кінець списку інсталяції
-        run: pip install playwright beautifulsoup4 pandas openpyxl requests
+        run: |
+          python -m pip install \
+            playwright \
+            beautifulsoup4 \
+            pandas \
+            openpyxl \
+            requests
+
+      - name: Check installed packages
+        run: python -m pip list
 
       - name: Install Playwright browsers
         run: python -m playwright install chromium --with-deps
@@ -36,14 +48,19 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: |
           python - <<'EOF'
-          import requests, os, base64, datetime
+          import requests
+          import os
+          import base64
+          import datetime
+
           api_key = os.environ["RESEND_API_KEY"]
           email_to = os.environ["EMAIL_TO"]
+
           updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
-          
+
           with open("lnz_defenda.xlsx", "rb") as f:
               file_data = base64.b64encode(f.read()).decode()
-          
+
           response = requests.post(
               "https://api.resend.com/emails",
               headers={
@@ -54,22 +71,36 @@ jobs:
                   "from": "LNZ Parser <onboarding@resend.dev>",
                   "to": [email_to],
                   "subject": f"LNZ Defenda ЗЗР — {updated}",
-                  "html": f"<h2>🌿 LNZ Defenda — ЗЗР</h2><p>Оновлено: {updated}</p><p>Файл у вкладенні.</p>",
-                  "attachments": [{
-                      "filename": "lnz_defenda.xlsx",
-                      "content": file_data
-                  }]
+                  "html": f"""
+                  <h2>🌿 LNZ Defenda — ЗЗР</h2>
+                  <p>Оновлено: {updated}</p>
+                  <p>Файл у вкладенні.</p>
+                  """,
+                  "attachments": [
+                      {
+                          "filename": "lnz_defenda.xlsx",
+                          "content": file_data
+                      }
+                  ]
               }
           )
+
           print(f"Status: {response.status_code}")
           print(response.text)
+
+          if response.status_code >= 400:
+              raise Exception("Failed to send email")
           EOF
 
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git pull --rebase origin main
+
           git add lnz_defenda.xlsx
+
           git diff --staged --quiet || git commit -m "Update LNZ results"
+
           git push origin main
