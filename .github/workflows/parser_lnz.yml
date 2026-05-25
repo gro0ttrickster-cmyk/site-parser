@@ -13,30 +13,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 📥 Клон репозиторію
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # 🐍 Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 🔥 ВСТАНОВЛЕННЯ ВСІХ ЗАЛЕЖНОСТЕЙ
+      # 📦 Install dependencies (ВАЖЛИВО: через python -m pip)
       - name: Install dependencies
         run: |
-          pip install requests playwright beautifulsoup4 pandas openpyxl lxml
+          python -m pip install --upgrade pip
+          python -m pip install requests playwright beautifulsoup4 pandas openpyxl lxml
 
-      # 🔥 ПРАВИЛЬНА ІНСТАЛЯЦІЯ PLAYWRIGHT
+      # 🎭 Install Playwright browsers (правильний порядок)
       - name: Install Playwright browsers
         run: |
           python -m playwright install-deps
           python -m playwright install chromium
 
-      # 🚀 ЗАПУСК ПАРСЕРА
+      # 🚀 Run parser
       - name: Run parser
         run: python parser_2.py
 
-      # 📧 ВІДПРАВКА EMAIL
+      # 📧 Send email with results
       - name: Send email with results
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -76,7 +79,7 @@ jobs:
           print(response.text)
           EOF
 
-      # 💾 COMMIT РЕЗУЛЬТАТІВ (СТАБІЛЬНИЙ ВАРІАНТ)
+      # 💾 Commit results (без git pull — без конфліктів)
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
