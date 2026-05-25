@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -32,20 +30,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Show repo structure (debug)
+      - name: Run parser
         run: |
-          ls -R
-
-      - name: Run parser (auto-detect)
-        run: |
-          FILE=$(find . -maxdepth 3 -name "main.py" | head -n 1)
-
-          if [ -z "$FILE" ]; then
-            echo "main.py not found!"
-            exit 1
-          fi
-
-          python "$FILE"
+          python parser_2.py
 
       - name: Commit changes
         run: |
@@ -54,7 +41,7 @@ jobs:
 
           git add .
 
-          git diff --cached --quiet && echo "No changes" && exit 0
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
 
           git commit -m "Update LNZ results"
 
