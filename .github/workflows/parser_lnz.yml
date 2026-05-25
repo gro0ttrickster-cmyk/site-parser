@@ -73,11 +73,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Спочатку додаємо файл в індекс, щоб git знав, що з ним робити
           git add lnz_defenda.xlsx
-          
-          # Тепер безпечно підтягуємо оновлення з сервера (якщо вони є)
+          git stash --include-untracked
           git pull --rebase origin main
-          
-          # Перевіряємо, чи змінився файл, і якщо так — комітимо та пушимо
+          git stash pop || true
+          git add lnz_defenda.xlsx
           git diff --staged --quiet || (git commit -m "Update LNZ results" && git push origin main)
