@@ -8,85 +8,49 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: lnz-parser-main
+  cancel-in-progress: true
+
 jobs:
   parse:
     runs-on: ubuntu-latest
 
     steps:
-      # 📥 Клон репозиторію
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # 🐍 Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 📦 Install dependencies (ВАЖЛИВО: через python -m pip)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requests playwright beautifulsoup4 pandas openpyxl lxml
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install requests
 
-      # 🎭 Install Playwright browsers (правильний порядок)
-      - name: Install Playwright browsers
-        run: |
-          python -m playwright install-deps
-          python -m playwright install chromium
-
-      # 🚀 Run parser
-      - name: Run parser
-        run: python parser_2.py
-
-      # 📧 Send email with results
-      - name: Send email with results
-        env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
-        run: |
-          python - <<'EOF'
-          import requests, os, base64, datetime
-
-          api_key = os.environ["RESEND_API_KEY"]
-          email_to = os.environ["EMAIL_TO"]
-          updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
-
-          with open("lnz_defenda.xlsx", "rb") as f:
-              file_data = base64.b64encode(f.read()).decode()
-
-          response = requests.post(
-              "https://api.resend.com/emails",
-              headers={
-                  "Authorization": f"Bearer {api_key}",
-                  "Content-Type": "application/json"
-              },
-              json={
-                  "from": "LNZ Parser <onboarding@resend.dev>",
-                  "to": [email_to],
-                  "subject": f"LNZ Defenda ЗЗР — {updated}",
-                  "html": f"<h2>🌿 LNZ Defenda — ЗЗР</h2><p>Оновлено: {updated}</p><p>Файл у вкладенні.</p>",
-                  "attachments": [
-                      {
-                          "filename": "lnz_defenda.xlsx",
-                          "content": file_data
-                      }
-                  ]
-              }
-          )
-
-          print(f"Status: {response.status_code}")
-          print(response.text)
-          EOF
-
-      # 💾 Commit results (без git pull — без конфліктів)
-      - name: Commit results
+      - name: Pull latest changes (avoid conflicts)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin main --rebase || echo "No remote changes to rebase"
 
-          git add lnz_defenda.xlsx
+      - name: Run parser
+        run: |
+          python main.py
 
-          git diff --staged --quiet || git commit -m "Update LNZ results"
+      - name: Commit changes
+        run: |
+          git add .
 
-          git push origin main
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+
+          git commit -m "Update LNZ results"
+
+      - name: Push changes
+        run: |
+          git push origin main --force-with-lease
