@@ -49,4 +49,5 @@ jobs:
 
       - name: Push (safe overwrite)
         run: |
+          git pull --rebase origin main
           git push origin main --force-with-lease --no-verify
