@@ -11,13 +11,22 @@ CATALOG_URL = "https://lnzweb.com/defenda-zzr"
 def calc_price_per_liter(price_str, volume_str):
     try:
         price = float(re.sub(r"[^\d.]", "", price_str.replace(",", ".")))
-        vol_match = re.search(r"([\d.]+)\s*(л|кг|мл)", volume_str)
+        vol_match = re.search(r"([\d.]+)\s*(л|кг|мл|г)", volume_str)
         if not vol_match:
             return ""
         vol = float(vol_match.group(1))
         unit = vol_match.group(2)
         if vol == 0:
             return ""
+
+        # Конвертація мл → л і г → кг
+        if unit == "мл":
+            vol = vol / 1000
+            unit = "л"
+        elif unit == "г":
+            vol = vol / 1000
+            unit = "кг"
+
         result = round(price / vol, 2)
         return f"{result} грн/{unit}"
     except:
@@ -96,7 +105,7 @@ def parse_lnz():
         })
 
     df = pd.DataFrame(all_products)
-    df["Дата_парсінгу"] = parse_date  # ← додано
+    df["Дата_парсінгу"] = parse_date
     df.to_excel("lnz_defenda.xlsx", index=False)
     print(f"\n✅ Збережено {len(df)} товарів → lnz_defenda.xlsx")
     return df
