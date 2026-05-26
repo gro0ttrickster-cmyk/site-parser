@@ -3,13 +3,12 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import time
+from datetime import datetime
 
 BASE_URL = "https://lnzweb.com"
 CATALOG_URL = "https://lnzweb.com/defenda-zzr"
 
-
 def calc_price_per_liter(price_str, volume_str):
-    """Розраховує ціну за літр з ціни і об'єму."""
     try:
         price = float(re.sub(r"[^\d.]", "", price_str.replace(",", ".")))
         vol_match = re.search(r"([\d.]+)\s*(л|кг|мл)", volume_str)
@@ -24,23 +23,19 @@ def calc_price_per_liter(price_str, volume_str):
     except:
         return ""
 
-
 def parse_lnz():
+    parse_date = datetime.now().strftime("%Y-%m-%d %H:%M")
     all_products = []
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
-
-        page.set_extra_http_headers({
-            "Accept-Language": "uk-UA,uk;q=0.9"
-        })
+        page.set_extra_http_headers({"Accept-Language": "uk-UA,uk;q=0.9"})
 
         print(f"Відкриваю: {CATALOG_URL}")
         page.goto(CATALOG_URL, wait_until="networkidle", timeout=30000)
         time.sleep(2)
 
-        # Клікаємо "Завантажити ще" поки кнопка є
         click_count = 0
         while True:
             try:
@@ -75,20 +70,14 @@ def parse_lnz():
     for card in cards:
         name_el = card.select_one("div.product-name")
         name = name_el.get_text(strip=True) if name_el else ""
-
         price_el = card.select_one("div.product-price")
         price = price_el.get_text(strip=True) if price_el else ""
-
         volumes = card.select("div.product-volume")
         volume = volumes[0].get_text(strip=True) if len(volumes) > 0 else ""
         active_substance = volumes[1].get_text(strip=True) if len(volumes) > 1 else ""
-
-        # Розраховуємо ціну за літр
         price_per_l = calc_price_per_liter(price, volume)
-
         brand_el = card.select_one("div.product-culture")
         brand = brand_el.get_text(strip=True) if brand_el else ""
-
         link_el = card.select_one("a[href]")
         href = link_el["href"] if link_el else ""
         url = href if href.startswith("http") else BASE_URL + href
@@ -107,10 +96,10 @@ def parse_lnz():
         })
 
     df = pd.DataFrame(all_products)
+    df["Дата_парсінгу"] = parse_date  # ← додано
     df.to_excel("lnz_defenda.xlsx", index=False)
     print(f"\n✅ Збережено {len(df)} товарів → lnz_defenda.xlsx")
     return df
-
 
 if __name__ == "__main__":
     df = parse_lnz()
