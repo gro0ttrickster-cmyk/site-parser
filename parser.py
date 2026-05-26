@@ -1,5 +1,6 @@
 import concurrent.futures
 import time
+from datetime import datetime
 from typing import Optional
 import pandas as pd
 import requests
@@ -18,16 +19,13 @@ HEADERS = {
     "Referer": "https://growex.market/",
 }
 
-# Кількість одночасних потоків для Кроку 2.
-# 5-10 — безпечно для сервера, але прискорює процес у 5-10 разів.
-MAX_WORKERS = 8  
+MAX_WORKERS = 8
 
 
 # ── Крок 1: завантаження однієї сторінки каталогу ─────────────
 def load_page(session: requests.Session, page: int) -> Optional[list]:
     url = f"{CATALOG_URL}?page={page}"
     try:
-        # Використовуємо сесію замість requests.get
         resp = session.get(url, headers=HEADERS, timeout=10)
         if resp.status_code in (403, 404):
             return None
@@ -35,7 +33,6 @@ def load_page(session: requests.Session, page: int) -> Optional[list]:
     except requests.RequestException:
         return None
 
-    # 'lxml' працює значно швидше за 'html.parser'
     soup = BeautifulSoup(resp.text, "lxml")
     cards = soup.select(".card_product")
     if not cards:
@@ -68,7 +65,7 @@ def load_catalog(session: requests.Session) -> pd.DataFrame:
             break
         all_rows.extend(rows)
         page += 1
-        time.sleep(0.2)  # Невеликий таймаут для каталогу, безпечно для сервера
+        time.sleep(0.2)
 
     df = pd.DataFrame(all_rows)
     if df.empty:
@@ -95,15 +92,14 @@ def get_details(session: requests.Session, url: str) -> dict:
     price_l_tag = soup.select_one("div.one_price")
     price_l = price_l_tag.get_text(strip=True) if price_l_tag else ""
 
-    # Повертаємо також URL, щоб точно зіставити дані при асинхронній роботі
     return {"Виробник": brand, "Ціна_за_літр": price_l, "URL": url}
 
 
 # ── Головна функція ───────────────────────────────────────────
 def main() -> pd.DataFrame:
     start_time = time.time()
-    
-    # Створюємо єдину сесію для всього процесу
+    parse_date = datetime.now().strftime("%Y-%m-%d %H:%M")
+
     with requests.Session() as session:
         print("=== Крок 1: завантажуємо каталог ===")
         catalog = load_catalog(session)
@@ -118,11 +114,9 @@ def main() -> pd.DataFrame:
         details_list = []
         counter = 0
 
-        # Запускаємо пул потоків для паралельних запитів сторінок товарів
         with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            # Передаємо сесію та url у кожну функцію
             future_to_url = {executor.submit(get_details, session, url): url for url in urls}
-            
+
             for future in concurrent.futures.as_completed(future_to_url):
                 counter += 1
                 if counter % 10 == 0 or counter == len(urls):
@@ -135,7 +129,6 @@ def main() -> pd.DataFrame:
                     print(f"  Помилка при обробці {url}: {e}")
                     details_list.append({"Виробник": "", "Ціна_за_літр": "", "URL": url})
 
-    # Об'єднуємо через merge по URL, щоб уникнути зсуву рядків через асинхронність
     details_df = pd.DataFrame(details_list)
     result = pd.merge(catalog, details_df, on="URL", how="left")
 
@@ -149,12 +142,15 @@ def main() -> pd.DataFrame:
     for col in ["Назва", "Ціна_за_літр", "Виробник"]:
         result[col] = result[col].astype(str).str.strip()
 
-    result = result[["Назва", "Ціна", "Ціна_за_літр", "Виробник", "URL"]]
+    # ── Додаємо дату парсінгу ──
+    result["Дата_парсінгу"] = parse_date
+
+    result = result[["Назва", "Ціна", "Ціна_за_літр", "Виробник", "URL", "Дата_парсінгу"]]
 
     # ── Зберігаємо ──
     out_file = "growex_zzr.xlsx"
     result.to_excel(out_file, index=False)
-    
+
     end_time = time.time()
     print(f"\n✅ Готово! Збережено {len(result)} рядків → {out_file}")
     print(f"Час виконання: {end_time - start_time:.2f} сек.")
