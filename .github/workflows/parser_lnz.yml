@@ -2,7 +2,7 @@ name: LNZ Defenda Parser
 
 on:
   schedule:
-    - cron: '45 8 * * *'   # 11:35 Київ (за зимовим часом UTC+2 / 11:35, за літнім UTC+3 / 10:35)
+    - cron: '40 8 * * *'   # 11:35 Київ (за зимовим часом UTC+2 / 11:35, за літнім UTC+3 / 10:35)
   workflow_dispatch:
 
 permissions:
