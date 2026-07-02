@@ -5,12 +5,21 @@ on:
     - cron: '35 3 * * *'
   workflow_dispatch:
 
+# Не даємо двом запускам одночасно комітити в repo
+concurrency:
+  group: growex-parser
+  cancel-in-progress: false
+
 permissions:
   contents: write
+
+env:
+  PYTHONUNBUFFERED: "1"
 
 jobs:
   parse:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repo
@@ -20,6 +29,14 @@ jobs:
         uses: actions/setup-python@v5.6.0
         with:
           python-version: '3.11'
+
+      # Кешуємо pip-пакети за фіксованим ключем (список залежностей нижче),
+      # щоб не тягнути їх з мережі при кожному запуску
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-requests-bs4-pandas-openpyxl-lxml-v1
 
       - name: Install dependencies
         run: pip install requests beautifulsoup4 pandas openpyxl lxml
@@ -31,63 +48,99 @@ jobs:
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        # Збій листа не повинен зривати генерацію HTML і коміт
+        continue-on-error: true
         run: |
           python - <<'EOF'
-          import requests, os, base64, datetime
+          import base64, datetime, os, sys
+          import requests
 
-          api_key = os.environ["RESEND_API_KEY"]
-          email_to = os.environ["EMAIL_TO"]
+          api_key = os.environ.get("RESEND_API_KEY")
+          email_to = os.environ.get("EMAIL_TO")
+          xlsx_path = "growex_zzr.xlsx"
+
+          if not api_key or not email_to:
+              print("RESEND_API_KEY / EMAIL_TO не задані — пропускаю відправку листа.")
+              sys.exit(0)
+
+          if not os.path.exists(xlsx_path):
+              print(f"{xlsx_path} не знайдено — надсилати нічого.")
+              sys.exit(0)
+
           updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
-          with open("growex_zzr.xlsx", "rb") as f:
+          with open(xlsx_path, "rb") as f:
               file_data = base64.b64encode(f.read()).decode()
 
-          response = requests.post(
-              "https://api.resend.com/emails",
-              headers={
-                  "Authorization": f"Bearer {api_key}",
-                  "Content-Type": "application/json"
-              },
-              json={
-                  "from": "Growex Parser <onboarding@resend.dev>",
-                  "to": [email_to],
-                  "subject": f"Growex ЗЗР — {updated}",
-                  "html": f"<h2>🌿 Growex — Засоби захисту рослин</h2><p>Оновлено: {updated}</p><p>Файл з результатами у вкладенні.</p>",
-                  "attachments": [
-                      {
-                          "filename": "growex_zzr.xlsx",
-                          "content": file_data
-                      }
-                  ]
-              }
-          )
-          print(f"Status: {response.status_code}")
-          print(response.text)
+          try:
+              response = requests.post(
+                  "https://api.resend.com/emails",
+                  headers={
+                      "Authorization": f"Bearer {api_key}",
+                      "Content-Type": "application/json"
+                  },
+                  json={
+                      "from": "Growex Parser <onboarding@resend.dev>",
+                      "to": [email_to],
+                      "subject": f"Growex ЗЗР — {updated}",
+                      "html": (
+                          "<h2>🌿 Growex — Засоби захисту рослин</h2>"
+                          f"<p>Оновлено: {updated}</p>"
+                          "<p>Файл з результатами у вкладенні.</p>"
+                      ),
+                      "attachments": [
+                          {"filename": xlsx_path, "content": file_data}
+                      ]
+                  },
+                  timeout=30,
+              )
+              print(f"Status: {response.status_code}")
+              print(response.text)
+              response.raise_for_status()
+          except requests.RequestException as exc:
+              print(f"Не вдалося надіслати лист: {exc}")
+              sys.exit(1)
           EOF
 
       - name: Generate HTML page
         run: |
           python - <<'EOF'
-          import pandas as pd
           import datetime
+          import html
+          import os
+          import sys
+          import pandas as pd
 
-          df = pd.read_excel("growex_zzr.xlsx")
+          xlsx_path = "growex_zzr.xlsx"
+
+          try:
+              df = pd.read_excel(xlsx_path)
+          except FileNotFoundError:
+              print(f"{xlsx_path} не знайдено — пропускаю генерацію HTML.")
+              sys.exit(1)
+
+          def esc(value):
+              return html.escape(str(value)) if pd.notna(value) else ""
+
           updated = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
           rows = ""
           for _, p in df.iterrows():
+              url = esc(p.get('URL', ''))
+              name = esc(p.get('Назва', ''))
               rows += f"""
               <tr>
-                <td><a href="{p.get('URL','')}" target="_blank">{p.get('Назва','')}</a></td>
-                <td>{p.get('Ціна','')}</td>
-                <td>{p.get('Ціна_за_літр','')}</td>
-                <td>{p.get('Виробник','')}</td>
+                <td><a href="{url}" target="_blank" rel="noopener">{name}</a></td>
+                <td>{esc(p.get('Ціна', ''))}</td>
+                <td>{esc(p.get('Ціна_за_літр', ''))}</td>
+                <td>{esc(p.get('Виробник', ''))}</td>
               </tr>"""
 
-          html = f"""<!DOCTYPE html>
+          out = f"""<!DOCTYPE html>
           <html lang="uk">
           <head>
             <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Growex — ЗЗР</title>
             <style>
               body {{ font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }}
@@ -105,7 +158,7 @@ jobs:
           <body>
             <h1>🌿 Growex — Засоби захисту рослин</h1>
             <p>Оновлено: {updated} | Товарів: {len(df)}</p>
-            <input type="text" id="search" placeholder="🔍 Пошук товару..." onkeyup="filter()">
+            <input type="text" id="search" placeholder="🔍 Пошук товару..." onkeyup="filterTable()">
             <table id="table">
               <thead><tr>
                 <th>Назва</th>
@@ -116,7 +169,7 @@ jobs:
               <tbody>{rows}</tbody>
             </table>
             <script>
-              function filter() {{
+              function filterTable() {{
                 const q = document.getElementById('search').value.toLowerCase();
                 document.querySelectorAll('#table tbody tr').forEach(r => {{
                   r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
@@ -127,16 +180,25 @@ jobs:
           </html>"""
 
           with open("index.html", "w", encoding="utf-8") as f:
-              f.write(html)
-          print("index.html створено")
+              f.write(out)
+          print(f"index.html створено, товарів: {len(df)}")
+
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+          if summary_path:
+              with open(summary_path, "a", encoding="utf-8") as f:
+                  f.write(f"### Growex Parser\n- Оновлено: {updated}\n- Товарів: {len(df)}\n")
           EOF
 
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --hard origin/main
           git add growex_zzr.xlsx index.html
-          git diff --staged --quiet || git commit -m "Update parser results"
+          if git diff --staged --quiet; then
+            echo "Змін немає, коміт не потрібен."
+            exit 0
+          fi
+          git commit -m "Update parser results"
+          # rebase замість hard reset — не затираємо чужі коміти між запусками
+          git pull --rebase origin main
           git push origin main
