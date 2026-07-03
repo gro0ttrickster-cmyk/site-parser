@@ -2,8 +2,9 @@ import concurrent.futures
 import time
 import random
 import threading
+import re
 from datetime import datetime
-from typing import Optional, List, Dict, Tuple
+from typing import Optional, List, Dict
 import pandas as pd
 from bs4 import BeautifulSoup
 from curl_cffi import requests
@@ -12,9 +13,8 @@ from curl_cffi import requests
 BASE_URL = "https://growex.market"
 
 CATEGORIES = {
-    "ЗЗР (загальний)":     "/products/zasobi-zahistu-roslin-zzr",
+    "ЗЗР (загальний)":      "/products/zasobi-zahistu-roslin-zzr",
     "Гербіциди":            "/products/gerbicidi",
-    "Десиканти":            "/products/desikanti-2",
     "Інсектициди":          "/products/insekticidi",
     "Акарициди":            "/products/akaricidi",
     "Родентициди":          "/products/rodenticidi",
@@ -23,8 +23,10 @@ CATEGORIES = {
     "Інокулянти":           "/products/inokulyanti",
     "Регулятори росту":     "/products/regulyatori-rostu",
     "Допоміжні засоби":     "/products/dopomizhni-zasobi",
-    "Біологічні препарати": "/products/biologichni-preparati",
     "Фуміганти":            "/products/fumiganti",
+    "Біологічні препарати": "/products/biologichni-preparati",
+    "Пакети для фермера":   "/products/paketi-dlya-fermera",
+    "Антисептики":          "/products/antiseptiki",
 }
 
 HEADERS = {
@@ -34,9 +36,7 @@ HEADERS = {
     "Referer": "https://growex.market/",
 }
 
-# Оптимальна кількість воркерів для HTTP/2 мултіплексування
 MAX_WORKERS           = 8  
-MAX_PAGES_PER_CAT     = 50    # Практична стеля для пагінації однієї категорії ЗЗР
 RETRY_DELAYS          = [2, 4, 8]
 
 # ── Статистика ────────────────────────────────────────────────
@@ -52,18 +52,17 @@ thread_local = threading.local()
 
 def get_session() -> requests.Session:
     if not hasattr(thread_local, "session"):
-        # impersonate створює правильний TLS фінгерпрінт + вмикає HTTP/2
         s = requests.Session(impersonate="chrome110")
         s.headers.update(HEADERS)
         thread_local.session = s
     return thread_local.session
 
-# ── Швидкий GET без зайвих штучних пауз ────────────────────────
+# ── Швидкий GET ───────────────────────────────────────────────
 def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
     session = get_session()
     for attempt in range(retries):
         try:
-            resp = session.get(url, timeout=10)
+            resp = session.get(url, timeout=15)
             if resp.status_code == 200:
                 return resp.text
             if resp.status_code == 404:
@@ -77,6 +76,27 @@ def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
             _record("errors")
             time.sleep(RETRY_DELAYS[attempt])
     return None
+
+# ── Визначення кількості сторінок у категорії ─────────────────
+def get_max_pages(category_path: str) -> int:
+    url = f"{BASE_URL}{category_path}?page=1"
+    html = safe_get(url)
+    if not html:
+        return 1
+    
+    soup = BeautifulSoup(html, "lxml")
+    pagination_links = soup.select("a[href*='page=']")
+    max_page = 1
+    
+    for link in pagination_links:
+        href = link.get("href", "")
+        match = re.search(r'page=(\d+)', href)
+        if match:
+            page_num = int(match.group(1))
+            if page_num > max_page:
+                max_page = page_num
+                
+    return max_page
 
 # ── Парсинг карток ────────────────────────────────────────────
 def parse_cards(soup: BeautifulSoup, category_name: str, page: int) -> List[Dict]:
@@ -97,7 +117,7 @@ def parse_cards(soup: BeautifulSoup, category_name: str, page: int) -> List[Dict
         })
     return rows
 
-# ── Парсинг однієї сторінки (для ThreadPoolExecutor) ──────────
+# ── Парсинг однієї сторінки ───────────────────────────────────
 def load_page(category_name: str, url_base: str, page: int) -> List[Dict]:
     url = f"{BASE_URL}{url_base}?page={page}"
     html = safe_get(url)
@@ -106,16 +126,23 @@ def load_page(category_name: str, url_base: str, page: int) -> List[Dict]:
     soup = BeautifulSoup(html, "lxml")
     return parse_cards(soup, category_name, page)
 
-# ── КРОК 1: Асинхронно-паралельний збір каталогу ──────────────
+# ── КРОК 1: Динамічний збір каталогу ──────────────────────────
 def collect_catalog() -> pd.DataFrame:
-    print(f"\n=== Крок 1: Швидкий збір каталогу ({MAX_WORKERS} паралельних потоків) ===")
+    print(f"\n=== Крок 1: Повний збір каталогу з Акарицидами ({MAX_WORKERS} пар. потоків) ===")
     all_rows = []
     
+    print("Аналіз кількості сторінок в категоріях...")
+    category_pages = {}
+    for name, path in CATEGORIES.items():
+        max_p = get_max_pages(path)
+        category_pages[name] = max_p
+        print(f"  -> {name}: знайдено сторінок — {max_p}")
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = []
-        # Одночасно ставимо в чергу запити на перші 15 сторінок кожної категорії
         for name, path in CATEGORIES.items():
-            for page in range(1, 16):  
+            max_p = category_pages[name]
+            for page in range(1, max_p + 1):  
                 futures.append(executor.submit(load_page, name, path, page))
         
         for future in concurrent.futures.as_completed(futures):
@@ -131,11 +158,16 @@ def collect_catalog() -> pd.DataFrame:
         return df
         
     before = len(df)
+    
+    # Пріоритет унікальних підкатегорій при видаленні дублікатів
+    df['is_general'] = df['Категорія'] == "ЗЗР (загальний)"
+    df = df.sort_values(by='is_general').drop(columns=['is_general'])
+    
     df = df.drop_duplicates(subset=["URL"]).reset_index(drop=True)
-    print(f"Зібрано карток: {before} | Унікальних: {len(df)}")
+    print(f"Всього знайдено посилань: {before} | Унікальних товарів: {len(df)}")
     return df
 
-# ── КРОК 2: Швидкі деталі товарів ─────────────────────────────
+# ── КРОК 2: Деталі товарів ────────────────────────────────────
 def get_details(item: Dict) -> Dict:
     html = safe_get(item["URL"])
     if not html:
@@ -151,7 +183,7 @@ def get_details(item: Dict) -> Dict:
     return item
 
 def enrich_with_details(df: pd.DataFrame) -> pd.DataFrame:
-    print(f"\n=== Крок 2: Швидкий збір деталей ({len(df)} шт., {MAX_WORKERS} потоків) ===")
+    print(f"\n=== Крок 2: Збір деталей ({len(df)} шт., {MAX_WORKERS} потоків) ===")
     records = df.to_dict("records")
     enriched = []
     done = 0
