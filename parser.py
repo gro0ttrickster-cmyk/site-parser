@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import argparse
@@ -24,10 +23,6 @@ from curl_cffi import requests
 
 BASE_URL = "https://growex.market"
 
-# Порядок важливий: "ЗЗР (загальний)" — навмисно в кінці.
-# На цій вкладці НЕ всі товари (частина є лише у профільних категоріях),
-# тому категорію не прибираємо — вона потрібна як добірка "решти" товарів,
-# а дублікати за URL відсіюються пізніше на користь профільної категорії.
 CATEGORIES: Dict[str, str] = {
     "Гербіциди": "/products/gerbicidi",
     "Інсектициди": "/products/insekticidi",
@@ -55,12 +50,10 @@ HEADERS = {
     "Referer": BASE_URL + "/",
 }
 
-RETRY_DELAYS = (3, 6, 12, 20)
-DEFAULT_WORKERS = 5
+RETRY_DELAYS = (4, 8, 15, 25)
+DEFAULT_WORKERS = 3  # Зменшено за замовчуванням для стабільності
 DEFAULT_OUTPUT = "growex_zzr.xlsx"
-# Затримка перед повторним (серійним) проходом по сторінках, що не вдалось
-# завантажити паралельно — дає сайту час "забути" сплеск запитів.
-SECOND_PASS_DELAY = 5.0
+SECOND_PASS_DELAY = 7.0
 
 logging.basicConfig(
     level=logging.INFO,
@@ -87,7 +80,6 @@ class Stats:
 
 @dataclass
 class FailedPage:
-    """Сторінка категорії, яку не вдалось завантажити в паралельному режимі."""
     category_name: str
     url_base: str
     page: int
@@ -95,35 +87,52 @@ class FailedPage:
 
 STATS = Stats()
 _thread_local = threading.local()
+GLOBAL_COOKIES = {}  # Спільні базові куки після розігріву
 
 
 # --------------------------------------------------------------------------- #
 # HTTP-шар
 # --------------------------------------------------------------------------- #
 
+def warm_up_session() -> None:
+    """Робить тестовий запит до головної сторінки для ініціалізації куків."""
+    global GLOBAL_COOKIES
+    log.info("Розігрів сесії (отримання базових куків сайту)...")
+    try:
+        with requests.Session(impersonate="chrome124") as s:
+            s.headers.update(HEADERS)
+            resp = s.get(BASE_URL, timeout=15)
+            if resp.status_code == 200:
+                GLOBAL_COOKIES = resp.cookies.get_dict()
+                log.info("Сесію успішно розігріто.")
+            else:
+                log.warning("Розігрів повернув статус %d. Працюємо без базових куків.", resp.status_code)
+    except Exception as e:
+        log.warning("Не вдалося розігріти сесію: %s. Можливі блокування.", e)
+
+
 def get_session() -> requests.Session:
-    """Одна сесія на потік (переговори TLS/куки не повторюються на кожен запит)."""
+    """Одна сесія на потік з імпортованими базовими куками."""
     session = getattr(_thread_local, "session", None)
     if session is None:
-        session = requests.Session(impersonate="chrome120")
+        session = requests.Session(impersonate="chrome124")
         session.headers.update(HEADERS)
+        if GLOBAL_COOKIES:
+            session.cookies.update(GLOBAL_COOKIES)
         _thread_local.session = session
     return session
 
 
 class PageBlockedError(Exception):
-    """Сторінка не 404 — сайт просто не віддав контент (403/429/мережа) навіть
-    після всіх спроб. На відміну від 404, це варто повторити пізніше."""
+    """Сторінка заблокована сайтом."""
 
 
 def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
-    """Повертає HTML, None якщо сторінка дійсно не існує (404),
-    або кидає PageBlockedError, якщо сайт блокував запити на кожній спробі."""
     session = get_session()
     last_status: Optional[int] = None
     for attempt in range(retries):
         try:
-            resp = session.get(url, timeout=12)
+            resp = session.get(url, timeout=15)
             last_status = resp.status_code
             if resp.status_code == 200:
                 return resp.text
@@ -131,14 +140,15 @@ def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
                 return None
             if resp.status_code in (403, 429):
                 STATS.inc_blocked()
-                delay = RETRY_DELAYS[attempt] + random.uniform(0.5, 1.5)
+                delay = RETRY_DELAYS[attempt] + random.uniform(1.0, 3.0)
                 log.debug("HTTP %s на %s, повтор через %.1fс", resp.status_code, url, delay)
                 time.sleep(delay)
-        except Exception as exc:  # noqa: BLE001 — мережеві збої можуть бути різні
+        except Exception as exc:
             STATS.inc_error()
             last_status = None
             log.debug("Помилка запиту %s: %s", url, exc)
-            time.sleep(RETRY_DELAYS[attempt])
+            time.sleep(RETRY_DELAYS[attempt] + random.uniform(0.5, 1.5))
+            
     log.warning(
         "Не вдалося отримати сторінку після %d спроб (останній статус: %s): %s",
         retries, last_status if last_status is not None else "мережева помилка", url,
@@ -152,9 +162,11 @@ def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
 
 def get_max_pages(category_path: str) -> int:
     try:
+        # Штучна пауза, щоб потоки не атакували сайт одночасно
+        time.sleep(random.uniform(1.0, 3.5))
         html = safe_get(f"{BASE_URL}{category_path}?page=1")
     except PageBlockedError:
-        log.error("Не вдалося визначити кількість сторінок для %s — сайт заблокував запит", category_path)
+        log.error("Не вдалося визначити кількість сторінок для %s — сайт заблокував запит (403/429)", category_path)
         return 1
     if not html:
         return 1
@@ -168,8 +180,6 @@ def get_max_pages(category_path: str) -> int:
 
 
 def load_page(category_name: str, url_base: str, page: int) -> tuple[List[Dict], bool]:
-    """Повертає (товари, failed). failed=True означає, що сторінку варто
-    повторити пізніше — на відміну від дійсно порожньої/неіснуючої сторінки."""
     try:
         html = safe_get(f"{BASE_URL}{url_base}?page={page}")
     except PageBlockedError:
@@ -196,6 +206,8 @@ def load_page(category_name: str, url_base: str, page: int) -> tuple[List[Dict],
 
 def get_details(item: Dict) -> Dict:
     try:
+        # Затримка між заходами в картки товарів
+        time.sleep(random.uniform(0.3, 1.2))
         html = safe_get(item["URL"])
     except PageBlockedError:
         html = None
@@ -215,6 +227,8 @@ def get_details(item: Dict) -> Dict:
 # --------------------------------------------------------------------------- #
 
 def collect_catalog(categories: Dict[str, str], workers: int) -> pd.DataFrame:
+    warm_up_session()
+    
     log.info("Аналіз кількості сторінок у %d категоріях...", len(categories))
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
         futures = {ex.submit(get_max_pages, path): name for name, path in categories.items()}
@@ -226,6 +240,8 @@ def collect_catalog(categories: Dict[str, str], workers: int) -> pd.DataFrame:
 
     all_rows: List[Dict] = []
     failed_pages: List[FailedPage] = []
+    
+    log.info("Збір списків товарів з категорій...")
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
         future_map = {
             ex.submit(load_page, name, path, page): FailedPage(name, path, page)
@@ -249,14 +265,14 @@ def collect_catalog(categories: Dict[str, str], workers: int) -> pd.DataFrame:
         for fp in failed_pages:
             try:
                 rows, failed = load_page(fp.category_name, fp.url_base, fp.page)
-            except Exception as exc:  # noqa: BLE001
+            except Exception as exc:
                 log.debug("Другий прохід також невдалий для %s ст.%d: %s", fp.category_name, fp.page, exc)
                 rows, failed = [], True
             if failed:
                 still_failed.append(fp)
             elif rows:
                 all_rows.extend(rows)
-            time.sleep(1.0)  # серійно й повільно, щоб не тригерити блокування знову
+            time.sleep(random.uniform(1.5, 3.0))
 
         if still_failed:
             log.error(
@@ -272,9 +288,6 @@ def collect_catalog(categories: Dict[str, str], workers: int) -> pd.DataFrame:
         return pd.DataFrame()
 
     df = pd.DataFrame(all_rows)
-    # "ЗЗР (загальний)" — резервна категорія; при дублікатах URL
-    # пріоритет мають профільні категорії, тому загальну сортуємо в кінець
-    # перед drop_duplicates(keep="first").
     df["_is_general"] = df["Категорія"] == "ЗЗР (загальний)"
     df = (
         df.sort_values(by="_is_general")
@@ -293,7 +306,7 @@ def enrich_with_details(df: pd.DataFrame, workers: int) -> pd.DataFrame:
         futures = [ex.submit(get_details, item) for item in df.to_dict("records")]
         for i, fut in enumerate(concurrent.futures.as_completed(futures), 1):
             enriched.append(fut.result())
-            if i % 100 == 0 or i == total:
+            if i % 50 == 0 or i == total:
                 log.info("  Прогрес: %d/%d", i, total)
     return pd.DataFrame(enriched)
 
