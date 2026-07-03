@@ -30,16 +30,16 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Кешуємо pip-пакети за фіксованим ключем (список залежностей нижче),
+      # Кешуємо pip-пакети за фіксованим ключем (додано curl_cffi до ключа),
       # щоб не тягнути їх з мережі при кожному запуску
       - name: Cache pip packages
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-${{ runner.os }}-requests-bs4-pandas-openpyxl-lxml-v1
+          key: pip-${{ runner.os }}-requests-bs4-pandas-openpyxl-lxml-curl_cffi-v1
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 pandas openpyxl lxml
+        run: pip install requests beautifulsoup4 pandas openpyxl lxml curl_cffi
 
       - name: Run parser
         run: python parser.py
