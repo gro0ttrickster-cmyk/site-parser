@@ -6,14 +6,14 @@ from collections import deque
 from datetime import datetime
 from typing import Optional, List, Dict, Set
 import pandas as pd
-# Замінюємо стандартний requests на curl_cffi
+# Використовуємо curl_cffi замість звичайного requests для обходу 403 помилок
 from curl_cffi import requests
 from bs4 import BeautifulSoup
 
 # ── Налаштування ──────────────────────────────────────────────
 BASE_URL = "https://growex.market"
 
-# Унікальні категорії за вашим списком
+# Унікальний список категорій
 CATEGORIES = {
     "Гербіциди":            "/products/gerbicidi",
     "Інсектициди":          "/products/insekticidi",
@@ -31,21 +31,22 @@ CATEGORIES = {
     "ЗЗР (загальний)":      "/products/zasobi-zahistu-roslin-zzr",
 }
 
-# Заголовки, адаптовані під Safari 17
+# Заголовки, адаптовані під Chrome
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
-        "(KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "uk-UA,uk;q=0.9",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Language": "uk-UA,uk;q=0.9,en-US;q=0.8",
     "Referer": "https://growex.market/",
 }
 
-MAX_CATALOG_WORKERS = 4  # Трохи зменшено для стабільності на старті
+MAX_CATALOG_WORKERS = 4  # Оптимально для хмари, щоб не спамити сайт
 MAX_DETAIL_WORKERS  = 6
 MAX_EMPTY_PAGES     = 2
-RETRY_DELAYS        = [4, 8, 15]  # Збільшено паузи для обходу блокувань
+RETRY_DELAYS        = [4, 8, 15]  # Безпечні затримки у разі підозр
 MIN_DELAY           = 0.5
 MAX_DELAY           = 2.0
 
@@ -54,8 +55,8 @@ thread_local = threading.local()
 
 def get_session() -> requests.Session:
     if not hasattr(thread_local, "session"):
-        # Використовуємо сесію від curl_cffi з імперсонацією Safari 17
-        s = requests.Session(impersonate="safari17")
+        # Використовуємо універсальний 'chrome', який підтримується будь-якою версією curl_cffi
+        s = requests.Session(impersonate="chrome")
         s.headers.update(HEADERS)
         thread_local.session = s
     return thread_local.session
@@ -63,7 +64,7 @@ def get_session() -> requests.Session:
 def throttle():
     time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
-# ── Базовий GET з retry (тепер через curl_cffi) ───────────────
+# ── Базовий GET з retry (через curl_cffi) ─────────────────────
 def safe_get(url: str, retries: int = 3) -> Optional[requests.Response]:
     session = get_session()
     for attempt in range(retries):
@@ -77,7 +78,6 @@ def safe_get(url: str, retries: int = 3) -> Optional[requests.Response]:
                 time.sleep(wait)
                 continue
             
-            # Якщо статус не 200, викликаємо виняток
             if resp.status_code != 200:
                 raise requests.RequestException(f"Статус код: {resp.status_code}")
                 
@@ -125,8 +125,7 @@ def discover_all_categories(base_categories: Dict[str, str]) -> Dict[str, str]:
 
     while queue:
         parent_name, parent_path = queue.popleft()
-        # Додаткова випадкова пауза перед BFS-запитом
-        time.sleep(random.uniform(1.0, 2.5))
+        time.sleep(random.uniform(1.0, 2.0))  # Пауза між кроками BFS
         subcats = get_subcategories(parent_path)
         throttle()
 
