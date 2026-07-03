@@ -6,13 +6,14 @@ from collections import deque
 from datetime import datetime
 from typing import Optional, List, Dict, Set
 import pandas as pd
-import requests
+# Замінюємо стандартний requests на curl_cffi
+from curl_cffi import requests
 from bs4 import BeautifulSoup
 
 # ── Налаштування ──────────────────────────────────────────────
 BASE_URL = "https://growex.market"
 
-# Оновлений список унікальних категорій
+# Унікальні категорії за вашим списком
 CATEGORIES = {
     "Гербіциди":            "/products/gerbicidi",
     "Інсектициди":          "/products/insekticidi",
@@ -30,30 +31,31 @@ CATEGORIES = {
     "ЗЗР (загальний)":      "/products/zasobi-zahistu-roslin-zzr",
 }
 
+# Заголовки, адаптовані під Safari 17
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
+        "(KHTML, like Gecko) Version/17.0 Safari/605.1.15"
     ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "uk-UA,uk;q=0.9,en-US;q=0.8",
+    "Accept-Language": "uk-UA,uk;q=0.9",
     "Referer": "https://growex.market/",
 }
 
-MAX_CATALOG_WORKERS = 8
-MAX_DETAIL_WORKERS  = 10
+MAX_CATALOG_WORKERS = 4  # Трохи зменшено для стабільності на старті
+MAX_DETAIL_WORKERS  = 6
 MAX_EMPTY_PAGES     = 2
-RETRY_DELAYS        = [2, 5, 10]
-MIN_DELAY           = 0.2
-MAX_DELAY           = 0.7
+RETRY_DELAYS        = [4, 8, 15]  # Збільшено паузи для обходу блокувань
+MIN_DELAY           = 0.5
+MAX_DELAY           = 2.0
 
 # ── Потокобезпечна сесія (одна на потік) ─────────────────────
 thread_local = threading.local()
 
 def get_session() -> requests.Session:
     if not hasattr(thread_local, "session"):
-        s = requests.Session()
+        # Використовуємо сесію від curl_cffi з імперсонацією Safari 17
+        s = requests.Session(impersonate="safari17")
         s.headers.update(HEADERS)
         thread_local.session = s
     return thread_local.session
@@ -61,7 +63,7 @@ def get_session() -> requests.Session:
 def throttle():
     time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
-# ── Базовий GET з retry ───────────────────────────────────────
+# ── Базовий GET з retry (тепер через curl_cffi) ───────────────
 def safe_get(url: str, retries: int = 3) -> Optional[requests.Response]:
     session = get_session()
     for attempt in range(retries):
@@ -69,21 +71,20 @@ def safe_get(url: str, retries: int = 3) -> Optional[requests.Response]:
             resp = session.get(url, timeout=15)
             if resp.status_code == 404:
                 return None
-            if resp.status_code == 403:
-                wait = RETRY_DELAYS[min(attempt, len(RETRY_DELAYS) - 1)]
-                print(f"  ⚠ 403 → {url} | спроба {attempt+1}/{retries} | чекаємо {wait}с")
+            if resp.status_code in (403, 429):
+                wait = RETRY_DELAYS[min(attempt, len(RETRY_DELAYS) - 1)] + random.uniform(1.0, 3.0)
+                print(f"  ⚠ HTTP {resp.status_code} → {url} | спроба {attempt+1}/{retries} | чекаємо {wait:.1f}с")
                 time.sleep(wait)
                 continue
-            if resp.status_code == 429:
-                wait = RETRY_DELAYS[min(attempt, len(RETRY_DELAYS) - 1)] * 2
-                print(f"  ⚠ 429 Too Many Requests → чекаємо {wait}с")
-                time.sleep(wait)
-                continue
-            resp.raise_for_status()
+            
+            # Якщо статус не 200, викликаємо виняток
+            if resp.status_code != 200:
+                raise requests.RequestException(f"Статус код: {resp.status_code}")
+                
             return resp
-        except requests.RequestException as e:
+        except Exception as e:
             wait = RETRY_DELAYS[min(attempt, len(RETRY_DELAYS) - 1)]
-            print(f"  ⚠ Помилка: {e} | спроба {attempt+1}/{retries} | чекаємо {wait}с")
+            print(f"  ⚠ Помилка запиту: {e} | спроба {attempt+1}/{retries} | чекаємо {wait}с")
             time.sleep(wait)
     print(f"  ✗ Всі спроби вичерпані → {url}")
     return None
@@ -124,6 +125,8 @@ def discover_all_categories(base_categories: Dict[str, str]) -> Dict[str, str]:
 
     while queue:
         parent_name, parent_path = queue.popleft()
+        # Додаткова випадкова пауза перед BFS-запитом
+        time.sleep(random.uniform(1.0, 2.5))
         subcats = get_subcategories(parent_path)
         throttle()
 
