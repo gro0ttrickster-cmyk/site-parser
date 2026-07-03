@@ -12,7 +12,6 @@ from curl_cffi import requests
 # ── Налаштування ──────────────────────────────────────────────
 BASE_URL = "https://growex.market"
 
-# Повний актуальний список категорій з урахуванням скріншотів та правок
 CATEGORIES = {
     "ЗЗР (загальний)":      "/products/zasobi-zahistu-roslin-zzr",
     "Гербіциди":            "/products/gerbicidi",
@@ -38,7 +37,11 @@ HEADERS = {
 }
 
 MAX_WORKERS           = 8  
-RETRY_DELAYS          = [2, 4, 8]
+RETRY_DELAYS          = [3, 6, 12] # Трохи збільшили паузи для стабільності проксі
+
+# Global proxy list
+WORKING_PROXIES = []
+_proxy_lock = threading.Lock()
 
 # ── Статистика ────────────────────────────────────────────────
 _stats_lock = threading.Lock()
@@ -48,31 +51,71 @@ def _record(kind: str):
     with _stats_lock:
         STATS[kind] = STATS.get(kind, 0) + 1
 
-# ── Потокобезпечна сесія з підтримкою HTTP/2 ──────────────────
+# ── Автоматичний збір свіжих безкоштовних проксі ──────────────
+def fetch_free_proxies():
+    """Збирає список свіжих HTTPS проксі з безкоштовного API"""
+    global WORKING_PROXIES
+    print("⏳ Отримання свіжих безкоштовних проксі...")
+    links = [
+        "https://pubproxy.com/api/proxy?limit=5&format=txt&http=true&country=UA,PL,DE,FR,RO,BG,MD&level=anonymous",
+        "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
+    ]
+    
+    collected = []
+    # Спроба витягнути з резервного простого списку проксі
+    try:
+        r = requests.get("https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt", timeout=10)
+        if r.status_code == 200:
+            lines = r.text.splitlines()
+            collected = [line.strip() for line in lines if line.strip() and ":" in line]
+            random.shuffle(collected)
+            collected = collected[:30] # Беремо перші 30 випадкових для ротації
+    except Exception as e:
+        print(f"⚠️ Не вдалося зібрати проксі з github: {e}")
+        
+    with _proxy_lock:
+        WORKING_PROXIES = collected
+    print(f"✅ Знайдено {len(WORKING_PROXIES)} потенційних безкоштовних проксі для обходу блокування GitHub.")
+
+def get_random_proxy() -> Optional[Dict[str, str]]:
+    with _proxy_lock:
+        if not WORKING_PROXIES:
+            return None
+        px = random.choice(WORKING_PROXIES)
+        return {"http": f"http://{px}", "https": f"http://{px}"}
+
+# ── Потокобезпечна сесія з підтримкою HTTP/2 та Проксі ────────
 thread_local = threading.local()
 
-def get_session() -> requests.Session:
-    if not hasattr(thread_local, "session"):
-        # Використовуємо стабільний chrome фінгерпрінт
+def get_session(renew_proxy: bool = False) -> requests.Session:
+    if not hasattr(thread_local, "session") or renew_proxy:
         s = requests.Session(impersonate="chrome120")
         s.headers.update(HEADERS)
+        
+        proxy = get_random_proxy()
+        if proxy:
+            s.proxies = proxy
         thread_local.session = s
     return thread_local.session
 
-# ── Швидкий GET з обробкою помилок ────────────────────────────
+# ── Швидкий GET з ротацією проксі при помилках ────────────────
 def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
-    session = get_session()
+    # Для кожного ретраю пробуємо свіже або інше проксі, якщо зловили 403
     for attempt in range(retries):
+        session = get_session(renew_proxy=(attempt > 0))
         try:
-            resp = session.get(url, timeout=15)
+            resp = session.get(url, timeout=12)
             if resp.status_code == 200:
+                if "cloudflare" in resp.text.lower() or "captcha" in resp.text.lower():
+                    # Якщо Cloudflare пропустив з кодом 200, але там заглушка-капча
+                    _record("403")
+                    continue
                 return resp.text
             if resp.status_code == 404:
                 return None
             if resp.status_code in [403, 429]:
                 _record(str(resp.status_code))
-                wait = RETRY_DELAYS[attempt] + random.uniform(1.0, 3.0)
-                time.sleep(wait)
+                time.sleep(RETRY_DELAYS[attempt] + random.uniform(1, 2))
                 continue
         except Exception:
             _record("errors")
@@ -82,27 +125,16 @@ def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
 # ── Розумне визначення кількості сторінок у категорії ─────────
 def get_max_pages(category_path: str) -> int:
     url = f"{BASE_URL}{category_path}?page=1"
-    session = get_session()
-    
-    try:
-        resp = session.get(url, timeout=15)
-        if resp.status_code != 200:
-            print(f"    ⚠️ Помилка сервера для {category_path}: Статус-код {resp.status_code}")
-            return 1
-        html = resp.text
-    except Exception as e:
-        print(f"    ⚠️ Не вдалося зв'язатися з сервером для {category_path}: {e}")
+    html = safe_get(url)
+    if not html:
+        print(f"    ⚠️ Не вдалося прочитати {category_path} навіть через проксі (можливо, невдалий IP, беремо 1 сторінку)")
         return 1
     
     soup = BeautifulSoup(html, "lxml")
-    
-    # Шукаємо блоки пагінації за різними можливими селекторами
     pagination_links = soup.select("ul.pagination a[href*='page=']") or soup.select("a[href*='page=']")
     if not pagination_links:
-        # Перевіримо, чи є на сторінці взагалі бодай один товар
         if soup.select(".card_product"):
-            return 1  # Товари є, але сторінка лише одна (пагінації немає)
-        print(f"    ⚠️ Попередження: Для {category_path} не знайдено ні пагінації, ні карток товару. Перевірте захист Cloudflare.")
+            return 1
         return 1
     
     max_page = 1
@@ -146,8 +178,11 @@ def load_page(category_name: str, url_base: str, page: int) -> List[Dict]:
 
 # ── КРОК 1: Динамічний збір каталогу ──────────────────────────
 def collect_catalog() -> pd.DataFrame:
-    print(f"\n=== Крок 1: Повний збір каталогу ({MAX_WORKERS} пар. потоків) ===")
+    print(f"\n=== Крок 1: Повний збір каталогу через ПРОКСІ-РОТАЦІЮ ({MAX_WORKERS} пар. потоків) ===")
     all_rows = []
+    
+    # Збираємо пули адрес перед основним парсингом
+    fetch_free_proxies()
     
     print("Аналіз кількості сторінок в категоріях...")
     category_pages = {}
@@ -155,7 +190,6 @@ def collect_catalog() -> pd.DataFrame:
         max_p = get_max_pages(path)
         category_pages[name] = max_p
         print(f"  -> {name}: визначено сторінок — {max_p}")
-        time.sleep(0.5)  # Невеличка пауза між розвідкою, щоб не тригерити захист
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = []
@@ -170,20 +204,17 @@ def collect_catalog() -> pd.DataFrame:
                 if res:
                     all_rows.extend(res)
             except Exception as e:
-                print(f"  ✗ Помилка потоку при зборі сторінки: {e}")
+                print(f"  ✗ Помилка потоку: {e}")
                 
     df = pd.DataFrame(all_rows)
     if df.empty:
         return df
         
     before = len(df)
-    
-    # Зберігаємо назву чіткої підкатегорії (Гербіциди тощо) замість загальної "ЗЗР", якщо товар перетинається
     df['is_general'] = df['Категорія'] == "ЗЗР (загальний)"
     df = df.sort_values(by='is_general').drop(columns=['is_general'])
-    
     df = df.drop_duplicates(subset=["URL"]).reset_index(drop=True)
-    print(f"Всього знайдено посилань: {before} | Унікальних товарів після очищення: {len(df)}")
+    print(f"Всього знайдено посилань: {before} | Унікальних товарів: {len(df)}")
     return df
 
 # ── КРОК 2: Деталі товарів ────────────────────────────────────
@@ -202,7 +233,7 @@ def get_details(item: Dict) -> Dict:
     return item
 
 def enrich_with_details(df: pd.DataFrame) -> pd.DataFrame:
-    print(f"\n=== Крок 2: Збір деталей ({len(df)} шт., {MAX_WORKERS} потоків) ===")
+    print(f"\n=== Крок 2: Збір деталей через ПРОКСІ ({len(df)} шт., {MAX_WORKERS} потоків) ===")
     records = df.to_dict("records")
     enriched = []
     done = 0
@@ -235,14 +266,14 @@ def main():
     
     df = collect_catalog()
     if df.empty:
-        print("❌ Не вдалося зібрати каталог. Перевірте вищезазначені статус-коди помилок.")
+        print("❌ Не вдалося зібрати каталог навіть через безкоштовні проксі. Спробуйте локальний запуск.")
         return
         
     df = enrich_with_details(df)
     out_file = clean_and_save(df, parse_date)
     
-    print(f"\n✅ Успішно завершено за {time.time() - start_time:.1f} сек. Результат збережено у {out_file}")
-    print(f"Статистика блокувань -> Код 403: {STATS.get('403', 0)} | Код 429: {STATS.get('429', 0)} | Мережеві помилки: {STATS.get('errors', 0)}")
+    print(f"\n✅ Успішно завершено за {time.time() - start_time:.1f} сек. Результат у {out_file}")
+    print(f"Статистика -> Блокувань 403: {STATS.get('403', 0)} | Помилок зв'язку/проксі: {STATS.get('errors', 0)}")
 
 if __name__ == "__main__":
     main()
