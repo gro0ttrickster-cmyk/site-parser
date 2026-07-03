@@ -1,4 +1,4 @@
-import concurrent.futures
+       import concurrent.futures
 import time
 import random
 import threading
@@ -12,6 +12,7 @@ from curl_cffi import requests
 # ── Налаштування ──────────────────────────────────────────────
 BASE_URL = "https://growex.market"
 
+# Повний актуальний список категорій з урахуванням скріншотів та правок
 CATEGORIES = {
     "ЗЗР (загальний)":      "/products/zasobi-zahistu-roslin-zzr",
     "Гербіциди":            "/products/gerbicidi",
@@ -30,7 +31,7 @@ CATEGORIES = {
 }
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
     "Accept-Language": "uk-UA,uk;q=0.9,en-US;q=0.8",
     "Referer": "https://growex.market/",
@@ -52,12 +53,13 @@ thread_local = threading.local()
 
 def get_session() -> requests.Session:
     if not hasattr(thread_local, "session"):
-        s = requests.Session(impersonate="chrome110")
+        # Використовуємо стабільний chrome фінгерпрінт
+        s = requests.Session(impersonate="chrome120")
         s.headers.update(HEADERS)
         thread_local.session = s
     return thread_local.session
 
-# ── Швидкий GET ───────────────────────────────────────────────
+# ── Швидкий GET з обробкою помилок ────────────────────────────
 def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
     session = get_session()
     for attempt in range(retries):
@@ -69,7 +71,7 @@ def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
                 return None
             if resp.status_code in [403, 429]:
                 _record(str(resp.status_code))
-                wait = RETRY_DELAYS[attempt] + random.uniform(0.5, 1.5)
+                wait = RETRY_DELAYS[attempt] + random.uniform(1.0, 3.0)
                 time.sleep(wait)
                 continue
         except Exception:
@@ -77,17 +79,33 @@ def safe_get(url: str, retries: int = len(RETRY_DELAYS)) -> Optional[str]:
             time.sleep(RETRY_DELAYS[attempt])
     return None
 
-# ── Визначення кількості сторінок у категорії ─────────────────
+# ── Розумне визначення кількості сторінок у категорії ─────────
 def get_max_pages(category_path: str) -> int:
     url = f"{BASE_URL}{category_path}?page=1"
-    html = safe_get(url)
-    if not html:
+    session = get_session()
+    
+    try:
+        resp = session.get(url, timeout=15)
+        if resp.status_code != 200:
+            print(f"    ⚠️ Помилка сервера для {category_path}: Статус-код {resp.status_code}")
+            return 1
+        html = resp.text
+    except Exception as e:
+        print(f"    ⚠️ Не вдалося зв'язатися з сервером для {category_path}: {e}")
         return 1
     
     soup = BeautifulSoup(html, "lxml")
-    pagination_links = soup.select("a[href*='page=']")
-    max_page = 1
     
+    # Шукаємо блоки пагінації за різними можливими селекторами
+    pagination_links = soup.select("ul.pagination a[href*='page=']") or soup.select("a[href*='page=']")
+    if not pagination_links:
+        # Перевіримо, чи є на сторінці взагалі бодай один товар
+        if soup.select(".card_product"):
+            return 1  # Товари є, але сторінка лише одна (пагінації немає)
+        print(f"    ⚠️ Попередження: Для {category_path} не знайдено ні пагінації, ні карток товару. Перевірте захист Cloudflare.")
+        return 1
+    
+    max_page = 1
     for link in pagination_links:
         href = link.get("href", "")
         match = re.search(r'page=(\d+)', href)
@@ -128,7 +146,7 @@ def load_page(category_name: str, url_base: str, page: int) -> List[Dict]:
 
 # ── КРОК 1: Динамічний збір каталогу ──────────────────────────
 def collect_catalog() -> pd.DataFrame:
-    print(f"\n=== Крок 1: Повний збір каталогу з Акарицидами ({MAX_WORKERS} пар. потоків) ===")
+    print(f"\n=== Крок 1: Повний збір каталогу ({MAX_WORKERS} пар. потоків) ===")
     all_rows = []
     
     print("Аналіз кількості сторінок в категоріях...")
@@ -136,7 +154,8 @@ def collect_catalog() -> pd.DataFrame:
     for name, path in CATEGORIES.items():
         max_p = get_max_pages(path)
         category_pages[name] = max_p
-        print(f"  -> {name}: знайдено сторінок — {max_p}")
+        print(f"  -> {name}: визначено сторінок — {max_p}")
+        time.sleep(0.5)  # Невеличка пауза між розвідкою, щоб не тригерити захист
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = []
@@ -151,7 +170,7 @@ def collect_catalog() -> pd.DataFrame:
                 if res:
                     all_rows.extend(res)
             except Exception as e:
-                print(f"  ✗ Помилка потоку: {e}")
+                print(f"  ✗ Помилка потоку при зборі сторінки: {e}")
                 
     df = pd.DataFrame(all_rows)
     if df.empty:
@@ -159,12 +178,12 @@ def collect_catalog() -> pd.DataFrame:
         
     before = len(df)
     
-    # Пріоритет унікальних підкатегорій при видаленні дублікатів
+    # Зберігаємо назву чіткої підкатегорії (Гербіциди тощо) замість загальної "ЗЗР", якщо товар перетинається
     df['is_general'] = df['Категорія'] == "ЗЗР (загальний)"
     df = df.sort_values(by='is_general').drop(columns=['is_general'])
     
     df = df.drop_duplicates(subset=["URL"]).reset_index(drop=True)
-    print(f"Всього знайдено посилань: {before} | Унікальних товарів: {len(df)}")
+    print(f"Всього знайдено посилань: {before} | Унікальних товарів після очищення: {len(df)}")
     return df
 
 # ── КРОК 2: Деталі товарів ────────────────────────────────────
@@ -216,14 +235,14 @@ def main():
     
     df = collect_catalog()
     if df.empty:
-        print("❌ Не вдалося зібрати каталог.")
+        print("❌ Не вдалося зібрати каталог. Перевірте вищезазначені статус-коди помилок.")
         return
         
     df = enrich_with_details(df)
     out_file = clean_and_save(df, parse_date)
     
-    print(f"\n✅ Успішно завершено за {time.time() - start_time:.1f} сек. Результат у {out_file}")
-    print(f"Блокувань 403: {STATS.get('403', 0)} | Лімітів 429: {STATS.get('429', 0)}")
+    print(f"\n✅ Успішно завершено за {time.time() - start_time:.1f} сек. Результат збережено у {out_file}")
+    print(f"Статистика блокувань -> Код 403: {STATS.get('403', 0)} | Код 429: {STATS.get('429', 0)} | Мережеві помилки: {STATS.get('errors', 0)}")
 
 if __name__ == "__main__":
     main()
