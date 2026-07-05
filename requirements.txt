@@ -3,4 +3,4 @@ beautifulsoup4
 pandas
 openpyxl
 lxml
-requests
+curl_cffi
